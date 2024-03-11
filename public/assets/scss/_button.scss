@@ -2,49 +2,58 @@
 .btn-one {
   font-weight: 500;
   color: $color-one;
-  padding: 0 25px;
-  min-width: 130px;
+  padding: 0 18px;
+  min-width: 110px;
   text-align: center;
-  line-height: 53px;
+  line-height: 40px;
   border: 1px solid $color-one;
-  border-radius: 10px;
+  border-radius: 8px;
   @include transition (0.3s);
+
   i {
-      margin-right: 5px;
+    margin-right: 5px;
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: #000;
     border-color: #000;
     color: #fff;
   }
 }
+
 .btn-two {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
   color: #fff;
-  padding: 0 22px;
-  min-width: 160px;
+  padding: 0 18px;
+  min-width: 130px;
   text-align: center;
-  line-height: 53px;
+  line-height: 40px;
   border: 1px solid $color-two;
   background: $color-one;
-  border-radius: 10px;
+  border-radius: 8px;
   @include transition (0.3s);
+
   i {
-    font-size: 1.5em;
-    margin-left: 15px;
+    font-size: 1.2em;
+    margin-left: 12px;
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-two;
     color: #fff;
   }
+
   &.text-uppercase {
     font-size: 16px;
     letter-spacing: 1px;
   }
 }
+
 .btn-three {
   display: flex;
   align-items: center;
@@ -52,17 +61,22 @@
   font-weight: 500;
   color: $text-dark;
   @include transition (0.3s);
+
   i {
     font-size: 1.2em;
     margin-left: 5px;
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     color: $color-two;
+
     span {
       text-decoration: underline;
     }
   }
 }
+
 .btn-four {
   width: 50px;
   height: 50px;
@@ -73,16 +87,22 @@
   color: #fff;
   font-size: 1.3em;
   @include transition (0.3s);
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-one;
   }
+
   &.inverse {
     background: $color-one;
-    &:hover, &:focus {
+
+    &:hover,
+    &:focus {
       background: #0C0C0C;
     }
   }
 }
+
 .btn-five {
   display: inline-flex;
   align-items: center;
@@ -96,25 +116,32 @@
   border-radius: 10px;
   background: #000;
   @include transition (0.3s);
+
   &.text-uppercase {
     font-size: 16px;
     letter-spacing: 1px;
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-one;
   }
+
   &.sm {
     font-size: 14px;
     padding: 0 30px;
   }
+
   &.md {
     padding: 0 26px;
   }
+
   i {
     font-size: 1.3em;
     margin-left: 12px;
   }
 }
+
 .btn-six {
   font-weight: 500;
   color: #fff;
@@ -125,11 +152,14 @@
   background: $color-one;
   border-radius: 40px;
   @include transition (0.3s);
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-two;
     color: #fff;
   }
 }
+
 .btn-seven {
   display: flex;
   align-items: center;
@@ -142,16 +172,20 @@
   line-height: 58px;
   border: 1px solid #000;
   @include transition (0.3s);
+
   i {
     font-size: 1.3em;
     margin-left: 15px;
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-two;
     border-color: $color-two;
     color: #fff;
   }
 }
+
 .btn-eight {
   display: inline-flex;
   align-items: center;
@@ -165,10 +199,12 @@
   line-height: 51px;
   border: 1px solid #000;
   @include transition (0.3s);
+
   i {
     font-size: 1.1em;
     margin-left: 12px;
   }
+
   &.inverse {
     border-color: #fff;
     color: #fff;
@@ -177,21 +213,26 @@
     letter-spacing: 0;
     font-weight: normal;
     background: transparent;
+
     i {
       font-size: 1.3em;
       margin-left: 12px;
     }
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-two;
     border-color: $color-two;
     color: #fff;
   }
+
   &.sm {
     font-size: 14px;
     letter-spacing: 1px;
   }
 }
+
 .btn-nine {
   font-weight: 500;
   font-size: 16px;
@@ -203,11 +244,14 @@
   line-height: 55px;
   background: $color-one;
   @include transition (0.3s);
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-two;
     color: #fff;
   }
 }
+
 .btn-ten {
   display: inline-flex;
   align-items: center;
@@ -221,16 +265,20 @@
   border: 1px solid #000;
   border-radius: 50px;
   @include transition (0.3s);
+
   i {
     font-size: 1.3em;
     margin-left: 15px;
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-two;
     border-color: $color-two;
     color: #fff;
   }
 }
+
 .btn-eleven {
   display: inline-flex;
   align-items: center;
@@ -241,11 +289,13 @@
   font-size: 16px;
   padding-bottom: 5px;
   @include transition (0.3s);
+
   i {
     font-weight: 900;
     font-size: 0.8em;
     margin-left: 2px;
   }
+
   &:before {
     content: '';
     position: absolute;
@@ -256,25 +306,36 @@
     background: #000;
     @include transition (0.3s);
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     color: $color-two;
   }
-  &:hover:before, &:focus:before {
+
+  &:hover:before,
+  &:focus:before {
     background: $color-two;
   }
+
   &.white-vr {
     color: #fff;
+
     &:before {
       background: #fff;
     }
-    &:hover, &:focus {
+
+    &:hover,
+    &:focus {
       color: $color-two;
     }
-    &:hover:before, &:focus:before {
+
+    &:hover:before,
+    &:focus:before {
       background: $color-two;
     }
   }
 }
+
 .btn-twelve {
   font-weight: 500;
   font-size: 18px;
@@ -286,16 +347,20 @@
   border: 1px solid #000;
   border-radius: 10px;
   @include transition (0.3s);
+
   &.sm {
     font-size: 16px;
     min-width: 160px;
   }
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-one;
     border-color: $color-one;
     color: #fff;
   }
 }
+
 .btn-thirteen {
   width: 70px;
   height: 70px;
@@ -306,7 +371,9 @@
   color: #000;
   font-size: 1.5em;
   @include transition (0.3s);
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     background: $color-one;
     border-color: $color-one;
     color: #fff;

@@ -13,10 +13,10 @@ const HomePage = () => {
   return (
     <>
       <Banner />
-      <BLockFeatureOne />
-      <BLockFeatureTwo />
       <BLockFeatureThree />
       <Property />
+      <BLockFeatureOne />
+      <BLockFeatureTwo />
       <FancyBannerOne style={false} />
       <BLockFeatureFive style={false} />
       <FancyBanner style={false} />

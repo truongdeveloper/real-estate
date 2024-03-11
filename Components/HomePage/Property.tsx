@@ -30,12 +30,10 @@ const Property = () => {
                   className="col-lg-4 col-md-6 d-flex mt-40 wow fadeInUp"
                   data-wow-delay={item.data_delay_time}
                 >
-                  <div className="listing-card-one border-25 h-100 w-100">
-                    <div className="img-gallery p-15">
-                      <div className="position-relative border-25 overflow-hidden">
-                        <div className={`tag border-25 ${item.tag_bg}`}>
-                          {item.tag}
-                        </div>
+                  <div className="listing-card-one style-two h-100 w-100 ">
+                    <div className="img-gallery">
+                      <div className="position-relative overflow-hidden">
+                        {/* <div className="tag fw-500">{item.tag}</div> */}
                         <div
                           id={`carousel${item.carousel}`}
                           className="carousel slide"
@@ -85,13 +83,12 @@ const Property = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="property-info p-25">
-                      <Link href="/listing_details_01" className="title tran3s">
+                      <Link href="#" className="title tran3s">
                         {item.title}
                       </Link>
                       <div className="address">{item.address}</div>
-                      <ul className="style-none feature d-flex flex-wrap align-items-center justify-content-between">
+                      <ul className="style-none feature d-flex flex-wrap align-items-center justify-content-between pb-5">
                         {item.property_info.map((info, index) => (
                           <li key={index} className="d-flex align-items-center">
                             <Image
@@ -109,19 +106,11 @@ const Property = () => {
                         <strong className="price fw-500 color-dark">
                           $
                           {item.price.toLocaleString(undefined, {
-                            minimumFractionDigits: item.price_text ? 0 : 2,
+                            minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                           })}
-                          {item.price_text && (
-                            <>
-                              /<sub>m</sub>
-                            </>
-                          )}
                         </strong>
-                        <Link
-                          href="/listing_details_01"
-                          className="btn-four rounded-circle"
-                        >
+                        <Link href="#" className="btn-four">
                           <i className="bi bi-arrow-up-right"></i>
                         </Link>
                       </div>

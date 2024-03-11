@@ -46,7 +46,8 @@ const HeaderDefault = ({ style }: any) => {
                       data-bs-target="#loginModal"
                       className="btn-one"
                     >
-                      <i className="fa-regular fa-lock"></i> <span>Login</span>
+                      <i className="fa-regular fa-lock"></i>{" "}
+                      <span>Đăng nhập</span>
                     </Link>
                   </li>
                   <li className="d-none d-md-inline-block ms-3">
@@ -55,7 +56,7 @@ const HeaderDefault = ({ style }: any) => {
                       className="btn-two"
                       target="_blank"
                     >
-                      <span>Add Listing</span>{" "}
+                      <span>Đăng tin</span>{" "}
                       <i className="fa-thin fa-arrow-up-right"></i>
                     </Link>
                   </li>

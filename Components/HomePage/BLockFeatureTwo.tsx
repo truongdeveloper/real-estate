@@ -3,16 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 // import Count from "@/components/common/Count";
 import { useState } from "react";
-// import VideoPopup from "@/modals/VideoPopup";
 
 import featureShape from "@/assets/images/assets/screen_01.png";
+import VideoPopup from "../../Common/modals/VideoPopup";
 
 const BLockFeatureTwo = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
     <>
-      <div className="block-feature-two mt-150 xl-mt-110">
+      <div className="block-feature-two mt-120 mb-120 xl-mt-110">
         <div className="wrapper">
           <div className="row gx-xl-5">
             <div className="col-xxl-7 col-md-6 d-flex wow fadeInLeft">
@@ -107,11 +107,11 @@ const BLockFeatureTwo = () => {
         </div>
       </div>
       {/* video modal start */}
-      {/* <VideoPopup
+      <VideoPopup
         isVideoOpen={isVideoOpen}
         setIsVideoOpen={setIsVideoOpen}
         videoId={"tUP5S4YdEJo"}
-      /> */}
+      />
       {/* video modal end */}
     </>
   );

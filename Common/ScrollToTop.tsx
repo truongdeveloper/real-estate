@@ -1,48 +1,52 @@
-"use client"
-import UseSticky from "@/hooks/UseSticky";
+"use client";
+
 import { useState, useEffect } from "react";
+import UseSticky from "../libs/hooks/UseSticky";
 
 const ScrollToTop = () => {
-   const { sticky }: { sticky: boolean } = UseSticky();
+  const { sticky }: { sticky: boolean } = UseSticky();
 
-   const [showScroll, setShowScroll] = useState(false);
+  const [showScroll, setShowScroll] = useState(false);
 
-   const checkScrollTop = () => {
+  const checkScrollTop = () => {
+    if (!showScroll && window.pageYOffset > 400) {
+      setShowScroll(true);
+    } else if (showScroll && window.pageYOffset <= 400) {
+      setShowScroll(false);
+    }
+  };
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // useEffect(() => {
+  //    window.addEventListener("scroll", checkScrollTop);
+  //    return () => window.removeEventListener("scroll", checkScrollTop);
+  // }, []);
+  useEffect(() => {
+    const checkScrollTop = () => {
       if (!showScroll && window.pageYOffset > 400) {
-         setShowScroll(true);
+        setShowScroll(true);
       } else if (showScroll && window.pageYOffset <= 400) {
-         setShowScroll(false);
+        setShowScroll(false);
       }
-   };
+    };
 
-   const scrollTop = () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-   };
+    window.addEventListener("scroll", checkScrollTop);
+    return () => window.removeEventListener("scroll", checkScrollTop);
+  }, [checkScrollTop]);
 
-   // useEffect(() => {
-   //    window.addEventListener("scroll", checkScrollTop);
-   //    return () => window.removeEventListener("scroll", checkScrollTop);
-   // }, []);
-   useEffect(() => {
-      const checkScrollTop = () => {
-         if (!showScroll && window.pageYOffset > 400) {
-            setShowScroll(true);
-         } else if (showScroll && window.pageYOffset <= 400) {
-            setShowScroll(false);
-         }
-      };
+  return (
+    <>
+      <div
+        onClick={scrollTop}
+        className={`scroll-top ${sticky ? "active" : ""}`}
+      >
+        <i className="bi bi-arrow-up-short"></i>
+      </div>
+    </>
+  );
+};
 
-      window.addEventListener("scroll", checkScrollTop);
-      return () => window.removeEventListener("scroll", checkScrollTop);
-   }, [checkScrollTop]);
-
-   return (
-      <>
-         <div onClick={scrollTop} className={`scroll-top ${sticky ? "active" : ""}`}>
-            <i className="bi bi-arrow-up-short"></i>
-         </div>
-      </>
-   )
-}
-
-export default ScrollToTop
+export default ScrollToTop;
