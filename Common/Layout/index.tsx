@@ -22,6 +22,10 @@ function LayoutDefault(props: Props) {
           content="Trang web Thuê và cho thuê bất động sản của Văn Minh Trường và Đoàn Phương Thảo"
         />
         <link rel="icon" href="/real-estate.webp" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
+        />
       </Head>
       <HeaderDefault />
 

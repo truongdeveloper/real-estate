@@ -4,6 +4,8 @@ import Image from "next/image";
 import style from "../Header/styles.module.scss";
 import logo_1 from "@/assets/images/logo/logo_01.svg";
 import UseSticky from "../../../libs/hooks/UseSticky";
+import NavMenu from "./Menu/NavMenu";
+import LoginModal from "../../modals/LoginModal";
 
 const HeaderDefault = ({ style }: any) => {
   const { sticky } = UseSticky();
@@ -72,14 +74,14 @@ const HeaderDefault = ({ style }: any) => {
                   <span></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                  Home
+                  <NavMenu />
                 </div>
               </nav>
             </div>
           </div>
         </div>
       </header>
-      {/* <LoginModal /> */}
+      <LoginModal />
     </>
   );
 };

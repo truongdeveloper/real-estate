@@ -6,7 +6,7 @@ type Props = {
   title?: "Bất động sản";
   children?: React.ReactNode;
 };
-function LayoutAdmin(props: Props) {
+function LayoutDashboard(props: Props) {
   const { title, children } = props;
   return (
     <>
@@ -26,4 +26,4 @@ function LayoutAdmin(props: Props) {
   );
 }
 
-export default LayoutAdmin;
+export default LayoutDashboard;
