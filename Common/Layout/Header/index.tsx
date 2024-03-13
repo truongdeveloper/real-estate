@@ -51,11 +51,7 @@ const HeaderDefault = ({ style }: any) => {
                     </Link>
                   </li>
                   <li className="d-none d-md-inline-block ms-3">
-                    <Link
-                      href="/dashboard/add-property"
-                      className="btn-two"
-                      target="_blank"
-                    >
+                    <Link href="/dashboard/add-new-post" className="btn-two">
                       <span>Đăng tin</span>{" "}
                       <i className="fa-thin fa-arrow-up-right"></i>
                     </Link>

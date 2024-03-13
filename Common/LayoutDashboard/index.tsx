@@ -1,9 +1,11 @@
 "use client";
 import React, { ReactElement } from "react";
 import Head from "next/head";
+import DashboardSiteBar from "./Header/DashboardSiteBar";
+import DashboardHeader from "./Header/DashboardHeader";
 
 type Props = {
-  title?: "Bất động sản";
+  title?: string;
   children?: React.ReactNode;
 };
 function LayoutDashboard(props: Props) {
@@ -11,14 +13,14 @@ function LayoutDashboard(props: Props) {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>Quản trị</title>
         <meta
           name="description"
-          content="Trang web Thuê và cho thuê bất động sản của Văn Minh Trường và Đoàn Phương Thảo"
+          content="Trang Quản trị web Thuê và cho thuê bất động sản của Văn Minh Trường và Đoàn Phương Thảo"
         />
         <link rel="icon" href="/admin.webp" />
       </Head>
-
+      <DashboardSiteBar />
       <main>{children}</main>
 
       <footer></footer>

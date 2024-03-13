@@ -12,6 +12,7 @@ import icon from "@/assets/images/icon/icon_46.svg";
 import SelectCustom from "../../Helper/ui/SelectCustom";
 import DropdownHome from "../search-dropdown/home-dropdown/Dropdown";
 import listing_data from "../../data/inner-data/ListingData";
+import Fancybox from "../../Common/Fancybox";
 
 const ListingArea = ({ style }: any) => {
   const itemsPerPage = 9;
@@ -179,7 +180,7 @@ const ListingArea = ({ style }: any) => {
                   </div>
                 </div>
                 <div className="property-info pt-20">
-                  <Link href="/listing_details_06" className="title tran3s">
+                  <Link href="/real-estate-detail" className="title tran3s">
                     {item.title}
                   </Link>
                   <div className="address">{item.address}</div>
@@ -237,7 +238,108 @@ const ListingArea = ({ style }: any) => {
                         </>
                       )}
                     </strong>
-                    <Link href="/listing_details_06" className="btn-four">
+                    <Link href="/real-estate-detail" className="btn-four">
+                      <i className="bi bi-arrow-up-right"></i>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          {listing_data.map((item: any) => (
+            <div
+              key={item.id}
+              className="listing-card-seven grey-bg mb-50 wow fadeInUp"
+            >
+              <div className="d-flex flex-wrap layout-two">
+                <div
+                  className={`img-gallery position-relative z-1 overflow-hidden ${item.bg_img}`}
+                >
+                  <div className="tag bg-white rounded-0 text-dark fw-500">
+                    {item.tag}
+                  </div>
+                  <div className="img-slider-btn">
+                    03 <i className="fa-regular fa-image"></i>
+                    <Fancybox
+                      options={{
+                        Carousel: {
+                          infinite: true,
+                        },
+                      }}
+                    >
+                      {item.carousel_thumb.map((thumb: any, index: any) => (
+                        <a
+                          key={index}
+                          className="d-block"
+                          data-fancybox="gallery4"
+                          href={`/assets/images/listing/img_large_0${thumb.id}.jpg`}
+                        ></a>
+                      ))}
+                    </Fancybox>
+                  </div>
+                </div>
+                <div className="property-info">
+                  <Link
+                    href="/listing_details_01"
+                    className="title tran3s mb-15"
+                  >
+                    {item.title}
+                  </Link>
+                  <div className="address">{item.address}</div>
+                  <div className="feature border-0 mt-55 md-mt-40 mb-35 md-mb-20">
+                    <ul className="style-none d-flex flex-wrap align-items-center justify-content-between">
+                      <li>
+                        <strong>{item.property_info.sqft}</strong> sqft
+                      </li>
+                      <li>
+                        <strong>{item.property_info.bed}</strong> bed
+                      </li>
+                      <li>
+                        <strong>{item.property_info.bath}</strong> bath
+                      </li>
+                      <li>
+                        <strong>{item.property_info.kitchen}</strong> Kitchen
+                      </li>
+                      <li>
+                        <strong>{item.property_info.parking_lot}</strong>{" "}
+                        Parking Lot
+                      </li>
+                      <li>
+                        <strong>{item.property_info.garden}</strong> Garden
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="pl-footer pb-15 d-flex flex-wrap align-items-center justify-content-between">
+                    <strong className="price fw-500 color-dark me-auto">
+                      $
+                      {item.price.toLocaleString({
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                      {item.price_text && (
+                        <>
+                          /<sub>m</sub>
+                        </>
+                      )}
+                    </strong>
+                    <ul className="style-none d-flex action-icons on-top">
+                      <li>
+                        <Link href="#">
+                          <i className="fa-light fa-heart"></i>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="#">
+                          <i className="fa-light fa-bookmark"></i>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="#">
+                          <i className="fa-light fa-circle-plus"></i>
+                        </Link>
+                      </li>
+                    </ul>
+                    <Link href="/listing_details_01" className="btn-four">
                       <i className="bi bi-arrow-up-right"></i>
                     </Link>
                   </div>

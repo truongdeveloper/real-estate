@@ -1,12 +1,11 @@
-import type { NextPage } from "next";
 import { NextPageWithLayout } from "../../Models/common";
-import LayoutAdmin from "../../Common/LayoutDashboard";
 import LayoutDashboard from "../../Common/LayoutDashboard";
+import DashboardBody from "../../Components/dashboard/index/DashboardBody";
 
 const Dashboard: NextPageWithLayout = () => {
   return (
     <div>
-      jjjjjjjjjjjjjjhhhhhhhhhhhhhhhssssssssssssssffffffffffffffffffffffff
+      <DashboardBody />
     </div>
   );
 };

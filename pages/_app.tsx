@@ -3,7 +3,8 @@ import LayoutDefault from "../Common/Layout";
 import { AppPropsWithLayout } from "../Models/common";
 import "../styles/styles.scss";
 import ScrollToTop from "../Common/ScrollToTop";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "/node_modules/react-toastify/dist/ReactToastify.css";
 import { RecoilRoot } from "recoil";
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
@@ -17,7 +18,18 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Layout>
         <div>
           <ScrollToTop />
-          <ToastContainer position="top-center" />
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={true}
+            closeOnClick
+            pauseOnHover
+            theme="dark"
+            limit={5}
+            newestOnTop={false}
+            rtl={false}
+            pauseOnFocusLoss={false}
+          />
           <Component {...pageProps} />
         </div>
       </Layout>

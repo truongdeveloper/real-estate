@@ -39,38 +39,22 @@ const NavMenu = () => {
         </div>
       </li>
       <li className="nav-item">
-        <Link
-          className="nav-link"
-          href="/dashboard/dashboard-index"
-          target="_blank"
-        >
+        <Link className="nav-link" href="/dashboard">
           Dashboard
         </Link>
       </li>
       <li className="nav-item">
-        <Link
-          className="nav-link"
-          href="/dashboard/dashboard-index"
-          target="_blank"
-        >
+        <Link className="nav-link" href="/">
           Trang chủ
         </Link>
       </li>
       <li className="nav-item">
-        <Link
-          className="nav-link"
-          href="/dashboard/dashboard-index"
-          target="_blank"
-        >
+        <Link className="nav-link" href="/">
           Bảng giá
         </Link>
       </li>
       <li className="nav-item">
-        <Link
-          className="nav-link"
-          href="/dashboard/dashboard-index"
-          target="_blank"
-        >
+        <Link className="nav-link" href="/">
           Về chúng tôi
         </Link>
       </li>
