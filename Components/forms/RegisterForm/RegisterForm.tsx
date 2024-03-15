@@ -13,6 +13,7 @@ interface FormData {
   name: string;
   email: string;
   password: string;
+  rePassword: string;
 }
 
 const RegisterForm = () => {
@@ -21,6 +22,7 @@ const RegisterForm = () => {
       name: yup.string().required().label("Name"),
       email: yup.string().required().email().label("Email"),
       password: yup.string().required().label("Password"),
+      rePassword: yup.string().required().label("rePassword"),
     })
     .required();
 
@@ -48,11 +50,11 @@ const RegisterForm = () => {
       <div className="row">
         <div className="col-12">
           <div className="input-group-meta position-relative mb-25">
-            <label>Name*</label>
+            <label>Tên*</label>
             <input
               type="text"
               {...register("name")}
-              placeholder="Zubayer Hasan"
+              placeholder="Phương Thảo"
             />
             <p className="form_error">{errors.name?.message}</p>
           </div>
@@ -63,18 +65,41 @@ const RegisterForm = () => {
             <input
               type="email"
               {...register("email")}
-              placeholder="Youremail@gmail.com"
+              placeholder="email@gmail.com"
             />
             <p className="form_error">{errors.email?.message}</p>
           </div>
         </div>
         <div className="col-12">
           <div className="input-group-meta position-relative mb-20">
-            <label>Password*</label>
+            <label>Mật khẩu*</label>
             <input
               type={isPasswordVisible ? "text" : "password"}
               {...register("password")}
-              placeholder="Enter Password"
+              placeholder="Nhập mật kkhẩu"
+              className="pass_log_id"
+            />
+            <span className="placeholder_icon">
+              <span
+                className={`passVicon ${isPasswordVisible ? "eye-slash" : ""}`}
+              >
+                <Image
+                  onClick={togglePasswordVisibility}
+                  src={OpenEye}
+                  alt=""
+                />
+              </span>
+            </span>
+            <p className="form_error">{errors.password?.message}</p>
+          </div>
+        </div>
+        <div className="col-12">
+          <div className="input-group-meta position-relative mb-20">
+            <label>Nhập lại mật khẩu*</label>
+            <input
+              type={isPasswordVisible ? "text" : "password"}
+              {...register("rePassword")}
+              placeholder="Nhập lại mật khẩu"
               className="pass_log_id"
             />
             <span className="placeholder_icon">
@@ -96,9 +121,8 @@ const RegisterForm = () => {
             <div>
               <input type="checkbox" id="remember2" />
               <label htmlFor="remember2">
-                By hitting the &quot;Register&quot; button, you agree to the{" "}
-                <Link href="#">Terms conditions</Link> &{" "}
-                <Link href="#">Privacy Policy</Link>
+                Đồng ý với các <Link href="#">Điều khoản và điều kiện</Link> &{" "}
+                <Link href="#">Chính sách bảo mật</Link>
               </label>
             </div>
           </div>
@@ -108,7 +132,7 @@ const RegisterForm = () => {
             type="submit"
             className="btn-two w-100 text-uppercase d-block mt-20"
           >
-            SIGN UP
+            ĐĂNG KÝ
           </button>
         </div>
       </div>

@@ -13,3 +13,52 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+
+export interface typeListRealEstate {
+  id: number;
+  maBDS: number;
+  maNguoiDung: number;
+  tieuDe: string;
+  noiDung: string;
+  ngayDangBai: string;
+  ngayHetHan: string;
+  sdt: string;
+  trangThai: number;
+  batDongSan: BatDongSan;
+}
+
+export interface BatDongSan {
+  id: number;
+  maLoaiBDS: number;
+  maNguoiThue?: any;
+  maViTri: number;
+  tenBDS: string;
+  dienTich: number;
+  moTa: string;
+  giaThue: number;
+  trangThai: number;
+  diaChi: string;
+  kinhDo?: number | null;
+  viDo?: number | null;
+  loaiBDS: LoaiBds;
+  viTri: ViTri;
+  hinhAnhList: HinhAnhList[];
+}
+
+export interface LoaiBds {
+  id: number;
+  tenLoaiBDS: string;
+}
+
+export interface ViTri {
+  id: number;
+  tinhTp: string;
+  quanHuyen: string;
+  xaPhuong: string;
+}
+
+export interface HinhAnhList {
+  id: number;
+  maBDS: number;
+  url: string;
+}

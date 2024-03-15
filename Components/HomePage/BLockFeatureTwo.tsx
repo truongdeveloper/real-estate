@@ -18,9 +18,7 @@ const BLockFeatureTwo = () => {
             <div className="col-xxl-7 col-md-6 d-flex wow fadeInLeft">
               <div className="block-one w-100 h-100">
                 <div className="position-relative z-1 h-100">
-                  <h3 className="mb-55">
-                    Secure your family&apos;s dream home.
-                  </h3>
+                  <h3 className="mb-55">Bảo vệ mơ ước bất động sản của bạn.</h3>
                   <a
                     onClick={() => setIsVideoOpen(true)}
                     style={{ cursor: "pointer" }}
@@ -30,23 +28,17 @@ const BLockFeatureTwo = () => {
                     <i className="fa-solid fa-play"></i>
                   </a>
                   <div className="card-box text-center">
-                    <h3 className="main-count fw-500">
-                      0
-                      <span className="counter">
-                        {/* <Count number={7} /> */}
-                      </span>
-                      +
-                    </h3>
                     <p className="fs-20">
-                      Years Experience <br />
-                      with proud.
+                      Kinh nghiệm <br />
+                      từ các doanh nghiệp <br />
+                      Bất động sản thứ cấp
                     </p>
                   </div>
-                  <Image
+                  {/* <Image
                     src={featureShape}
                     alt=""
                     className="lazy-img shapes screen_01"
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -54,49 +46,46 @@ const BLockFeatureTwo = () => {
             <div className="col-xxl-5 col-md-6 wow fadeInRight">
               <div className="block-two">
                 <div className="bg-wrapper">
-                  <h4>Who we are?</h4>
+                  <h4>Chúng tôi là ai?</h4>
                   <p className="fs-22 mt-20">
-                    Your premier partner in real estate. <br /> Transforming
-                    properties into dreams. Let us guide you home with
-                    expertise.
+                    Đối tác hàng đầu của bạn trong lĩnh vực bất động sản. <br />{" "}
+                    Chuyển đổi tài sản thành giấc mơ. Hãy để chúng tôi hướng dẫn
+                    bạn về nhà với chuyên môn.
                   </p>
                   <div className="counter-wrapper ps-xl-3 pb-30 mt-45 mb-50">
                     <div className="row">
                       <div className="col-6">
                         <div className="counter-block-one mt-20">
-                          <div className="main-count fw-500 color-dark">
-                            <span className="counter">
-                              {/* <Count number={1.7} /> */}
-                            </span>
+                          {/* <div className="main-count fw-500 color-dark">
                             K+
-                          </div>
-                          <span>Completed Project</span>
+                          </div> */}
+                          <span>Các dự án hoàn thành</span>
                         </div>
                       </div>
                       <div className="col-6">
                         <div className="counter-block-one mt-20">
-                          <div className="main-count fw-500 color-dark">
+                          {/* <div className="main-count fw-500 color-dark">
                             <span className="counter">
-                              {/* <Count number={1.3} /> */}
+                              <Count number={1.3} />
                             </span>
                             mil+
-                          </div>
-                          <span>Happy Customers</span>
+                          </div> */}
+                          <span>Khách hàng hạnh phúc</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <ul className="list-style-one fs-22 color-dark style-none">
+                  {/* <ul className="list-style-one fs-22 color-dark style-none">
                     <li>Loan & low Interest facility</li>
                     <li>Over 100k+ property & update regularly</li>
                     <li>Expert agent consultation</li>
-                  </ul>
+                  </ul> */}
                   <div className="d-inline-flex flex-wrap align-items-center mt-15 md-mt-10">
                     <Link href="/about_us_01" className="btn-two mt-20 me-4">
-                      <span>More Details</span>
+                      <span>Thêm về chúng tôi</span>
                     </Link>
                     <Link href="/contact" className="btn-three mt-20">
-                      <span>Request a Callback</span>{" "}
+                      <span>Yêu cầu tư vấn</span>{" "}
                       <i className="fa-light fa-arrow-right-long"></i>
                     </Link>
                   </div>

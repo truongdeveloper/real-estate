@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import titleShape from "@/assets/images/shape/title_shape_04.svg";
-import SocialIcon from "../../Common/SocialIcon";
 
 const FancyBannerOne = ({ style }: any) => {
   return (
@@ -13,33 +12,30 @@ const FancyBannerOne = ({ style }: any) => {
     >
       <div className={`container ${style ? "container-large" : ""}`}>
         <div className="row">
-          <div
-            className={`col-lg-6 wow fadeInLeft ${style ? "col-xxl-5" : ""}`}
-          >
+          <div className={`col-lg-6 wow fadeInLeft `}>
             <div className="title-one mb-45 lg-mb-30">
               <h3 className="text-white">
-                Exclusive{" "}
+                Ưu đãi{" "}
                 <span>
-                  Monthly{" "}
+                  hàng tháng{" "}
                   {style ? (
                     ""
                   ) : (
                     <Image src={titleShape} alt="" className="lazy-img" />
                   )}
                 </span>
-                Deal for you.
+                Dành riêng cho bạn.
               </h3>
               <p className="fs-24 text-white pe-xl-5 me-xxl-5">
-                Don&apos;t miss out on this personalized monthly exclusive offer
-                for you.
+                Đừng quên những ưu đãi được chúng tôi cập nhật hàng tháng
               </p>
             </div>
             <Link href="/listing_details_02" className="btn-six">
-              More Details
+              Xem các gói
             </Link>
           </div>
 
-          <div className={`col-lg-6 wow fadeInRight ${style ? "ms-auto" : ""}`}>
+          {/* <div className={`col-lg-6 wow fadeInRight ${style ? "ms-auto" : ""}`}>
             <div
               className={`property-item md-mt-60 position-relative z-1 ${
                 style ? "rounded-0" : ""
@@ -48,7 +44,7 @@ const FancyBannerOne = ({ style }: any) => {
               <div className="row gx-0">
                 <div className="col-md-5 d-flex">
                   <div className="gutter border-right w-100 h-100">
-                    <div className="tag mb-20">FOR SELL</div>
+                    <div className="tag mb-20">Cho thuê</div>
                     <h4 className="mb-70 sm-mb-40">Luxury fisa orkit villa.</h4>
                     <ul className="style-none d-flex action-icons">
                       <SocialIcon />
@@ -96,7 +92,7 @@ const FancyBannerOne = ({ style }: any) => {
                 </Link>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ const Sidebar = () => {
           <SidebarInfo />
         </div>
         <div className="tour-schedule bg-white border-20 p-30 mb-40">
-          <h5 className="mb-40">Schedule Tour</h5>
+          <h5 className="mb-40">Đặt lịch khảo sát</h5>
           <ScheduleForm />
         </div>
       </div>

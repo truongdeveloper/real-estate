@@ -1,19 +1,44 @@
-import { Router } from "next/router";
+import { Router, useRouter } from "next/router";
 import SelectCustom from "../../../Helper/ui/SelectCustom";
-import Link from "next/link";
+import { Provinces } from "../../../data/home-data/Location";
+import category_data from "../../../data/home-data/CategoryData";
+import { isEmpty } from "lodash";
 
-const DropdownHome = ({ style }: any) => {
-  const selectHandler = (e: any) => {};
-
-  const searchHandler = () => {
-    window.location.href = "/listing_0";
+const DropdownHome = () => {
+  const router = useRouter();
+  const queryParams = new URLSearchParams();
+  const selectHandler = (e: any) => {
+    queryParams.append(e.target.name, e.target.value);
   };
+
+  const searchHandler = (e: any) => {
+    const keyword = e.target.elements.keyword.value;
+    if (keyword) {
+      queryParams.append("keyword", keyword);
+    }
+
+    router.push(`/real-estate-listing?${queryParams.toString()}`);
+  };
+
+  const province_list = Provinces.map((province) => {
+    return {
+      value: province.code,
+      text: province.name,
+    };
+  });
+
+  const categroryData = category_data.map((category) => {
+    return {
+      value: category.id,
+      text: category.name,
+    };
+  });
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        searchHandler();
+        searchHandler(e);
       }}
     >
       <div className="row gx-0 align-items-center">
@@ -22,61 +47,10 @@ const DropdownHome = ({ style }: any) => {
             <div className="label">Loại BĐS</div>
             <SelectCustom
               className={`nice-select`}
-              options={[
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-                { value: "apartments", text: "Buy Apartments" },
-                { value: "condos", text: "Rent Condos" },
-                { value: "houses", text: "Sell Houses" },
-                { value: "industrial", text: "Rent Industrial" },
-                { value: "villas", text: "Sell Villas" },
-              ]}
+              options={categroryData}
               defaultCurrent={0}
               onChange={selectHandler}
-              name=""
+              name="category"
               placeholder=""
             />
           </div>
@@ -85,19 +59,11 @@ const DropdownHome = ({ style }: any) => {
           <div className="input-box-one border-left">
             <div className="label">Địa điểm</div>
             <SelectCustom
-              className={`nice-select location `}
-              options={[
-                { value: "germany", text: "Berlin, Germany" },
-                { value: "dhaka", text: "Dhanmondi, Dhaka" },
-                { value: "mexico", text: "Acapulco, Mexico" },
-                { value: "france", text: "Cannes, France" },
-                { value: "india", text: "Delhi, India" },
-                { value: "giza", text: "Giza, Egypt" },
-                { value: "cuba", text: "Havana, Cuba" },
-              ]}
+              className={`nice-select `}
+              options={province_list}
               defaultCurrent={0}
               onChange={selectHandler}
-              name=""
+              name="province"
               placeholder=""
             />
           </div>
@@ -107,21 +73,16 @@ const DropdownHome = ({ style }: any) => {
             <div className="label">Từ khóa</div>
             <input
               type="text"
-              placeholder="buy, home, loft, apartment"
+              placeholder="nhà, căn hộ, ..."
               className="type-input"
+              name="keyword"
             />
           </div>
         </div>
         <div className={`col-xl-2`}>
           <div className="input-box-one lg-mt-10">
-            <button
-              className={`fw-500 tran3s ${
-                style
-                  ? "w-100 tran3s search-btn-three"
-                  : "text-uppercase search-btn"
-              }`}
-            >
-              <Link href={"/real-estate-listing"}>Tìm kiếm</Link>
+            <button className={`fw-500 tran3s text-uppercase search-btn`}>
+              Tìm kiếm
             </button>
           </div>
         </div>

@@ -9,7 +9,7 @@ import LoginForm from "../../Components/forms/LoginForm/LoginForm";
 import RegisterForm from "../../Components/forms/RegisterForm/RegisterForm";
 // import RegisterForm from "@/components/forms/RegisterForm";
 
-const tab_title: string[] = ["Login", "Signup"];
+const tab_title: string[] = ["Đăng nhập", "Đăng ký"];
 
 const LoginModal = ({ loginModal, setLoginModal }: any) => {
   const [activeTab, setActiveTab] = useState(0);
@@ -60,10 +60,9 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                     }`}
                   >
                     <div className="text-center mb-20">
-                      <h2>Welcome Back!</h2>
+                      <h2>Chào mừng trở lại!</h2>
                       <p className="fs-20 color-dark">
-                        Still don&apos;t have an account?{" "}
-                        <Link href="#">Sign up</Link>
+                        Bạn chưa có tài khoản? <Link href="#">Đăng ký</Link>
                       </p>
                     </div>
                     <LoginForm />
@@ -75,18 +74,18 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                     }`}
                   >
                     <div className="text-center mb-20">
-                      <h2>Register</h2>
+                      <h2>Đăng ký</h2>
                       <p className="fs-20 color-dark">
-                        Already have an account? <Link href="#">Login</Link>
+                        Bạn đã có tài khoản? <Link href="#">Đăng nhập</Link>
                       </p>
                     </div>
                     <RegisterForm />
                   </div>
                 </div>
 
-                <div className="d-flex align-items-center mt-30 mb-10">
+                {/* <div className="d-flex align-items-center mt-30 mb-10">
                   <div className="line"></div>
-                  <span className="pe-3 ps-3 fs-6">OR</span>
+                  <span className="pe-3 ps-3 fs-6">Hoặc</span>
                   <div className="line"></div>
                 </div>
                 <div className="row">
@@ -108,7 +107,7 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                       <span className="ps-3">Signup with Facebook</span>
                     </Link>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

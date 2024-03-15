@@ -12,16 +12,16 @@ const Banner = () => {
         <div className="row">
           <div className="col-xxl-10 col-xl-9 col-lg-10 col-md-10 m-auto">
             <h1 className="hero-heading text-center wow fadeInUp">
-              Thuê Bất động sản lý tưởng cho{" "}
+              Thuê bất động sản lý tưởng{" "}
               <span className="d-inline-block position-relative">
-                công việc <Image src={titleShape} alt="" className="lazy-img" />
+                của bạn <Image src={titleShape} alt="" className="lazy-img" />
               </span>
             </h1>
             <p
               className="fs-24 color-dark text-center pt-35 pb-35 wow fadeInUp"
               data-wow-delay="0.1s"
             >
-              Chúng tôi có Bất động sản đa dạng trên cả nước.
+              Chúng tôi có bất động sản đa dạng trên cả nước.
             </p>
           </div>
         </div>
@@ -29,7 +29,7 @@ const Banner = () => {
           <div className="col-xxl-10 m-auto">
             <div className="search-wrapper-one layout-one bg position-relative">
               <div className="bg-wrapper">
-                <DropdownHome style={false} />
+                <DropdownHome />
               </div>
             </div>
           </div>

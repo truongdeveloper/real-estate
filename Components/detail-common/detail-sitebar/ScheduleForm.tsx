@@ -3,35 +3,23 @@ const ScheduleForm = () => {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="input-box-three mb-25">
-        <div className="label">Your Name*</div>
-        <input
-          type="text"
-          placeholder="Your full name"
-          className="type-input"
-        />
+        <div className="label">Tên của bạn*</div>
+        <input type="text" placeholder="Họ và tên" className="type-input" />
       </div>
       <div className="input-box-three mb-25">
-        <div className="label">Your Email*</div>
-        <input
-          type="email"
-          placeholder="Enter mail address"
-          className="type-input"
-        />
+        <div className="label">Email*</div>
+        <input type="email" placeholder="Tên email" className="type-input" />
       </div>
       <div className="input-box-three mb-25">
-        <div className="label">Your Phone*</div>
-        <input
-          type="tel"
-          placeholder="Your phone number"
-          className="type-input"
-        />
+        <div className="label">Số điẹn thoại*</div>
+        <input type="tel" placeholder="Số điện thoại " className="type-input" />
       </div>
       <div className="input-box-three mb-15">
-        <div className="label">Message*</div>
-        <textarea placeholder="Hello, I am interested in [Califronia Apartments]"></textarea>
+        <div className="label">Tin nhắn*</div>
+        <textarea placeholder="Xin chào, Bất động sản của bạn rất đẹp tôi muốn thuê nó"></textarea>
       </div>
       <button className="btn-nine text-uppercase rounded-3 w-100 mb-10">
-        INQUIry
+        Gửi
       </button>
     </form>
   );

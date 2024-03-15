@@ -36,7 +36,7 @@ const SelectCustom: FC<SelectCustomProps> = ({
   const currentHandler = (item: Option) => {
     setCurrent(item);
     onChange({
-      target: { value: item.value },
+      target: { value: item.value, name: name },
     } as ChangeEvent<HTMLSelectElement>);
     onClose();
   };

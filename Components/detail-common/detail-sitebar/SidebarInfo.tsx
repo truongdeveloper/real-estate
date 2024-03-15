@@ -13,8 +13,8 @@ const SidebarInfo = () => {
         className="lazy-img rounded-circle ms-auto me-auto mt-3 avatar"
       />
       <div className="text-center mt-25">
-        <h6 className="name">Rashed Kabir</h6>
-        <p className="fs-16">Property Agent & Broker</p>
+        <h6 className="name">Văn Trường</h6>
+        <p className="fs-16"></p>
         <ul className="style-none d-flex align-items-center justify-content-center social-icon">
           <li>
             <Link href="#">
@@ -41,20 +41,20 @@ const SidebarInfo = () => {
       <div className="divider-line mt-40 mb-45 pt-20">
         <ul className="style-none">
           <li>
-            Location: <span>Spain, Barcelona</span>
+            Địa chỉ: <span>Yên Lạc, Vĩnh Phúc</span>
           </li>
           <li>
             Email:{" "}
             <span>
               <Link href="mailto:akabirr770@gmail.com">
-                akabirr770@gmail.com
+                vanminhtruong678@gmail.com
               </Link>
             </span>
           </li>
           <li>
-            Phone:{" "}
+            SĐT:{" "}
             <span>
-              <Link href="tel:+12347687565">+12347687565</Link>
+              <Link href="tel:+12347687565">023232939829</Link>
             </span>
           </li>
         </ul>

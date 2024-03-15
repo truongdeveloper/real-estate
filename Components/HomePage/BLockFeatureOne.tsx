@@ -9,13 +9,13 @@ const BLockFeatureOne = () => {
       <div className="container">
         <div className="title-one text-center mb-50 xl-mb-30 lg-mb-20 wow fadeInUp">
           <h3>
-            Unlock Homy&apos;s{" "}
+            Khai phá những Ưu điểm{" "}
             <span>
-              advantages <Image src={titleShape} alt="" className="lazy-img" />
+              của Homy <Image src={titleShape} alt="" className="lazy-img" />
             </span>
           </h3>
           <p className="fs-24">
-            Your trusted real estate partner in every transaction.
+            Đối tác bất động sản đáng tin cậy của bạn trong mọi giao dịch.
           </p>
         </div>
 

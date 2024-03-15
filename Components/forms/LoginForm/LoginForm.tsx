@@ -57,7 +57,7 @@ const LoginForm = () => {
         </div>
         <div className="col-12">
           <div className="input-group-meta position-relative mb-20">
-            <label>Password*</label>
+            <label>Mật khẩu*</label>
             <input
               type={isPasswordVisible ? "text" : "password"}
               {...register("password")}
@@ -82,9 +82,9 @@ const LoginForm = () => {
           <div className="agreement-checkbox d-flex justify-content-between align-items-center">
             <div>
               <input type="checkbox" id="remember" />
-              <label htmlFor="remember">Keep me logged in</label>
+              <label htmlFor="remember">Nhớ tài khoản</label>
             </div>
-            <Link href="#">Forget Password?</Link>
+            <Link href="#">Quên mật khẩu?</Link>
           </div>
         </div>
         <div className="col-12">
@@ -92,7 +92,7 @@ const LoginForm = () => {
             type="submit"
             className="btn-two w-100 text-uppercase d-block mt-20"
           >
-            Login
+            Đăng nhập
           </button>
         </div>
       </div>

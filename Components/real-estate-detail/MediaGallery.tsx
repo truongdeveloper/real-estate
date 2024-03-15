@@ -42,7 +42,7 @@ const MediaGallery = ({ style }: any) => {
           >
             <div className="position-relative z-1 overflow-hidden border-20">
               <div className="img-fancy-btn border-10 fw-500 fs-16 color-dark">
-                Sell all 37 Photos
+                Xem ảnh
                 <Fancybox
                   options={{
                     Carousel: {
@@ -75,7 +75,7 @@ const MediaGallery = ({ style }: any) => {
                 data-bs-slide="prev"
               >
                 <i className="bi bi-chevron-left"></i>
-                <span className="visually-hidden">Previous</span>
+                <span className="visually-hidden">Trước</span>
               </button>
               <button
                 className="carousel-control-next"
@@ -84,7 +84,7 @@ const MediaGallery = ({ style }: any) => {
                 data-bs-slide="next"
               >
                 <i className="bi bi-chevron-right"></i>
-                <span className="visually-hidden">Next</span>
+                <span className="visually-hidden">Tiếp</span>
               </button>
             </div>
           </div>

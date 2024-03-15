@@ -6,6 +6,7 @@ import React, { useRef } from "react";
 
 import titleShape from "@/assets/images/shape/title_shape_02.svg";
 import feature_data from "../../data/home-data/FeatureData";
+import category_data from "../../data/home-data/CategoryData";
 
 const setting = {
   infinite: true,
@@ -60,13 +61,14 @@ const BLockFeatureThree = () => {
       <div className="container">
         <div className="title-one text-center mb-75 xl-mb-50 md-mb-30 wow fadeInUp">
           <h3>
-            Explore Popular{" "}
+            Khám phá{" "}
             <span>
-              Location <Image src={titleShape} alt="" className="lazy-img" />
+              thể loại <Image src={titleShape} alt="" className="lazy-img" />
             </span>
           </h3>
           <p className="fs-22">
-            Explore the latest listings & projects in diverse areas
+            Khám phá danh sách bất động sản mới nhất trong các loại BĐS khác
+            nhau
           </p>
         </div>
 
@@ -75,21 +77,19 @@ const BLockFeatureThree = () => {
           ref={sliderRef}
           className="property-location-slider-one"
         >
-          {feature_data
-            .filter((items) => items.page === "home_1_feature_2")
-            .map((item) => (
-              <div key={item.id} className="item-first">
-                <div
-                  className={`location-card-one position-relative z-1 d-flex align-items-end ${item.item_bg}`}
-                >
-                  <div className="content text-center w-100 tran3s">
-                    <h5 className="text-white fw-normal">{item.title}</h5>
-                    <p className="text-white fw-light">{item.desc}</p>
-                  </div>
-                  <Link href="/listing_01" className="stretched-link"></Link>
+          {category_data.map((item) => (
+            <div key={item.id} className="item-first">
+              <div
+                className={`location-card-one position-relative z-1 d-flex align-items-end card-2`}
+              >
+                <div className="content text-center w-100 tran3s">
+                  <h5 className="text-white fw-normal">{item.name}</h5>
+                  {/* <p className="text-white fw-light">{item.desc}</p> */}
                 </div>
+                <Link href="/listing_01" className="stretched-link"></Link>
               </div>
-            ))}
+            </div>
+          ))}
         </Slider>
 
         <ul className="slider-arrows slick-arrow-one d-flex justify-content-between style-none position-relative">

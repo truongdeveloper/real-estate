@@ -28,10 +28,10 @@ const FooterDefault = ({ style }: any) => {
                     </Link>
                   </div>
                   <p className="mb-60 lg-mb-40 md-mb-20">
-                    11910 Clyde Rapid Suite 70, Willyand, Virginia, United
-                    States
+                    96 Định Công, Hoàng Mai, Hà Nội <br /> Khoa Công Nghệ Thông
+                    Tin
                   </p>
-                  <h6>CONTACT</h6>
+                  <h6>Liên hệ</h6>
                   <Link
                     href="#"
                     className={`email tran3s mb-70 lg-mb-50 ${
@@ -40,7 +40,8 @@ const FooterDefault = ({ style }: any) => {
                         : "fs-24 text-decoration-underline"
                     }`}
                   >
-                    homyreal@demo.com
+                    vanminhtruong678@gmail.com <br />
+                    thaodoan542001@gmail.com
                   </Link>
                   <ul className="style-none d-flex align-items-center social-icon">
                     {icon_1.map((icon, i) => (
@@ -67,7 +68,7 @@ const FooterDefault = ({ style }: any) => {
             </div>
 
             <div className="col-lg-8">
-              <div className={`d-flex flex-wrap ${style ? "h-100" : ""}`}>
+              <div className={`d-flex flex-wrap`}>
                 {footer_data
                   .filter((items) => items.page === "home_1")
                   .map((item) => (
@@ -75,11 +76,7 @@ const FooterDefault = ({ style }: any) => {
                       key={item.id}
                       className={`footer-nav mt-100 lg-mt-80 ${item.widget_class}`}
                     >
-                      <h5
-                        className={`footer-title ${style ? "text-white" : ""}`}
-                      >
-                        {item.widget_title}
-                      </h5>
+                      <h5 className={`footer-title`}>{item.widget_title}</h5>
                       <ul className="footer-nav-link style-none">
                         {item.footer_link.map((li, i) => (
                           <li key={i}>
@@ -93,13 +90,6 @@ const FooterDefault = ({ style }: any) => {
             </div>
           </div>
         </div>
-        {style && (
-          <Image
-            src={footerShape_2}
-            alt=""
-            className="lazy-img shapes shape_02"
-          />
-        )}
       </div>
     </div>
   );

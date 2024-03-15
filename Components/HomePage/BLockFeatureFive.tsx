@@ -19,14 +19,14 @@ const BLockFeatureFive = ({ style }: any) => {
           <div className="col-xl-8 m-auto">
             <div className="title-one text-center mb-35 lg-mb-20">
               <h3>
-                We’r here to help <br /> you get your{" "}
+                Chúng tôi ở đây để <br /> giúp bạn có được{" "}
                 <span>
-                  dream home
+                  BĐS trong mơ
                   <Image src={titleShape} alt="" className="lazy-img" />
                 </span>
               </h3>
               <p className="fs-24 color-dark">
-                It’s easy to start with us with these simple steps
+                Thật dễ dàng để bắt đầu với chúng tôi với những bước đơn giản
               </p>
             </div>
           </div>

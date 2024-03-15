@@ -11,33 +11,33 @@ const FancyBanner = ({ style }: any) => {
           <div className="col-lg-6">
             <div className="title-one text-center text-lg-start md-mb-40 pe-xl-5">
               <h3 className="text-white m0">
-                Start your{" "}
+                Bắt đầu{" "}
                 <span>
-                  Journey
+                  hành trình
                   {style ? (
                     ""
                   ) : (
                     <Image src={titleShape} alt="" className="lazy-img" />
                   )}
                 </span>{" "}
-                As a Retailer.
+                như một đối tác cho thuê.
               </h3>
             </div>
           </div>
           <div className="col-lg-6">
             <div className="form-wrapper me-auto ms-auto me-lg-0">
               <form onSubmit={(e) => e.preventDefault()}>
-                <input type="email" placeholder="Email address" />
-                <button>Get Started</button>
+                <input type="email" placeholder="Email của bạn" />
+                <button>Đã sẵn sàng</button>
               </form>
               <div className="fs-16 mt-10 text-white">
-                Already a Agent?{" "}
+                Để trở thành đối tác?{" "}
                 <Link
                   href="#"
                   data-bs-toggle="modal"
                   data-bs-target="#loginModal"
                 >
-                  Sign in.
+                  Đăng nhập.
                 </Link>
               </div>
             </div>
