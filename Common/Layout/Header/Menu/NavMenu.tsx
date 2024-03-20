@@ -49,7 +49,7 @@ const NavMenu = () => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" href="/">
+        <Link className="nav-link" href="/recharge">
           Bảng giá
         </Link>
       </li>

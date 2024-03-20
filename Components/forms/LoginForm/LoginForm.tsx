@@ -50,7 +50,7 @@ const LoginForm = () => {
             <input
               type="email"
               {...register("email")}
-              placeholder="Youremail@gmail.com"
+              placeholder="email@gmail.com"
             />
             <p className="form_error">{errors.email?.message}</p>
           </div>
@@ -61,7 +61,7 @@ const LoginForm = () => {
             <input
               type={isPasswordVisible ? "text" : "password"}
               {...register("password")}
-              placeholder="Enter Password"
+              placeholder="Mật khẩu"
               className="pass_log_id"
             />
             <span className="placeholder_icon">

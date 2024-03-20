@@ -105,14 +105,14 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
             </li>
             <li className="plr">
               <Link
-                href="/dashboard/membership"
+                href="/dashboard/recharge"
                 className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/membership" ? "active" : ""
+                  pathname === "/dashboard/recharge" ? "active" : ""
                 }`}
               >
                 <Image
                   src={
-                    pathname === "/dashboard/membership"
+                    pathname === "/dashboard/recharge"
                       ? dashboardIconActive_5
                       : dashboardIcon_5
                   }
@@ -165,12 +165,12 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
               <Link
                 href="/dashboard/add-new-post"
                 className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/add-property" ? "active" : ""
+                  pathname === "/dashboard/add-new-post" ? "active" : ""
                 }`}
               >
                 <Image
                   src={
-                    pathname === "/dashboard/add-property"
+                    pathname === "/dashboard/add-new-post"
                       ? dashboardIconActive_7
                       : dashboardIcon_7
                   }
