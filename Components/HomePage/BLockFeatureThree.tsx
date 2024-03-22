@@ -77,16 +77,18 @@ const BLockFeatureThree = () => {
           ref={sliderRef}
           className="property-location-slider-one"
         >
-          {category_data.map((item) => (
+          {category_data.slice(1).map((item, i) => (
             <div key={item.id} className="item-first">
               <div
-                className={`location-card-one position-relative z-1 d-flex align-items-end card-2`}
+                className={`location-card-one position-relative z-1 d-flex align-items-end card-${i}`}
               >
                 <div className="content text-center w-100 tran3s">
                   <h5 className="text-white fw-normal">{item.name}</h5>
-                  {/* <p className="text-white fw-light">{item.desc}</p> */}
                 </div>
-                <Link href="/listing_01" className="stretched-link"></Link>
+                <Link
+                  href={`/real-estate-listing?category=${item.id}`}
+                  className="stretched-link"
+                ></Link>
               </div>
             </div>
           ))}

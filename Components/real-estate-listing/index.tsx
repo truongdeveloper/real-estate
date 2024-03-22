@@ -3,6 +3,7 @@ import FancyBanner from "../../Common/FancyBanner";
 import ListingArea from "./ListingArea";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ListingRealEstate = () => {
   const router = useRouter();
@@ -22,10 +23,16 @@ const ListingRealEstate = () => {
             },
           }
         );
-        console.log(response);
         setData(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        toast(
+          `Lỗi không gọi được
+        ${error}`,
+          {
+            type: "error",
+            delay: 1000,
+          }
+        );
       }
     };
 

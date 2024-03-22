@@ -17,7 +17,7 @@ function NotFound(props: any) {
                 <span>
                   Oops! <Image src={titleShape} alt="" className="lazy-img" />
                 </span>
-                Lạc rồi nè :))))
+                {"Lạc rồi nè :))))"}
               </h2>
               <p className="fs-20 pb-45">
                 Trang của bạn đang tìm không tồn tại hoặc đang được phát triển

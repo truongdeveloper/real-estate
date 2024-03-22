@@ -38,11 +38,17 @@ export interface BatDongSan {
   giaThue: number;
   trangThai: number;
   diaChi: string;
+  phongNgu: number | null;
+  phongTam: number | null;
+  phongBep: number | null;
+  soTang: number | null;
+  namXayDung: number | null;
   kinhDo?: number | null;
   viDo?: number | null;
   loaiBDS: LoaiBds;
   viTri: ViTri;
   hinhAnhList: HinhAnhList[];
+  tienNghi: tienNghi;
 }
 
 export interface LoaiBds {
@@ -61,4 +67,16 @@ export interface HinhAnhList {
   id: number;
   maBDS: number;
   url: string;
+}
+
+export interface tienNghi {
+  id: number;
+  tuLanh: number;
+  mayGiat: number;
+  hoBoi: number;
+  wifi: number;
+  baiDoXe: number;
+  thangMay: number;
+  vuon: number;
+  gara: number;
 }

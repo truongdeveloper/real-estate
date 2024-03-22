@@ -14,6 +14,8 @@ import DropdownHome from "../search-dropdown/home-dropdown/Dropdown";
 import { listing_data, listingData } from "../../data/inner-data/ListingData";
 import Fancybox from "../../Common/Fancybox";
 import { typeListRealEstate } from "../../Models/common";
+import LongCard from "../../Helper/LongCard";
+import { uniqueId } from "lodash";
 
 const ListingArea = ({ style, ListingData }: any) => {
   const itemsPerPage = 9;
@@ -117,95 +119,7 @@ const ListingArea = ({ style, ListingData }: any) => {
 
         <div className="row gx-xxl-5 container m-auto">
           {listingData.map((item: typeListRealEstate) => (
-            <div
-              key={item.id}
-              className={`listing-card-seven  border-20 p-20 mb-50 wow fadeInUp 
-                grey-bg card
-              `}
-            >
-              <div className="d-flex flex-wrap layout-one">
-                <div
-                  className={`img-gallery position-relative z-1 border-20 overflow-hidden`}
-                >
-                  <div className={"tag bg-white rounded-0 text-dark fw-500"}>
-                    Cho thuê
-                  </div>
-                  <div className="img-slider-btn">
-                    03 <i className="fa-regular fa-image"></i>
-                    <Fancybox
-                      options={{
-                        Carousel: {
-                          infinite: true,
-                        },
-                      }}
-                    >
-                      {item.batDongSan.hinhAnhList.map(
-                        (thumb: any, index: any) => (
-                          <a
-                            key={index}
-                            className="d-block"
-                            data-fancybox="gallery2"
-                            href={thumb.url}
-                          ></a>
-                        )
-                      )}
-                    </Fancybox>
-                  </div>
-                </div>
-                <div className="property-info">
-                  <Link
-                    href={`/real-estate-detail?id=${item.id}`}
-                    className="title tran3s mb-15"
-                  >
-                    {item.tieuDe}
-                  </Link>
-                  <div className="address">
-                    {item.batDongSan.diaChi}, {item.batDongSan.viTri.quanHuyen},{" "}
-                    {item.batDongSan.viTri.tinhTp}
-                  </div>
-                  {/* <div className="feature mt-30 mb-30 pt-30 pb-5">
-                    <ul className="style-none d-flex flex-wrap align-items-center justify-content-between">
-                      <li>
-                        <strong>{item.property_info.sqft}</strong> sqft
-                      </li>
-                      <li>
-                        <strong>{item.property_info.bed}</strong> bed
-                      </li>
-                      <li>
-                        <strong>{item.property_info.bath}</strong> bath
-                      </li>
-                      <li>
-                        <strong>{item.property_info.kitchen}</strong> Kitchen
-                      </li>
-                    </ul>
-                  </div> */}
-                  <div className="pl-footer d-flex flex-wrap align-items-center justify-content-between">
-                    <strong className="price fw-500 color-dark me-auto">
-                      $
-                      {item.batDongSan.giaThue && (
-                        <>
-                          /<sub>m</sub>
-                        </>
-                      )}
-                    </strong>
-
-                    <ul className="style-none d-flex action-icons me-4">
-                      <li>
-                        <Link href="#">
-                          <i className="fa-light fa-heart"></i>
-                        </Link>
-                      </li>
-                    </ul>
-                    <Link
-                      href={`/real-estate-detail?id=${item.id}`}
-                      className="btn-four rounded-circle"
-                    >
-                      <i className="bi bi-arrow-up-right"></i>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <LongCard key={uniqueId()} itemPost={item} />
           ))}
         </div>
 
