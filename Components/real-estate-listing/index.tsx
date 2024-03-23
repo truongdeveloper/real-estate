@@ -39,6 +39,36 @@ const ListingRealEstate = () => {
     fetchData();
   }, [router.query]);
 
+  // Hàm xử lý thay đổi tìm kiếm
+  const handleSearchChange = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thay đổi giá tiền
+  const handlePriceChange = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thiết lập lại bộ lọc
+  const handleResetFilter = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thay đổi tiện ích đã chọn
+  const handleAmenityChange = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thay đổi vị trí
+  const handleLocationChange = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thay đổi trạng thái
+  const handleStatusChange = () => {
+    toast("Lọc");
+  };
+
   return (
     <>
       <ListingArea style={false} ListingData={data} />

@@ -2,9 +2,45 @@ import { Router, useRouter } from "next/router";
 import SelectCustom from "../../../Helper/ui/SelectCustom";
 import { Provinces } from "../../../data/home-data/Location";
 import category_data from "../../../data/home-data/CategoryData";
-import { isEmpty } from "lodash";
+import {} from "lodash";
+import ListingDropdownModal from "../../../Common/modals/ListingDropdownModal";
+import { toast } from "react-toastify";
+import Link from "next/link";
+import clsx from "clsx";
 
-const DropdownHome = () => {
+const DropdownHome = (props: any) => {
+  const { isListing } = props;
+  const maxPrice = 100000;
+  const priceValue = 10000;
+  // Hàm xử lý thay đổi tìm kiếm
+  const handleSearchChange = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thay đổi giá tiền
+  const handlePriceChange = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thiết lập lại bộ lọc
+  const handleResetFilter = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thay đổi tiện ích đã chọn
+  const handleAmenityChange = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thay đổi vị trí
+  const handleLocationChange = () => {
+    toast("Lọc");
+  };
+
+  // Hàm xử lý thay đổi trạng thái
+  const handleStatusChange = () => {
+    toast("Lọc");
+  };
   const router = useRouter();
   const queryParams = new URLSearchParams();
   const selectHandler = (e: any) => {
@@ -16,7 +52,6 @@ const DropdownHome = () => {
     if (keyword) {
       queryParams.append("keyword", keyword);
     }
-
     router.push(`/real-estate-listing?${queryParams.toString()}`);
   };
 
@@ -35,59 +70,86 @@ const DropdownHome = () => {
   });
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        searchHandler(e);
-      }}
-    >
-      <div className="row gx-0 align-items-center">
-        <div className="col-xl-3 col-lg-4">
-          <div className="input-box-one border-left">
-            <div className="label">Loại BĐS</div>
-            <SelectCustom
-              className={`nice-select`}
-              options={categroryData}
-              defaultCurrent={0}
-              onChange={selectHandler}
-              name="category"
-              placeholder=""
-            />
+    <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          searchHandler(e);
+        }}
+      >
+        <div className="row gx-0 align-items-center">
+          <div className="col-xl-3 col-lg-4">
+            <div className="input-box-one border-left">
+              <div className="label">Loại BĐS</div>
+              <SelectCustom
+                className={`nice-select`}
+                options={categroryData}
+                defaultCurrent={0}
+                onChange={selectHandler}
+                name="category"
+                placeholder=""
+              />
+            </div>
+          </div>
+          <div className={clsx(`col-xl-3 col-lg-4`)}>
+            <div className="input-box-one border-left">
+              <div className="label">Địa điểm</div>
+              <SelectCustom
+                className={`nice-select `}
+                options={province_list}
+                defaultCurrent={0}
+                onChange={selectHandler}
+                name="province"
+                placeholder=""
+              />
+            </div>
+          </div>
+          <div className="col-xl-3 col-lg-4">
+            <div className="input-box-one border-left">
+              <div className="label">Từ khóa</div>
+              <input
+                type="text"
+                placeholder="nhà, căn hộ, ..."
+                className="type-input"
+                name="keyword"
+              />
+            </div>
+          </div>
+          <div className={`col-xl-3`}>
+            <div className="input-box-one lg-mt-10">
+              <div className="d-flex align-items-center">
+                {isListing ? (
+                  <Link
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#advanceFilterModal"
+                    className="search-modal-btn sm tran3s text-uppercase fw-500 d-inline-flex align-items-center me-3"
+                  >
+                    <i className="fa-light fa-sliders-up"></i>
+                  </Link>
+                ) : (
+                  ""
+                )}
+
+                <button className="fw-500 text-uppercase tran3s search-btn">
+                  Tìm kiếm
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className={`col-xl-4 col-lg-4`}>
-          <div className="input-box-one border-left">
-            <div className="label">Địa điểm</div>
-            <SelectCustom
-              className={`nice-select `}
-              options={province_list}
-              defaultCurrent={0}
-              onChange={selectHandler}
-              name="province"
-              placeholder=""
-            />
-          </div>
-        </div>
-        <div className="col-xl-3 col-lg-4">
-          <div className="input-box-one border-left">
-            <div className="label">Từ khóa</div>
-            <input
-              type="text"
-              placeholder="nhà, căn hộ, ..."
-              className="type-input"
-              name="keyword"
-            />
-          </div>
-        </div>
-        <div className={`col-xl-2`}>
-          <div className="input-box-one lg-mt-10">
-            <button className={`fw-500 tran3s text-uppercase search-btn`}>
-              Tìm kiếm
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
+      </form>
+      <ListingDropdownModal
+        handleSearchChange={handleSearchChange}
+        handlePriceChange={handlePriceChange}
+        maxPrice={maxPrice}
+        priceValue={priceValue}
+        handleResetFilter={handleResetFilter}
+        handleAmenityChange={handleAmenityChange}
+        handleLocationChange={handleLocationChange}
+        handleStatusChange={handleStatusChange}
+      />
+    </>
   );
 };
 

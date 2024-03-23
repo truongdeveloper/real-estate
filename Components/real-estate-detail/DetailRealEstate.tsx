@@ -72,7 +72,7 @@ const DetailRealEstate = () => {
                   <div className="map-banner overflow-hidden">
                     <div className="gmap_canvas h-100 w-100">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.78331270715!2d105.82622548357436!3d21.001321390382376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac875a60a82f%3A0x51da945c5add838d!2zMTgzIMSQLiBUcsaw4budbmcgQ2hpbmgsIEtoxrDGoW5nIFRoxrDhu6NuZywgxJDhu5FuZyDEkGEsIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1710228432910!5m2!1svi!2s"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.78331270715!2d100.82622548353436!3d20.001321390382376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac875a60a82f%3A0x51da945c5add838d!2zMTgzIMSQLiBUcsaw4budbmcgQ2hpbmgsIEtoxrDGoW5nIFRoxrDhu6NuZywgxJDhu5FuZyDEkGEsIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1710228432910!5m2!1svi!2s"
                         width="600"
                         height="450"
                         style={{ border: 0 }}

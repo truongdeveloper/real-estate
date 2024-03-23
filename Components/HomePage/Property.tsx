@@ -1,10 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import titleShape from "@/assets/images/shape/title_shape_03.svg";
 import { listingData } from "../../data/inner-data/ListingData";
-import transformPriceToString from "../../Constants/conversionNumberToPrice";
-import timeAgo from "../../Constants/conversionTime";
 import ShortCard from "../../Helper/ShortCard";
 import { uniqueId } from "lodash";
 

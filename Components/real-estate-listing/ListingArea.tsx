@@ -17,30 +17,19 @@ import { typeListRealEstate } from "../../Models/common";
 import LongCard from "../../Helper/LongCard";
 import { uniqueId } from "lodash";
 
-const ListingArea = ({ style, ListingData }: any) => {
-  const itemsPerPage = 9;
-  const page = "listing_5";
-
-  // const {
-  //   itemOffset,
-  //   sortedProperties,
-  //   currentItems,
-  //   pageCount,
-  //   handlePageClick,
-  //   handleBathroomChange,
-  //   handleBedroomChange,
-  //   handleSearchChange,
-  //   handlePriceChange,
-  //   maxPrice,
-  //   priceValue,
-  //   resetFilters,
-  //   selectedAmenities,
-  //   handleAmenityChange,
-  //   handleLocationChange,
-  //   handleStatusChange,
-  //   handleTypeChange,
-  //   handlePriceDropChange,
-  // } = UseShortedProperty({ itemsPerPage, page });
+const ListingArea = (props: any) => {
+  const {
+    ListingData,
+    handleSearchChange,
+    handlePriceChange,
+    maxPrice,
+    priceValue,
+    handleResetFilter,
+    selectedAmenities,
+    handleAmenityChange,
+    handleLocationChange,
+    handleStatusChange,
+  } = props;
 
   // const handleResetFilter = () => {
   //   resetFilters();
@@ -48,36 +37,20 @@ const ListingArea = ({ style, ListingData }: any) => {
 
   return (
     <div
-      className={`property-listing-six pb-200 xl-pb-120 ${
-        style ? "pt-120 xl-pt-100" : "pt-200 xl-pt-150"
-      }`}
+      className={`property-listing-six pb-200 xl-pb-120 ${"pt-200 xl-pt-150"}`}
     >
       <div className="container container-large">
-        {!style && (
-          <div className="search-wrapper-one layout-one bg position-relative mb-75 md-mb-50">
-            <div className="bg-wrapper rounded-0 border-0">
-              {/* <DropdownHome
-                handlePriceDropChange={handlePriceDropChange}
-                handleSearchChange={handleSearchChange}
-                handleBedroomChange={handleBedroomChange}
-                handleBathroomChange={handleBathroomChange}
-                handlePriceChange={handlePriceChange}
-                maxPrice={maxPrice}
-                priceValue={priceValue}
-                handleResetFilter={handleResetFilter}
-                selectedAmenities={selectedAmenities}
-                handleAmenityChange={handleAmenityChange}
-                handleLocationChange={handleLocationChange}
-                handleStatusChange={handleStatusChange}
-              /> */}
-            </div>
+        <div
+          className="search-wrapper-one position-relative layout-one bg mb-75 md-mb-50"
+          // style={{ position: "sticky", top: "57px", zIndex: 1051 }}
+        >
+          <div className="bg-wrapper rounded-0 border-0">
+            <DropdownHome isListing />
           </div>
-        )}
+        </div>
 
         <div
-          className={`listing-header-filter d-sm-flex justify-content-between align-items-center lg-mb-30 ${
-            style ? "mb-50" : "mb-40"
-          }`}
+          className={`listing-header-filter d-sm-flex justify-content-between align-items-center lg-mb-30 ${"mb-40"}`}
         >
           {/* <div>
             Showing{" "}
@@ -88,7 +61,7 @@ const ListingArea = ({ style, ListingData }: any) => {
             <span className="color-dark fw-500">{sortedProperties.length}</span>{" "}
             results
           </div> */}
-          {/* <div className="d-flex align-items-center xs-mt-20">
+          <div className="d-flex align-items-center xs-mt-20">
             <div className="short-filter d-flex align-items-center">
               <div className="fs-16 me-2">Short by:</div>
               <SelectCustom
@@ -114,7 +87,7 @@ const ListingArea = ({ style, ListingData }: any) => {
             >
               <i className="fa-regular fa-bars"></i>
             </button>
-          </div> */}
+          </div>
         </div>
 
         <div className="row gx-xxl-5 container m-auto">

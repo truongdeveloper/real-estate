@@ -6,9 +6,13 @@ import logo_1 from "@/assets/images/logo/logo_01.svg";
 import UseSticky from "../../../libs/hooks/UseSticky";
 import NavMenu from "./Menu/NavMenu";
 import LoginModal from "../../modals/LoginModal";
+import { useState } from "react";
+import Profile from "../../LayoutDashboard/Header/Profile";
 
 const HeaderDefault = ({ style }: any) => {
   const { sticky } = UseSticky();
+
+  const [isLogin, setIsLogin] = useState(true);
 
   return (
     <>
@@ -39,17 +43,40 @@ const HeaderDefault = ({ style }: any) => {
               </div>
               <div className="right-widget ms-auto ms-lg-0 me-3 me-lg-0 order-lg-3">
                 <ul className="d-flex align-items-center style-none">
-                  <li>
-                    <Link
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#loginModal"
-                      className="btn-one"
-                    >
-                      <i className="fa-regular fa-lock"></i>{" "}
-                      <span>Đăng nhập</span>
-                    </Link>
-                  </li>
+                  {isLogin ? (
+                    <li className="user-data position-relative">
+                      <button
+                        className="user-avatar online position-relative rounded-circle"
+                        type="button"
+                        id="profile-dropdown"
+                        data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside"
+                        aria-expanded="false"
+                      >
+                        <Image
+                          src={"/assets/images/dashboard/avatar_01.jpg"}
+                          alt=""
+                          width={40}
+                          height={40}
+                          className="lazy-img"
+                        />
+                      </button>
+                      <Profile />
+                    </li>
+                  ) : (
+                    <li>
+                      <Link
+                        href="#"
+                        data-bs-toggle="modal"
+                        data-bs-target="#loginModal"
+                        className="btn-one"
+                      >
+                        <i className="fa-regular fa-lock"></i>{" "}
+                        <span>Đăng nhập</span>
+                      </Link>
+                    </li>
+                  )}
+
                   <li className="d-none d-md-inline-block ms-3">
                     <Link href="/dashboard/add-new-post" className="btn-two">
                       <span>Đăng tin</span>{" "}
