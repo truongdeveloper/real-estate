@@ -1,15 +1,30 @@
+"use client";
 import { Router, useRouter } from "next/router";
 import SelectCustom from "../../../Helper/ui/SelectCustom";
 import { Provinces } from "../../../data/home-data/Location";
 import category_data from "../../../data/home-data/CategoryData";
-import {} from "lodash";
+import { debounce, isEmpty } from "lodash";
 import ListingDropdownModal from "../../../Common/modals/ListingDropdownModal";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import clsx from "clsx";
+import {
+  searchAddressGoongIo,
+  searchAddressLocation,
+} from "../../../libs/map/MapSearch";
+import { ReactNode, useState } from "react";
+import { useDebounce, useDebouncedCallback } from "use-debounce";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+} from "reactstrap";
 
 const DropdownHome = (props: any) => {
   const { isListing } = props;
+
+  const DelaySearch = 500;
   const maxPrice = 100000;
   const priceValue = 10000;
   // Hàm xử lý thay đổi tìm kiếm
@@ -54,6 +69,31 @@ const DropdownHome = (props: any) => {
     }
     router.push(`/real-estate-listing?${queryParams.toString()}`);
   };
+
+  const [searchSelect, setSearchSeleact] = useState([]);
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+  const debounced = useDebouncedCallback((value) => {
+    setDropdownOpen(false);
+    const result = searchAddressGoongIo(value);
+    result.then((value: any) => {
+      const searchList = value.map((item: any) => {
+        return {
+          value: item.formatted_address,
+          text: item.formatted_address,
+        };
+      });
+      setSearchSeleact(searchList);
+      setDropdownOpen(true);
+      if (isEmpty(searchList)) {
+        setDropdownOpen(false);
+      }
+      console.log(searchList, dropdownOpen);
+    });
+  }, DelaySearch);
 
   const province_list = Provinces.map((province) => {
     return {
@@ -112,7 +152,31 @@ const DropdownHome = (props: any) => {
                 placeholder="nhà, căn hộ, ..."
                 className="type-input"
                 name="keyword"
+                // onChange={(e) => debounced(e.target.value)}
               />
+              {/* <Dropdown
+                isOpen={dropdownOpen}
+                toggle={toggle}
+                // direction={direction}
+              >
+                <DropdownToggle caret>Dropdown</DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem header>Dropdown</DropdownItem>
+                  {searchSelect.map((item: any): any => {
+                    <DropdownItem text>
+                      <p>{item.text}</p>
+                    </DropdownItem>;
+                  })}
+
+                  <DropdownItem>Some Action</DropdownItem>
+                  <DropdownItem text>Dropdown Item Text</DropdownItem>
+                  <DropdownItem disabled>Action (disabled)</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Foo Action</DropdownItem>
+                  <DropdownItem>Bar Action</DropdownItem>
+                  <DropdownItem>Quo Action</DropdownItem>
+                </DropdownMenu>
+              </Dropdown> */}
             </div>
           </div>
           <div className={`col-xl-3`}>

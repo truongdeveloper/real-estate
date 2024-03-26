@@ -49,13 +49,18 @@ const NavMenu = () => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" href="/recharge">
+        <Link className="nav-link" href="/pricing">
           Bảng giá
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" href="/">
+        <Link className="nav-link" href="/about-us">
           Về chúng tôi
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" href="/compare">
+          So sánh
         </Link>
       </li>
     </ul>
