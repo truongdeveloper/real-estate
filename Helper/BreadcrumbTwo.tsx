@@ -17,7 +17,7 @@ const BreadcrumbTwo = ({ title, sub_title }: any) => {
           </h2>
           <ul className="theme-breadcrumb style-none d-inline-flex align-items-center justify-content-center position-relative z-1 bottom-line">
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/">Trang chủ</Link>
             </li>
             <li>/</li>
             <li>{sub_title}</li>

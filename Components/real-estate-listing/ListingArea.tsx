@@ -16,6 +16,9 @@ import Fancybox from "../../Common/Fancybox";
 import { typeListRealEstate } from "../../Models/common";
 import LongCard from "../../Helper/LongCard";
 import { uniqueId } from "lodash";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const ListingArea = (props: any) => {
   const {
@@ -34,6 +37,27 @@ const ListingArea = (props: any) => {
   // const handleResetFilter = () => {
   //   resetFilters();
   // };
+
+  const router = useRouter();
+  const selectHandler = (e: any) => {};
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    const { page } = router.query;
+    if (page) {
+      const pageNumber = parseInt(page as string, 10);
+      if (!isNaN(pageNumber) && pageNumber >= 1) {
+        setPage(pageNumber);
+      }
+    }
+  }, [router.query]);
+
+  function handlePageClick(page: any) {
+    toast(`page Change ${page.selected}`);
+    const { pathname } = router;
+    const nextPage = `${pathname}?page=${page.selected + 1}`;
+    router.push(nextPage);
+  }
 
   return (
     <div
@@ -96,16 +120,15 @@ const ListingArea = (props: any) => {
           ))}
         </div>
 
-        {/* <ReactPaginate
+        <ReactPaginate
           breakLabel="..."
           nextLabel={<Image src={icon} alt="" className="ms-2" />}
           onPageChange={handlePageClick}
-          pageRangeDisplayed={pageCount}
-          pageCount={pageCount}
+          pageCount={10}
           previousLabel={<Image src={icon} alt="" className="ms-2" />}
           renderOnZeroPageCount={null}
           className="pagination-one square d-flex align-items-center justify-content-center style-none pt-30"
-        /> */}
+        />
       </div>
     </div>
   );

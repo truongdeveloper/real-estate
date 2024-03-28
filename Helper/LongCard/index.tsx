@@ -149,6 +149,29 @@ const LongCard = (props: LongCardI) => {
               <i className="bi bi-arrow-up-right"></i>
             </Link>
           </div>
+          <hr />
+          <Link
+            href={`user-profile?id=${1}`}
+            className="user-post d-flex align-items-center justify-content-between"
+          >
+            <div className="d-flex align-items-center">
+              <div className="avatar" style={{ height: "40px", width: "40px" }}>
+                <Image
+                  src={"/assets/images/listing/img_large_04.jpg"}
+                  height={50}
+                  width={50}
+                  style={{
+                    borderRadius: "100rem",
+                    contain: "cover",
+                    height: "100%",
+                  }}
+                  alt="Avatar"
+                ></Image>
+              </div>
+              <p className="user-name m-0 ps-2 text-muted">Văn Minh Trường</p>
+            </div>
+            <div className="time-release">{timeAgo(itemPost.ngayDangBai)}</div>
+          </Link>
         </div>
       </div>
     </div>

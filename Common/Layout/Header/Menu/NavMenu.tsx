@@ -63,6 +63,11 @@ const NavMenu = () => {
           So sánh
         </Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link" href="/terms-and-policy">
+          Quy định
+        </Link>
+      </li>
     </ul>
   );
 };

@@ -22,7 +22,7 @@ const Breadcrumb = ({ title, link, link_title, sub_title, style }: any) => {
             </h3>
             <ul className="theme-breadcrumb style-none d-inline-flex align-items-center justify-content-center position-relative z-1 bottom-line">
               <li>
-                <Link href="/">Home</Link>
+                <Link href="/">Trang chủ</Link>
               </li>
               <li>/</li>
               <li>

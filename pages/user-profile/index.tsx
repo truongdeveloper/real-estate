@@ -1,15 +1,16 @@
 import LayoutDefault from "../../Common/Layout";
 import PricingBody from "../../Components/pricing";
+import UserDetails from "../../Components/user-profile";
 import { NextPageWithLayout } from "../../Models/common";
 
-const index: NextPageWithLayout = () => {
+const UserPage: NextPageWithLayout = () => {
   return (
     <div>
-      <PricingBody />
+      <UserDetails />
     </div>
   );
 };
 
-index.Layout = LayoutDefault;
+UserPage.Layout = LayoutDefault;
 
-export default index;
+export default UserPage;

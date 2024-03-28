@@ -23,6 +23,7 @@ import dashboardIcon_8 from "@/assets/images/dashboard/icon/icon_8.svg";
 import dashboardIconActive_10 from "@/assets/images/dashboard/icon/icon_10_active.svg";
 import dashboardIcon_10 from "@/assets/images/dashboard/icon/icon_10.svg";
 import dashboardIcon_11 from "@/assets/images/dashboard/icon/icon_41.svg";
+
 import { toast } from "react-toastify";
 
 const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
@@ -49,14 +50,14 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
           <ul className="style-none">
             <li className="plr">
               <Link
-                href="/dashboard/dashboard-index"
+                href="/dashboard"
                 className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/dashboard-index" ? "active" : ""
+                  pathname === "/dashboard" ? "active" : ""
                 }`}
               >
                 <Image
                   src={
-                    pathname === "/dashboard/dashboard-index"
+                    pathname === "/dashboard"
                       ? dashboardIconActive_1
                       : dashboardIcon_1
                   }
@@ -67,14 +68,14 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
             </li>
             <li className="plr">
               <Link
-                href="/dashboard/dashboard-index"
+                href="/dashboard/request-list"
                 className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/dashboard-index" ? "active" : ""
+                  pathname === "/dashboard/request-list" ? "active" : ""
                 }`}
               >
                 <Image
                   src={
-                    pathname === "/dashboard/dashboard-index"
+                    pathname === "/dashboard/request-list"
                       ? dashboardIconActive_2
                       : dashboardIcon_2
                   }
@@ -162,14 +163,14 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
             </li>
             <li className="plr">
               <Link
-                href="/dashboard/payment"
+                href="/dashboard/payment-list"
                 className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/payment" ? "active" : ""
+                  pathname === "/dashboard/payment-list" ? "active" : ""
                 }`}
               >
                 <Image
                   src={
-                    pathname === "/dashboard/payment"
+                    pathname === "/dashboard/payment-list"
                       ? dashboardIconActive_5
                       : dashboardIcon_5
                   }
