@@ -48,11 +48,12 @@ const DashboardHeader = ({ title }: any) => {
             <Notification />
           </div>
           <div className="d-none d-md-block me-3">
-            <Link href="/add-property" className="btn-two">
+            <Link href="/dashboard/add-new-post" className="btn-two">
               <span>Add Listing</span>{" "}
               <i className="fa-thin fa-arrow-up-right"></i>
             </Link>
           </div>
+
           <div className="user-data position-relative">
             <button
               className="user-avatar online position-relative rounded-circle dropdown-toggle"

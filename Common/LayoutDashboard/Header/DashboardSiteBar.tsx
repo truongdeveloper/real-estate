@@ -20,14 +20,16 @@ import dashboardIconActive_7 from "@/assets/images/dashboard/icon/icon_7_active.
 import dashboardIcon_7 from "@/assets/images/dashboard/icon/icon_7.svg";
 import dashboardIconActive_8 from "@/assets/images/dashboard/icon/icon_8_active.svg";
 import dashboardIcon_8 from "@/assets/images/dashboard/icon/icon_8.svg";
-import dashboardIconActive_9 from "@/assets/images/dashboard/icon/icon_9_active.svg";
-import dashboardIcon_9 from "@/assets/images/dashboard/icon/icon_9.svg";
 import dashboardIconActive_10 from "@/assets/images/dashboard/icon/icon_10_active.svg";
 import dashboardIcon_10 from "@/assets/images/dashboard/icon/icon_10.svg";
 import dashboardIcon_11 from "@/assets/images/dashboard/icon/icon_41.svg";
+import { toast } from "react-toastify";
 
 const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
   const pathname = usePathname();
+  function handleLogout() {
+    toast("Đăng xuất");
+  }
 
   return (
     <aside className={`dash-aside-navbar ${isActive ? "show" : ""}`}>
@@ -61,6 +63,119 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
                   alt=""
                 />
                 <span>Dashboard</span>
+              </Link>
+            </li>
+            <li className="plr">
+              <Link
+                href="/dashboard/dashboard-index"
+                className={`d-flex w-100 align-items-center ${
+                  pathname === "/dashboard/dashboard-index" ? "active" : ""
+                }`}
+              >
+                <Image
+                  src={
+                    pathname === "/dashboard/dashboard-index"
+                      ? dashboardIconActive_2
+                      : dashboardIcon_2
+                  }
+                  alt=""
+                />
+                <span>Yêu cầu thuê</span>
+              </Link>
+            </li>
+
+            <li className="bottom-line pt-30 lg-pt-20 mb-40 lg-mb-30"></li>
+            <li>
+              <div className="nav-title">Quản lý danh sách</div>
+            </li>
+            <li className="plr">
+              <Link
+                href="/dashboard/properties-list"
+                className={`d-flex w-100 align-items-center ${
+                  pathname === "/dashboard/properties-list" ? "active" : ""
+                }`}
+              >
+                <Image
+                  src={
+                    pathname === "/dashboard/properties-list"
+                      ? dashboardIconActive_6
+                      : dashboardIcon_6
+                  }
+                  alt=""
+                />
+                <span>Bất động sản</span>
+              </Link>
+            </li>
+            <li className="plr">
+              <Link
+                href="/dashboard/post-list"
+                className={`d-flex w-100 align-items-center ${
+                  pathname === "/dashboard/post-list" ? "active" : ""
+                }`}
+              >
+                <Image
+                  src={
+                    pathname === "/dashboard/post-list"
+                      ? dashboardIconActive_10
+                      : dashboardIcon_10
+                  }
+                  alt=""
+                />
+                <span>Bài đăng</span>
+              </Link>
+            </li>
+            <li className="plr">
+              <Link
+                href="/dashboard/add-new-post"
+                className={`d-flex w-100 align-items-center ${
+                  pathname === "/dashboard/add-new-post" ? "active" : ""
+                }`}
+              >
+                <Image
+                  src={
+                    pathname === "/dashboard/add-new-post"
+                      ? dashboardIconActive_7
+                      : dashboardIcon_7
+                  }
+                  alt=""
+                />
+                <span>Thêm bài đăng</span>
+              </Link>
+            </li>
+            <li className="plr">
+              <Link
+                href="/dashboard/favourites"
+                className={`d-flex w-100 align-items-center ${
+                  pathname === "/dashboard/favourites" ? "active" : ""
+                }`}
+              >
+                <Image
+                  src={
+                    pathname === "/dashboard/favourites"
+                      ? dashboardIconActive_8
+                      : dashboardIcon_8
+                  }
+                  alt=""
+                />
+                <span>Yêu thích</span>
+              </Link>
+            </li>
+            <li className="plr">
+              <Link
+                href="/dashboard/payment"
+                className={`d-flex w-100 align-items-center ${
+                  pathname === "/dashboard/payment" ? "active" : ""
+                }`}
+              >
+                <Image
+                  src={
+                    pathname === "/dashboard/payment"
+                      ? dashboardIconActive_5
+                      : dashboardIcon_5
+                  }
+                  alt=""
+                />
+                <span>Thanh toán</span>
               </Link>
             </li>
             <li className="bottom-line pt-30 lg-pt-20 mb-40 lg-mb-30"></li>
@@ -121,99 +236,19 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
                 <span>Mua gói</span>
               </Link>
             </li>
-            <li className="bottom-line pt-30 lg-pt-20 mb-40 lg-mb-30"></li>
-            <li>
-              <div className="nav-title">Quản lý danh sách</div>
-            </li>
-            <li className="plr">
-              <Link
-                href="/dashboard/properties-list"
-                className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/properties-list" ? "active" : ""
-                }`}
-              >
-                <Image
-                  src={
-                    pathname === "/dashboard/properties-list"
-                      ? dashboardIconActive_6
-                      : dashboardIcon_6
-                  }
-                  alt=""
-                />
-                <span>Bất động sản</span>
-              </Link>
-            </li>
-            <li className="plr">
-              <Link
-                href="/dashboard/properties-list"
-                className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/properties-list" ? "active" : ""
-                }`}
-              >
-                <Image
-                  src={
-                    pathname === "/dashboard/properties-list"
-                      ? dashboardIconActive_6
-                      : dashboardIcon_6
-                  }
-                  alt=""
-                />
-                <span>Bài đăng</span>
-              </Link>
-            </li>
-            <li className="plr">
-              <Link
-                href="/dashboard/add-new-post"
-                className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/add-new-post" ? "active" : ""
-                }`}
-              >
-                <Image
-                  src={
-                    pathname === "/dashboard/add-new-post"
-                      ? dashboardIconActive_7
-                      : dashboardIcon_7
-                  }
-                  alt=""
-                />
-                <span>Thêm bài đăng</span>
-              </Link>
-            </li>
-            <li className="plr">
-              <Link
-                href="/dashboard/favourites"
-                className={`d-flex w-100 align-items-center ${
-                  pathname === "/dashboard/favourites" ? "active" : ""
-                }`}
-              >
-                <Image
-                  src={
-                    pathname === "/dashboard/favourites"
-                      ? dashboardIconActive_8
-                      : dashboardIcon_8
-                  }
-                  alt=""
-                />
-                <span>Yêu thích</span>
-              </Link>
-            </li>
           </ul>
         </nav>
-        <div className="profile-complete-status bottom-line pb-35 plr">
-          <div className="progress-value fw-500">82%</div>
-          <div className="progress-line position-relative">
-            <div className="inner-line" style={{ width: "80%" }}></div>
-          </div>
-          <p>Profile Complete</p>
-        </div>
 
         <div className="plr">
-          <Link href="#" className="d-flex w-100 align-items-center logout-btn">
+          <button
+            onClick={handleLogout}
+            className="d-flex w-100 align-items-center logout-btn"
+          >
             <div className="icon tran3s d-flex align-items-center justify-content-center rounded-circle">
               <Image src={dashboardIcon_11} alt="" />
             </div>
             <span>Logout</span>
-          </Link>
+          </button>
         </div>
       </div>
     </aside>

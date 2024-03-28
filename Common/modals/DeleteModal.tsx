@@ -1,29 +1,47 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
-import deleteIcon from "@/assets/images/dashboard/icon/icon_22.svg"
+import deleteIcon from "@/assets/images/dashboard/icon/icon_22.svg";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
-const DeleteModal = () => {
-   return (
-      <>
-         <div className="modal fade" id="deleteModal" tabIndex={-1} aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-               <div className="container">
-                  <div className="remove-account-popup text-center modal-content">
-                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                     <Image src={deleteIcon} alt="" className="lazy-img m-auto" />
-                     <h2>Are you sure?</h2>
-                     <p>Are you sure to delete your account? All data will be lost.</p>
-                     <div className="button-group d-inline-flex justify-content-center align-items-center pt-15">
-                        <Link href="#" className="confirm-btn fw-500 tran3s me-3">Yes</Link>
-                        <button type="button" className="btn-close fw-500 ms-3" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </>
-   )
+interface IDeleteModal {
+  setIsOpen: (value: boolean) => void;
+  isOpen: boolean;
+  handleAcceptEvent?: any;
+  args?: any;
 }
 
-export default DeleteModal
+const DeleteModal = (props: IDeleteModal) => {
+  const { setIsOpen, isOpen, handleAcceptEvent, args } = props;
+  const toggle = () => setIsOpen(!isOpen);
+  return (
+    <>
+      <Modal isOpen={isOpen} toggle={toggle} {...args}>
+        <ModalHeader toggle={toggle}>Bạn chắn chắn muốn xóa?</ModalHeader>
+        <ModalBody>
+          <div className=" d-flex align-items-center">
+            <Image src={deleteIcon} alt="" className="lazy-img m-auto" />
+            <p>Tất cả dữ liệu sẽ bị xóa khỏi hệ thống.</p>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color="primary"
+            className="btn-two"
+            onClick={() => {
+              handleAcceptEvent();
+              toggle();
+            }}
+          >
+            Đồng ý
+          </Button>{" "}
+          <Button color="secondary" onClick={toggle}>
+            Thoát
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};
+
+export default DeleteModal;

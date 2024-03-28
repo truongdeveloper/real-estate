@@ -70,30 +70,28 @@ const DropdownHome = (props: any) => {
     router.push(`/real-estate-listing?${queryParams.toString()}`);
   };
 
-  const [searchSelect, setSearchSeleact] = useState([]);
+  // const [searchSelect, setSearchSeleact] = useState([]);
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  // const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
-
-  const debounced = useDebouncedCallback((value) => {
-    setDropdownOpen(false);
-    const result = searchAddressGoongIo(value);
-    result.then((value: any) => {
-      const searchList = value.map((item: any) => {
-        return {
-          value: item.formatted_address,
-          text: item.formatted_address,
-        };
-      });
-      setSearchSeleact(searchList);
-      setDropdownOpen(true);
-      if (isEmpty(searchList)) {
-        setDropdownOpen(false);
-      }
-      console.log(searchList, dropdownOpen);
-    });
-  }, DelaySearch);
+  // const debounced = useDebouncedCallback((value) => {
+  //   setDropdownOpen(false);
+  //   const result = searchAddressGoongIo(value);
+  //   result.then((value: any) => {
+  //     const searchList = value.map((item: any) => {
+  //       return {
+  //         value: item.formatted_address,
+  //         text: item.formatted_address,
+  //       };
+  //     });
+  //     setSearchSeleact(searchList);
+  //     setDropdownOpen(true);
+  //     if (isEmpty(searchList)) {
+  //       setDropdownOpen(false);
+  //     }
+  //     console.log(searchList, dropdownOpen);
+  //   });
+  // }, DelaySearch);
 
   const province_list = Provinces.map((province) => {
     return {
