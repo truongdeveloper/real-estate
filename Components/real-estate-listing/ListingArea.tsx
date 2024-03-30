@@ -153,7 +153,7 @@ const ListingArea = (props: any) => {
                 breakLabel="..."
                 nextLabel={<Image src={icon} alt="" className="ms-2" />}
                 onPageChange={handlePageClick}
-                pageCount={10}
+                pageCount={5}
                 previousLabel={<Image src={icon} alt="" className="ms-2" />}
                 renderOnZeroPageCount={null}
                 className="pagination-one square d-flex align-items-center justify-content-center style-none pt-30"
@@ -162,7 +162,6 @@ const ListingArea = (props: any) => {
             {!useMap ? (
               <div
                 style={{
-                  height: "100px",
                   flexGrow: 1,
                   borderRadius: "10px",
                 }}

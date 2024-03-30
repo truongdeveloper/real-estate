@@ -72,7 +72,7 @@ const ListingRealEstate = () => {
   return (
     <>
       <ListingArea style={false} ListingData={data} />
-      <FancyBanner />
+      {/* <FancyBanner /> */}
     </>
   );
 };
