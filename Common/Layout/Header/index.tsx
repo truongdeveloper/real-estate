@@ -12,7 +12,7 @@ import Profile from "../../LayoutDashboard/Header/Profile";
 const HeaderDefault = ({ style }: any) => {
   const { sticky } = UseSticky();
 
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <>

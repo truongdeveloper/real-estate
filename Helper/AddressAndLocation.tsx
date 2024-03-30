@@ -1,9 +1,53 @@
+"use client";
 import Image from "next/image";
 import locationImage from "@/assets/images/dashboard/icon/icon_16.svg";
 import SelectCustom from "./ui/SelectCustom";
+import { getListQuanHuyen } from "../Constants/getListQuanHuyen";
+import { useEffect, useState } from "react";
+import { getProvinceList } from "../Constants/getProvince";
+import { getListXaPhuong } from "../Constants/getListXaPhuong";
+import GoogleMapComponent from "./GoogleMapComponent";
 
 const AddressAndLocation = () => {
-  const selectHandler = (e: any) => {};
+  const selectHandler = (e: any) => {
+    switch (e.target.name) {
+      case "province": {
+        return setProvince(e.target.value);
+      }
+      case "district": {
+        return setDistrict(e.target.value);
+      }
+    }
+  };
+
+  const [province, setProvince] = useState("01");
+  const [district, setDistrict] = useState("001");
+
+  const [location, setLocation] = useState<{ lat: number; lng: number }>({
+    lat: 0,
+    lng: 0,
+  });
+
+  const [districtList, setDistrictList] = useState<any>(null);
+  const [communeList, setCommuneList] = useState<any>(null);
+
+  const provinceList = getProvinceList();
+
+  useEffect(() => {
+    getListQuanHuyen(province.toString()).then((data) => {
+      setDistrictList(data);
+    });
+  }, [province]);
+
+  useEffect(() => {
+    getListXaPhuong(district.toString()).then((data) => {
+      setCommuneList(data);
+    });
+  }, [district]);
+
+  function handleTakeLatLng(location: { lat: number; lng: number }) {
+    setLocation(location);
+  }
 
   return (
     <div className="bg-white card-box border-20 mt-40">
@@ -11,87 +55,46 @@ const AddressAndLocation = () => {
       <div className="row">
         <div className="col-12">
           <div className="dash-input-wrapper mb-25">
-            <label htmlFor="">Address*</label>
+            <label htmlFor="">Địa chỉ*</label>
             <input type="text" placeholder="19 Yawkey Way" />
           </div>
         </div>
-        <div className="col-lg-3">
+        <div className="col-lg-4">
           <div className="dash-input-wrapper mb-25">
-            <label htmlFor="">Country*</label>
+            <label htmlFor="">Tỉnh*</label>
             <SelectCustom
               className="nice-select"
-              options={[
-                { value: "1", text: "Afghanistan" },
-                { value: "2", text: "Albania" },
-                { value: "3", text: "Algeria" },
-                { value: "4", text: "Andorra" },
-                { value: "5", text: "Angola" },
-                { value: "6", text: "Antigua and Barbuda" },
-                { value: "7", text: "Argentina" },
-                { value: "8", text: "Armenia" },
-                { value: "9", text: "Australia" },
-                { value: "10", text: "Austria" },
-                { value: "11", text: "Azerbaijan" },
-                { value: "12", text: "Bahamas" },
-                { value: "13", text: "Bahrain" },
-                { value: "14", text: "Bangladesh" },
-                { value: "15", text: "Barbados" },
-                { value: "16", text: "Belarus" },
-                { value: "17", text: "Belgium" },
-                { value: "18", text: "Belize" },
-                { value: "19", text: "Benin" },
-                { value: "20", text: "Bhutan" },
-              ]}
+              options={provinceList}
               defaultCurrent={0}
               onChange={selectHandler}
-              name=""
-              placeholder=""
+              name="province"
+              placeholder="Hà Nội,..."
             />
           </div>
         </div>
-        <div className="col-lg-3">
+        <div className="col-lg-4">
           <div className="dash-input-wrapper mb-25">
-            <label htmlFor="">City*</label>
+            <label htmlFor="">Quận/Huyện*</label>
             <SelectCustom
               className="nice-select"
-              options={[
-                { value: "1", text: "Boston" },
-                { value: "2", text: "Tokyo" },
-                { value: "3", text: "Delhi" },
-                { value: "4", text: "Shanghai" },
-                { value: "5", text: "Mumbai" },
-                { value: "6", text: "Bangalore" },
-              ]}
+              options={districtList}
               defaultCurrent={0}
               onChange={selectHandler}
-              name=""
-              placeholder=""
+              name="district"
+              placeholder="Ba Đình, ..."
             />
           </div>
         </div>
-        <div className="col-lg-3">
+        <div className="col-lg-4">
           <div className="dash-input-wrapper mb-25">
-            <label htmlFor="">Zip Code*</label>
-            <input type="number" placeholder="1708" />
-          </div>
-        </div>
-        <div className="col-lg-3">
-          <div className="dash-input-wrapper mb-25">
-            <label htmlFor="">State*</label>
+            <label htmlFor="">Xã/Phường*</label>
             <SelectCustom
               className="nice-select"
-              options={[
-                { value: "1", text: "Maine" },
-                { value: "2", text: "Tokyo" },
-                { value: "3", text: "Delhi" },
-                { value: "4", text: "Shanghai" },
-                { value: "5", text: "Mumbai" },
-                { value: "6", text: "Bangalore" },
-              ]}
+              options={communeList}
               defaultCurrent={0}
               onChange={selectHandler}
               name=""
-              placeholder=""
+              placeholder="Kim Mã, ..."
             />
           </div>
         </div>
@@ -100,17 +103,23 @@ const AddressAndLocation = () => {
         <div className="dash-input-wrapper mb-25">
           <label htmlFor="">Map Location*</label>
           <div className="position-relative">
-            <input type="text" placeholder="XC23+6XC, Moiran, N105" />
+            <input
+              type="text"
+              placeholder="XC23+6XC, Moiran, N105"
+              value={`${location.lat.toString()}, ${location.lng.toString()}`}
+              readOnly
+            />
+            {/* <div className=" form-select-lg nice-select w-100 text-body">
+              {`${location.lat.toString()}, ${location.lng.toString()}`}
+            </div> */}
             <button className="location-pin tran3s">
               <Image src={locationImage} alt="" className="lazy-img m-auto" />
             </button>
           </div>
+
           <div className="map-frame mt-30">
             <div className="gmap_canvas h-100 w-100">
-              <iframe
-                className="gmap_iframe h-100 w-100"
-                src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=dhaka collage&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-              ></iframe>
+              <GoogleMapComponent handleTakeLatLng={handleTakeLatLng} />
             </div>
           </div>
         </div>

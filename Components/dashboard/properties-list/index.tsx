@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 
-import icon_1 from "@/assets/images/icon/icon_46.svg";
 import DashboardHeader from "../../../Common/LayoutDashboard/Header/DashboardHeader";
 import SelectCustom from "../../../Helper/ui/SelectCustom";
 import PropertyTableRow from "../../../Helper/TableRow/PropertyTableRow";

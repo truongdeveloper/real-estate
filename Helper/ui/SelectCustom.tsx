@@ -8,7 +8,7 @@ interface Option {
 }
 
 type SelectCustomProps = {
-  options: Option[];
+  options: Option[] | null;
   defaultCurrent: number;
   placeholder: string;
   className?: string;
@@ -25,7 +25,7 @@ const SelectCustom: FC<SelectCustomProps> = ({
   name,
 }) => {
   const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState<Option>(options[defaultCurrent]);
+  const [current, setCurrent] = useState<Option | null>();
   const onClose = useCallback(() => {
     setOpen(false);
   }, []);
@@ -52,7 +52,18 @@ const SelectCustom: FC<SelectCustomProps> = ({
       onKeyDown={(e) => e}
       ref={ref}
     >
-      <span className="current">{current?.text || placeholder}</span>
+      {!current?.text ? (
+        <span className="" style={{ color: "#9d9d9d" }}>
+          {placeholder}
+        </span>
+      ) : (
+        <span
+          className="current"
+          style={{ fontWeight: 500, fontSize: "16px", color: "black" }}
+        >
+          {current?.text}
+        </span>
+      )}
       <ul
         className="list"
         role="menubar"

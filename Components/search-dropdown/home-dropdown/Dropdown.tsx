@@ -125,7 +125,7 @@ const DropdownHome = (props: any) => {
                 defaultCurrent={0}
                 onChange={selectHandler}
                 name="category"
-                placeholder=""
+                placeholder="Tất cả các loại, ..."
               />
             </div>
           </div>
@@ -138,7 +138,7 @@ const DropdownHome = (props: any) => {
                 defaultCurrent={0}
                 onChange={selectHandler}
                 name="province"
-                placeholder=""
+                placeholder="Hà Nội,...."
               />
             </div>
           </div>
