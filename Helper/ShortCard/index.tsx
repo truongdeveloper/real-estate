@@ -9,10 +9,11 @@ import conversionRealEstateStatus from "../../Constants/conversionRealEstateStat
 
 interface ShortCardI {
   itemPost: typeListRealEstate;
+  mediumCol?: boolean;
 }
 
 const ShortCard = (props: ShortCardI) => {
-  const { itemPost } = props;
+  const { itemPost, mediumCol } = props;
 
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -25,7 +26,12 @@ const ShortCard = (props: ShortCardI) => {
     }
   }
   return (
-    <div key={itemPost.id} className="col-lg-4 col-md-6 d-flex mt-40">
+    <div
+      key={itemPost.id}
+      className={` d-flex mt-40 ${
+        mediumCol ? "col-lg-6 col-md-12" : "col-lg-4 col-md-6"
+      }`}
+    >
       <div className="listing-card-one style-two h-100 w-100 ">
         <div className="img-gallery">
           <div className="position-relative overflow-hidden">

@@ -2,7 +2,7 @@ import { isEmpty } from "lodash";
 import queryString from "query-string";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { DELETE, GET, OPTIONS } from "../../Constants";
+import { DELETE, GET, OPTIONS, POST } from "../../Constants";
 
 type Methods = "head" | "options" | "put" | "post" | "patch" | "delete" | "get";
 interface IAxios {
@@ -30,6 +30,23 @@ const axiosService = (props: IAxios) => {
       ...headers,
     };
   }
+
+  // Xử lý yêu cầu POST
+  if (method === POST) {
+    return axios
+      .post(uri, body, { headers: headersConfig })
+      .then((res: any) => {
+        if (isEmpty(res.data)) {
+          toast.error("Server đang quá tải");
+        }
+        return res.data;
+      })
+      .catch((err: any) => {
+        toast.error("Server đang quá tải");
+        return err;
+      });
+  }
+
   if (method == GET || DELETE || OPTIONS) {
     return axios[method](uri, headersConfig)
       .then((res: any) => {

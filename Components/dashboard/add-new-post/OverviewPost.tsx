@@ -1,7 +1,7 @@
 import SelectCustom from "../../../Helper/ui/SelectCustom";
 import category_data from "../../../data/home-data/CategoryData";
 
-const Overview = () => {
+const OverviewPost = ({ register }: any) => {
   const selectHandler = (e: any) => {};
 
   const categroryData = category_data.map((category) => {
@@ -13,20 +13,21 @@ const Overview = () => {
 
   return (
     <div className="bg-white card-box border-20">
-      <h4 className="dash-title-three">Tổng quan</h4>
+      <h4 className="dash-title-three">Tổng quan bài đăng </h4>
       <div className="dash-input-wrapper mb-30">
         <label htmlFor="">Tiêu đề *</label>
-        <input type="text" placeholder="Tên BĐS" />
+        <input type="text" placeholder="Tên BĐS" {...register("tieuDe")} />
       </div>
       <div className="dash-input-wrapper mb-30">
         <label htmlFor="">Mô tả*</label>
         <textarea
           className="size-lg"
-          placeholder="Viết về BĐS của bạn..."
+          placeholder="Nội dung giới thiệu về bất động sản của bạn..."
+          {...register("noiDung")}
         ></textarea>
       </div>
       <div className="row align-items-end">
-        <div className="col-md-6">
+        {/* <div className="col-md-6">
           <div className="dash-input-wrapper mb-30">
             <label htmlFor="">Loại BĐS*</label>
             <SelectCustom
@@ -38,11 +39,15 @@ const Overview = () => {
               placeholder=""
             />
           </div>
-        </div>
+        </div> */}
         <div className="col-md-6">
           <div className="dash-input-wrapper mb-30">
-            <label htmlFor="">Gía thuê*</label>
-            <input type="text" placeholder="Giá thuê" />
+            <label htmlFor="">SĐT liên hệ*</label>
+            <input
+              type="text"
+              placeholder="Số điện thoại"
+              {...register("sdt")}
+            />
           </div>
         </div>
       </div>
@@ -50,4 +55,4 @@ const Overview = () => {
   );
 };
 
-export default Overview;
+export default OverviewPost;

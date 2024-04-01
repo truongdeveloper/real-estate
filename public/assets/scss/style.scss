@@ -26,3 +26,12 @@
 @import "nice-select";
 @import "slider";
 @import "responsive";
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3e%3cpath d='M5.2 4l-4.2 4 1.1 1.1 4.9-4.9-4.9-4.9-1.1 1.1z'/%3e%3c/svg%3e");
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3e%3cpath d='M5.2 4l-4.2 4 1.1 1.1 4.9-4.9-4.9-4.9-1.1 1.1z'/%3e%3c/svg%3e");
+  transform: rotate(180deg);
+}

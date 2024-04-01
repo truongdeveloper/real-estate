@@ -1,25 +1,34 @@
 "use client";
 import Image from "next/image";
 import locationImage from "@/assets/images/dashboard/icon/icon_16.svg";
-import SelectCustom from "./ui/SelectCustom";
-import { getListQuanHuyen } from "../Constants/getListQuanHuyen";
+import SelectCustom from "../../../Helper/ui/SelectCustom";
+import { getListQuanHuyen } from "../../../Constants/getListQuanHuyen";
 import { useEffect, useState } from "react";
-import { getProvinceList } from "../Constants/getProvince";
-import { getListXaPhuong } from "../Constants/getListXaPhuong";
-import GoogleMapComponent from "./GoogleMapComponent";
+import { getProvinceList } from "../../../Constants/getProvince";
+import { getListXaPhuong } from "../../../Constants/getListXaPhuong";
+import GoogleMapComponent from "../../../Helper/GoogleMapComponent";
+// import GoogleMapComponent from "../../../Helper/GoogleMapComponent";
 
-const AddressAndLocation = () => {
+const AddressAndLocation = ({ register, setValue }: any) => {
   const selectHandler = (e: any) => {
+    setValue(e.target.name, e.target.value);
     switch (e.target.name) {
-      case "province": {
-        return setProvince(e.target.value);
+      case "tinhTp": {
+        if (e.target.value != province) {
+          return setProvince(e.target.value);
+        } else {
+          return;
+        }
       }
-      case "district": {
-        return setDistrict(e.target.value);
+      case "quanHuyen": {
+        if (e.target.value != district) {
+          return setDistrict(e.target.value);
+        } else {
+          return;
+        }
       }
     }
   };
-
   const [province, setProvince] = useState("01");
   const [district, setDistrict] = useState("001");
 
@@ -46,6 +55,8 @@ const AddressAndLocation = () => {
   }, [district]);
 
   function handleTakeLatLng(location: { lat: number; lng: number }) {
+    setValue("kinhDo", location.lng);
+    setValue("viDo", location.lat);
     setLocation(location);
   }
 
@@ -56,7 +67,11 @@ const AddressAndLocation = () => {
         <div className="col-12">
           <div className="dash-input-wrapper mb-25">
             <label htmlFor="">Địa chỉ*</label>
-            <input type="text" placeholder="19 Yawkey Way" />
+            <input
+              type="text"
+              placeholder="19 Yawkey Way"
+              {...register("diaChi")}
+            />
           </div>
         </div>
         <div className="col-lg-4">
@@ -67,7 +82,7 @@ const AddressAndLocation = () => {
               options={provinceList}
               defaultCurrent={0}
               onChange={selectHandler}
-              name="province"
+              name="tinhTp"
               placeholder="Hà Nội,..."
             />
           </div>
@@ -80,7 +95,7 @@ const AddressAndLocation = () => {
               options={districtList}
               defaultCurrent={0}
               onChange={selectHandler}
-              name="district"
+              name="quanHuyen"
               placeholder="Ba Đình, ..."
             />
           </div>
@@ -93,7 +108,7 @@ const AddressAndLocation = () => {
               options={communeList}
               defaultCurrent={0}
               onChange={selectHandler}
-              name=""
+              name="XaPhuong"
               placeholder="Kim Mã, ..."
             />
           </div>
@@ -109,9 +124,6 @@ const AddressAndLocation = () => {
               value={`${location.lat.toString()}, ${location.lng.toString()}`}
               readOnly
             />
-            {/* <div className=" form-select-lg nice-select w-100 text-body">
-              {`${location.lat.toString()}, ${location.lng.toString()}`}
-            </div> */}
             <button className="location-pin tran3s">
               <Image src={locationImage} alt="" className="lazy-img m-auto" />
             </button>
@@ -119,7 +131,10 @@ const AddressAndLocation = () => {
 
           <div className="map-frame mt-30">
             <div className="gmap_canvas h-100 w-100">
-              <GoogleMapComponent handleTakeLatLng={handleTakeLatLng} />
+              <GoogleMapComponent
+                drawable={false}
+                handleTakeLatLng={handleTakeLatLng}
+              />
             </div>
           </div>
         </div>

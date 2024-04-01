@@ -14,7 +14,7 @@ import LongCard from "../../Helper/LongCard";
 import { uniqueId } from "lodash";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { LegacyRef, useEffect, useRef, useState } from "react";
 import ShortCard from "../../Helper/ShortCard";
 import GoogleMap from "../../Helper/GoogleMapComponent";
 import GoogleMapComponent from "../../Helper/GoogleMapComponent";
@@ -43,7 +43,7 @@ const ListingArea = (props: any) => {
   const [page, setPage] = useState(0);
   const [isGrid, setIsGrid] = useState(false);
 
-  const [useMap, setUseMap] = useState(false);
+  const [useMap, setUseMap] = useState(true);
 
   useEffect(() => {
     const { page } = router.query;
@@ -69,7 +69,16 @@ const ListingArea = (props: any) => {
   function handleSwitchUseMap() {
     setUseMap(!useMap);
   }
-  const { sticky } = UseSticky();
+  if (!useMap) {
+    document.body.classList.add("overflow-hidden");
+  } else {
+    document.body.classList.remove("overflow-hidden");
+  }
+  const wrapperRef = useRef(null) as any;
+  const [height, setheight] = useState(null);
+  useEffect(() => {
+    setheight(wrapperRef?.current?.offsetHeight);
+  }, [useMap]);
 
   return (
     <div
@@ -80,19 +89,23 @@ const ListingArea = (props: any) => {
           className={`theme-main-menu menu-overlay  menu-style-one sticky-menu ${
             !useMap ? "fixed" : "position-relative"
           }`}
-          // style={!useMap ? { height: "100vh !important" } : undefined}
         >
           <div
             className={`search-wrapper-one layout-one ${!useMap ? "" : "bg"}`}
+            ref={wrapperRef}
           >
             <div className="bg-wrapper rounded-0 border-0">
               <DropdownHome isListing />
             </div>
           </div>
-          <div className="d-flex">
+
+          <div
+            className="d-flex"
+            style={!useMap ? { height: `calc(100vh - ${height}px` } : {}}
+          >
             <div
-              className={`container ${!useMap ? "overflow-scroll" : ""}`}
-              style={!useMap ? { overflow: "scroll", maxWidth: "40%" } : {}}
+              className={`container`}
+              style={!useMap ? { overflow: "scroll", maxWidth: "45%" } : {}}
             >
               <div
                 className={`listing-header-filter d-sm-flex justify-content-between align-items-center lg-mb-30 ${"mb-40"}`}
@@ -140,10 +153,14 @@ const ListingArea = (props: any) => {
                 </div>
               </div>
 
-              <div className={`row`}>
+              <div className="row m-0 justify-content-center">
                 {listingData.map((item: typeListRealEstate) => {
                   return isGrid || !useMap ? (
-                    <ShortCard key={uniqueId()} itemPost={item} />
+                    <ShortCard
+                      key={uniqueId()}
+                      itemPost={item}
+                      mediumCol={!useMap}
+                    />
                   ) : (
                     <LongCard key={uniqueId()} itemPost={item} />
                   );
@@ -156,7 +173,7 @@ const ListingArea = (props: any) => {
                 pageCount={5}
                 previousLabel={<Image src={icon} alt="" className="ms-2" />}
                 renderOnZeroPageCount={null}
-                className="pagination-one square d-flex align-items-center justify-content-center style-none pt-30"
+                className="pagination-one m-0 square d-flex align-items-center justify-content-center style-none pt-30"
               />
             </div>
             {!useMap ? (
@@ -166,7 +183,7 @@ const ListingArea = (props: any) => {
                   borderRadius: "10px",
                 }}
               >
-                <GoogleMapComponent />
+                <GoogleMapComponent drawable={true} />
               </div>
             ) : null}
           </div>

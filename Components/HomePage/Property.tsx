@@ -6,9 +6,6 @@ import ShortCard from "../../Helper/ShortCard";
 import { uniqueId } from "lodash";
 
 const Property = () => {
-  const handleAddFavorite = (id: number) => {
-    console.log(id);
-  };
   return (
     <div className="property-listing-one bg-pink-two mt-150 xl-mt-120 pt-140 xl-pt-120 lg-pt-80 pb-180 xl-pb-120 lg-pb-100">
       <div className="container">

@@ -1,4 +1,10 @@
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  Marker,
+  Polygon,
+  Polyline,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 import { memo, useCallback, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -15,18 +21,36 @@ const center = {
 interface IGoogleMapComponent {
   handleTakeLatLng?: any;
   mapConfig?: any;
+  drawable?: boolean;
 }
 
 function GoogleMapComponent(props: IGoogleMapComponent) {
-  const { handleTakeLatLng, mapConfig } = props;
+  const { handleTakeLatLng, mapConfig, drawable } = props;
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyAooXtTDymTYgxCaO68SpxWTlf6S2YnfeY",
   });
 
-  const [map, setMap] = useState(null);
+  const [map, setMap] = useState<any>(null);
   const [position, setPosition] = useState(center);
+
+  const [usePolygon, setUsePolygon] = useState(false);
+  const [path, setPath] = useState([
+    {
+      lat: 21.0877888,
+      lng: 105.8641666,
+    },
+    {
+      lat: 21.0277222,
+      lng: 105.8941598,
+    },
+
+    {
+      lat: 21.0277644,
+      lng: 105.8341444,
+    },
+  ]);
 
   const onLoad = useCallback((map: any) => {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -44,7 +68,13 @@ function GoogleMapComponent(props: IGoogleMapComponent) {
   const mapOptions = {
     draggingCursor: "move",
     draggableCursor: "crosshair",
+    draggable: !usePolygon,
+
     ...mapConfig,
+  };
+
+  const handleChange = () => {
+    console.log("111");
   };
 
   const onUnmount = useCallback((map: any) => {
@@ -59,17 +89,38 @@ function GoogleMapComponent(props: IGoogleMapComponent) {
   }
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={12}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-      onClick={onMapClick}
-      options={mapOptions}
-    >
-      <Marker position={position} />
-    </GoogleMap>
+    <div className="w-100 h-100 position-relative">
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={12}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+        onClick={onMapClick}
+        onCenterChanged={() => {}}
+        options={{}}
+      >
+        <Marker position={position} />
+        <Polygon
+          visible={usePolygon}
+          options={{}}
+          editable={true}
+          path={path}
+        />
+      </GoogleMap>
+      <div>
+        <button
+          className={`btn btn-primary position-absolute ${
+            drawable ? "" : "d-none"
+          }`}
+          style={{ top: "1rem", right: "2rem " }}
+          onClick={() => setUsePolygon(!usePolygon)}
+        >
+          {" "}
+          Polygon{" "}
+        </button>
+      </div>
+    </div>
   ) : (
     <></>
   );

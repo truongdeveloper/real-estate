@@ -833,12 +833,23 @@
     .attached-file {
       height: 60px;
       width: 100%;
+      min-width: 220px;
       border-radius: 10px;
       background: #EDF2F7;
       padding: 0 20px;
+      transition: all 0.1s ease;
+      cursor: pointer;
 
       span {
         font-size: 14px;
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        /* Số dòng tối đa trước khi xuất hiện dấu chấm (...) */
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        word-wrap: break-word;
       }
 
       .remove-btn {
@@ -849,6 +860,10 @@
         &:hover {
           color: #ff5b5b;
         }
+      }
+
+      &:hover {
+        background: #b1b1b1;
       }
     }
 
