@@ -13,5 +13,15 @@ export const GET_LISTING = {
 export const POST_ADD_NEW_POST = {
   key: "/dashboard/add-new-post",
   url: BASE_URL + `/quan-ly-bai-dang/baidang`,
-  method: POST,
+  method: "post",
+};
+
+export const LOGIN = {
+  url: BASE_URL + `/quan-ly-tai-khoan/dang-nhap`,
+  method: "post",
+};
+
+export const REGISTER = {
+  url: BASE_URL + "/quan-ly-tai-khoan/dang-ky",
+  method: "post",
 };

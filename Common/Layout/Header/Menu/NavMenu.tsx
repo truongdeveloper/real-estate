@@ -8,26 +8,25 @@ import { useState } from "react";
 import logo from "@/assets/images/logo/logo_01.svg";
 
 const NavMenu = () => {
-  // const pathname = usePathname();
-  // const currentRoute = usePathname();
-  // const [navTitle, setNavTitle] = useState("");
+  const pathname = usePathname();
+  const currentRoute = usePathname();
+  const [navTitle, setNavTitle] = useState("");
 
-  // const isMenuItemActive = (menuLink: string) => {
-  //   return currentRoute === menuLink;
-  // };
+  const isMenuItemActive = (menuLink: string) => {
+    return currentRoute === menuLink;
+  };
 
-  // const isSubMenuItemActive = (subMenuLink: string) => {
-  //   return currentRoute === subMenuLink;
-  // };
+  const isSubMenuItemActive = (subMenuLink: string) => {
+    return currentRoute === subMenuLink;
+  };
 
-  //openMobileMenu
-  // const openMobileMenu = (menu: any) => {
-  //   if (navTitle === menu) {
-  //     setNavTitle("");
-  //   } else {
-  //     setNavTitle(menu);
-  //   }
-  // };
+  const openMobileMenu = (menu: any) => {
+    if (navTitle === menu) {
+      setNavTitle("");
+    } else {
+      setNavTitle(menu);
+    }
+  };
 
   return (
     <ul className="navbar-nav align-items-lg-center">

@@ -4,13 +4,11 @@ import Image from "next/image";
 import profileIcon_1 from "@/assets/images/dashboard/icon/icon_23.svg";
 import profileIcon_2 from "@/assets/images/dashboard/icon/icon_24.svg";
 import profileIcon_3 from "@/assets/images/dashboard/icon/icon_25.svg";
-import DeleteModal from "../../modals/DeleteModal";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import { signOut } from "next-auth/react";
 
 const Profile = () => {
   function handleLogout() {
-    toast("Đăn xuất");
+    signOut({ callbackUrl: "/" });
   }
   return (
     <>

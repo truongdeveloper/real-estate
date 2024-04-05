@@ -41,6 +41,9 @@ const ShortCard = (props: ShortCardI) => {
 
             <Image
               src={itemPost.batDongSan.hinhAnhList[0].url}
+              // src={
+              //   "https://res.cloudinary.com/dfkh87pvy/image/upload/v1712177798/dev/gmnqn2bzdl1pprw2rd23.png"
+              // }
               className="w-100"
               width={500}
               height={500}

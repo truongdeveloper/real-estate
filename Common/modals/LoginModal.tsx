@@ -79,7 +79,7 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                         Bạn đã có tài khoản? <Link href="#">Đăng nhập</Link>
                       </p>
                     </div>
-                    <RegisterForm />
+                    <RegisterForm setIndexLogin={setActiveTab} />
                   </div>
                 </div>
 

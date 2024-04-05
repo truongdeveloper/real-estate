@@ -35,3 +35,34 @@
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3e%3cpath d='M5.2 4l-4.2 4 1.1 1.1 4.9-4.9-4.9-4.9-1.1 1.1z'/%3e%3c/svg%3e");
   transform: rotate(180deg);
 }
+
+.form_error {
+  font-size: medium;
+  padding-left: 1rem;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-18px);
+  }
+
+  20% {
+    transform: translateX(18px);
+  }
+
+  40% {
+    transform: translateX(-18px);
+  }
+
+  60% {
+    transform: translateX(18px);
+  }
+
+  80% {
+    transform: translateX(-8px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}

@@ -6,13 +6,24 @@ import logo_1 from "@/assets/images/logo/logo_01.svg";
 import UseSticky from "../../../libs/hooks/UseSticky";
 import NavMenu from "./Menu/NavMenu";
 import LoginModal from "../../modals/LoginModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Profile from "../../LayoutDashboard/Header/Profile";
+import { getSession, useSession } from "next-auth/react";
 
 const HeaderDefault = ({ style }: any) => {
   const { sticky } = UseSticky();
 
   const [isLogin, setIsLogin] = useState(false);
+
+  const { data, status } = useSession();
+  useEffect(() => {
+    console.log(data, status);
+    if (status === "authenticated") {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [status, data]);
 
   return (
     <>

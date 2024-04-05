@@ -80,3 +80,13 @@ export interface tienNghi {
   vuon: number;
   gara: number;
 }
+
+export interface Account {
+  id: number;
+  maQuyen: any;
+  maNguoiDung: number;
+  tenTK: string;
+  matKhau: string;
+  trangThai: number;
+  soDu: number;
+}

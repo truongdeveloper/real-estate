@@ -4,30 +4,44 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { DELETE, GET, OPTIONS, POST } from "../../Constants";
 
-type Methods = "head" | "options" | "put" | "post" | "patch" | "delete" | "get";
+export type Methods =
+  | "head"
+  | "options"
+  | "put"
+  | "post"
+  | "patch"
+  | "delete"
+  | "get";
 interface IAxios {
   url: string;
   method?: Methods;
   body?: any;
   headers?: any;
+  token?: string;
   params?: object;
 }
 
 const axiosService = (props: IAxios) => {
-  const { url, method = GET, body, headers, params } = props;
+  const { url, method = GET, body, headers, token, params } = props;
 
   let uri = url;
   if (method == GET && !isEmpty(params)) {
     uri = `${url}?${queryString.stringify(params)}`;
   }
 
-  let headersConfig = {
+  let headersConfig: any = {
     accept: "application/json",
   };
   if (headers) {
     headersConfig = {
       ...headersConfig,
       ...headers,
+    };
+  }
+  if (token) {
+    headersConfig = {
+      ...headersConfig,
+      Authorization: `Bearer ${token}`,
     };
   }
 

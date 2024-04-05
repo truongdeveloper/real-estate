@@ -1,7 +1,6 @@
 "use client";
 
 import ListingDetails from "./ListingDetails";
-import Link from "next/link";
 import DashboardHeader from "../../../Common/LayoutDashboard/Header/DashboardHeader";
 import AddressAndLocation from "./AddressAndLocation";
 import OverviewPost from "./OverviewPost";
@@ -15,17 +14,8 @@ import axiosService from "../../../Common/api/AxiosServices";
 import { POST_ADD_NEW_POST } from "../../../Common/api/apiEndPoints";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-interface TienNghi {
-  dieuHoa: boolean;
-  mayGiat: boolean;
-  hoBoi: boolean;
-  wifi: boolean;
-  baiDoXe: boolean;
-  thangMay: boolean;
-  vuon: boolean;
-  gara: boolean;
-}
+import UpLoadProgress from "../../../Helper/LoadingUpload";
+import { useState } from "react";
 
 interface PostBDS {
   maTaiKhoan: number;
@@ -49,7 +39,16 @@ interface PostBDS {
   quanHuyen: string;
   xaPhuong: string;
   urls: string[];
-  tienNghi: TienNghi;
+  tienNghi: {
+    dieuHoa: boolean;
+    mayGiat: boolean;
+    hoBoi: boolean;
+    wifi: boolean;
+    baiDoXe: boolean;
+    thangMay: boolean;
+    vuon: boolean;
+    gara: boolean;
+  };
 }
 
 const AddPropertyBody = () => {
@@ -74,7 +73,7 @@ const AddPropertyBody = () => {
     tinhTp: yup.string().required(),
     quanHuyen: yup.string().required(),
     xaPhuong: yup.string().required(),
-    urls: yup.array().of(yup.string()).required(),
+    urls: yup.boolean().required(),
     tienNghi: yup
       .object()
       .shape({
@@ -96,19 +95,18 @@ const AddPropertyBody = () => {
     reset,
     setValue,
     formState: { errors },
-  } = useForm<any>({
-    // resolver: yupResolver(schema),
+  } = useForm<PostBDS>({
+    // resolver: yupResolver<any>(schema),
     defaultValues: {
       maTaiKhoan: 1,
     },
   });
 
   const onSubmit: SubmitHandler<PostBDS> = async () => {
+    console.log("hihi");
     try {
-      // Lấy danh sách các URL từ form
-      console.log(watch());
       const uploadImageUrls = watch("urls");
-
+      debugger;
       const imageFiles = await Promise.all(
         uploadImageUrls.map(async (imageUrl: string) => {
           const response = await fetch(imageUrl);
@@ -127,16 +125,14 @@ const AddPropertyBody = () => {
     } catch (error) {
       toast("Lỗi không tải được ảnh");
     }
-    // console.log(watch());
     try {
       // Gửi dữ liệu POST lên máy chủ
       const response = await axiosService({
-        url: POST_ADD_NEW_POST.url, // Đổi thành URL của endpoint bạn muốn gửi yêu cầu POST đến
+        url: POST_ADD_NEW_POST.url,
         method: "post",
-        body: watch(), // Sử dụng dữ liệu từ form
+        body: watch(),
       });
 
-      // Xử lý response sau khi gửi yêu cầu POST thành công
       console.log("Response from server:", response);
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu POST:", error);
@@ -172,6 +168,7 @@ const AddPropertyBody = () => {
           </div>
         </form>
       </div>
+      {/* {loading ? <UpLoadProgress /> : ""} */}
     </div>
   );
 };

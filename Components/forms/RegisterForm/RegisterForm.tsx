@@ -8,6 +8,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 
 import OpenEye from "@/assets/images/icon/icon_68.svg";
+import axiosService from "../../../Common/api/AxiosServices";
+import { REGISTER } from "../../../Common/api/apiEndPoints";
+import { Method } from "axios";
+import { Button } from "reactstrap";
+import { Account } from "../../../Models/common";
 
 interface FormData {
   name: string;
@@ -16,13 +21,29 @@ interface FormData {
   rePassword: string;
 }
 
-const RegisterForm = () => {
+const RegisterForm = ({ setIndexLogin }: any) => {
   const schema = yup
     .object({
-      name: yup.string().required().label("Name"),
-      email: yup.string().required().email().label("Email"),
-      password: yup.string().required().label("Password"),
-      rePassword: yup.string().required().label("rePassword"),
+      name: yup
+        .string()
+        .required("Không để trống")
+        .min(6, "Tài khoản phải có 6 ký tự trở lên")
+        .label("Name"),
+      email: yup
+        .string()
+        .required("Không để trống")
+        .email("Phải là định dạng email")
+        .label("Email"),
+      password: yup
+        .string()
+        .required("Không để trống")
+        .min(6, "Mật khẩu phải có 6 ký tự trở lên")
+        .label("Password"),
+      rePassword: yup
+        .string()
+        .required("Không để trống")
+        .oneOf([yup.ref("password")], "Nhập lại mật khẩu không trùng mhau")
+        .label("rePassword"),
     })
     .required();
 
@@ -33,14 +54,43 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
   const onSubmit = (data: FormData) => {
-    const notify = () =>
-      toast("Registration successfully", { position: "top-center" });
-    notify();
-    reset();
+    const res = axiosService({
+      url: REGISTER.url,
+      method: "post",
+      body: {
+        tenTK: data.name,
+        email: data.email,
+        matKhau: data.password,
+      },
+    });
+
+    res
+      ?.then((res) => {
+        if (res === "Tên tài khoản đã tồn tại!") {
+          toast("Tên tài khoản đã tồn tại!", {
+            type: "warning",
+          });
+        }
+        if (res.tenTK === data.name) {
+          toast("Đăng ký tài khoản thành công", {
+            type: "success",
+          });
+          setIndexLogin(0);
+        }
+      })
+      .catch((error) => {
+        toast(
+          `Đăng ký thất bại
+      ${error}`,
+          {
+            type: "error",
+          }
+        );
+      });
   };
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
-
+  const [isAgree, setIsAgree] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordVisibility(!isPasswordVisible);
   };
@@ -50,13 +100,16 @@ const RegisterForm = () => {
       <div className="row">
         <div className="col-12">
           <div className="input-group-meta position-relative mb-25">
-            <label>Tên*</label>
+            <label>Tên tài khoản*</label>
             <input
               type="text"
               {...register("name")}
               placeholder="Phương Thảo"
+              autoComplete="off"
             />
-            <p className="form_error">{errors.name?.message}</p>
+            {errors.name && (
+              <p className="form_error">{errors.name?.message}</p>
+            )}
           </div>
         </div>
         <div className="col-12">
@@ -113,13 +166,19 @@ const RegisterForm = () => {
                 />
               </span>
             </span>
-            <p className="form_error">{errors.password?.message}</p>
+            <p className="form_error">{errors.rePassword?.message}</p>
           </div>
         </div>
         <div className="col-12">
           <div className="agreement-checkbox d-flex justify-content-between align-items-center">
             <div>
-              <input type="checkbox" id="remember2" />
+              <input
+                type="checkbox"
+                id="remember2"
+                onChange={() => {
+                  setIsAgree(!isAgree);
+                }}
+              />
               <label htmlFor="remember2">
                 Đồng ý với các <Link href="#">Điều khoản và điều kiện</Link> &{" "}
                 <Link href="#">Chính sách bảo mật</Link>
@@ -128,12 +187,13 @@ const RegisterForm = () => {
           </div>
         </div>
         <div className="col-12">
-          <button
+          <Button
             type="submit"
             className="btn-two w-100 text-uppercase d-block mt-20"
+            disabled={!isAgree}
           >
             ĐĂNG KÝ
-          </button>
+          </Button>
         </div>
       </div>
     </form>

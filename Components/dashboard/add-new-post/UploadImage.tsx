@@ -162,7 +162,7 @@ const UploadImage = ({ register, setValue }: IUpLoadImage) => {
           id="uploadCV"
           name="uploadCV"
           placeholder=""
-          accept="image/*"
+          accept="image/png, image/gif, image/jpeg"
           onChange={handleFileChange}
           multiple
         />

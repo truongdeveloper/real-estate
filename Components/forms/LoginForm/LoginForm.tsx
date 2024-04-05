@@ -6,19 +6,29 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
-
+import { signIn } from "next-auth/react";
 import OpenEye from "@/assets/images/icon/icon_68.svg";
+import { useRouter } from "next/router";
 
 interface FormData {
-  email: string;
+  username: string;
   password: string;
 }
 
 const LoginForm = () => {
+  const router = useRouter();
   const schema = yup
     .object({
-      email: yup.string().required().email().label("Email"),
-      password: yup.string().required().label("Password"),
+      username: yup
+        .string()
+        .required("Trường này không được để trống")
+        .min(6, "Tài khoản phải có 6 ký tự trở lên")
+        .label("Tài khoản"),
+      password: yup
+        .string()
+        .required("Trường này không được để trống")
+        .min(6, "Mật khẩu phải có 6 ký tự trở lên")
+        .label("Mật khẩu"),
     })
     .required();
 
@@ -28,11 +38,25 @@ const LoginForm = () => {
     reset,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
-  const onSubmit = (data: FormData) => {
-    const notify = () =>
-      toast("Login successfully", { position: "top-center" });
-    notify();
-    reset();
+  const onSubmit = async (data: FormData) => {
+    const res = await signIn("credentials", {
+      email: data.username,
+      password: data.password,
+      redirect: false,
+    });
+    console.log(res);
+    if (!res?.ok) {
+      toast("Sai tên đăng nhâp hoặc mật khẩu", {
+        type: "warning",
+      });
+    } else {
+      toast("Đăng nhập thành công", {
+        type: "success",
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    }
   };
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
@@ -46,13 +70,13 @@ const LoginForm = () => {
       <div className="row">
         <div className="col-12">
           <div className="input-group-meta position-relative mb-25">
-            <label>Email*</label>
+            <label>Tên tài khoản*</label>
             <input
-              type="email"
-              {...register("email")}
+              type="text"
+              {...register("username")}
               placeholder="email@gmail.com"
             />
-            <p className="form_error">{errors.email?.message}</p>
+            <small className="form_error">{errors.username?.message}</small>
           </div>
         </div>
         <div className="col-12">
@@ -75,16 +99,16 @@ const LoginForm = () => {
                 />
               </span>
             </span>
-            <p className="form_error">{errors.password?.message}</p>
+            <small className="form_error">{errors.password?.message}</small>
           </div>
         </div>
         <div className="col-12">
           <div className="agreement-checkbox d-flex justify-content-between align-items-center">
-            <div>
+            {/* <div>
               <input type="checkbox" id="remember" />
               <label htmlFor="remember">Nhớ tài khoản</label>
-            </div>
-            <Link href="#">Quên mật khẩu?</Link>
+            </div> */}
+            <Link href="/dashboard/account-setting">Quên mật khẩu?</Link>
           </div>
         </div>
         <div className="col-12">

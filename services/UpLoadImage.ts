@@ -21,11 +21,12 @@ function getPublicIdFromUrl(url: string) {
 }
 
 export const uploadImageToCloudinary = async (imageFile: File) => {
+  const folder = process.env.NEXT_PUBLIC_ENVIROMENT as string;
   try {
     const formData = new FormData();
     formData.append("file", imageFile);
     formData.append("upload_preset", "flbjrrmt"); // Thay thế bằng upload preset của bạn
-    formData.append("folder", "dev");
+    formData.append("folder", folder);
 
     const response = await axios.post(
       "https://api.cloudinary.com/v1_1/dfkh87pvy/image/upload",
@@ -43,9 +44,9 @@ export const deleteImageFromCloudinary = async (url: string) => {
   const publicId = getPublicIdFromUrl(url);
   try {
     const timestamp = Math.round(new Date().getTime() / 1000);
-    const cloudName = "dfkh87pvy";
-    const apiKey = "352769527217187";
-    const apiSecret = "m8srkVeFMXUTXbZ6he2vxLza_DM";
+    const cloudName = process.env.NEXT_PUBLIC_IMAGE_CLOUD_NAME;
+    const apiKey = process.env.NEXT_PUBLIC_IMAGE_API_KEY;
+    const apiSecret = process.env.NEXT_PUBLIC_IMAGE_API_KEY_SECRET;
 
     const signature = crypto
       .createHash("sha1")

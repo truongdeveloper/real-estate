@@ -2,7 +2,6 @@ import {
   GoogleMap,
   Marker,
   Polygon,
-  Polyline,
   useJsApiLoader,
 } from "@react-google-maps/api";
 import { memo, useCallback, useState } from "react";
@@ -29,7 +28,7 @@ function GoogleMapComponent(props: IGoogleMapComponent) {
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyAooXtTDymTYgxCaO68SpxWTlf6S2YnfeY",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
   });
 
   const [map, setMap] = useState<any>(null);
@@ -98,7 +97,7 @@ function GoogleMapComponent(props: IGoogleMapComponent) {
         onUnmount={onUnmount}
         onClick={onMapClick}
         onCenterChanged={() => {}}
-        options={{}}
+        options={mapOptions}
       >
         <Marker position={position} />
         <Polygon
