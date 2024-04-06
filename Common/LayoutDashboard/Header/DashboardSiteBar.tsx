@@ -25,6 +25,7 @@ import dashboardIcon_10 from "@/assets/images/dashboard/icon/icon_10.svg";
 import dashboardIcon_11 from "@/assets/images/dashboard/icon/icon_41.svg";
 
 import { toast } from "react-toastify";
+import LoginModal from "../../modals/LoginModal";
 
 const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
   const pathname = usePathname();
@@ -252,6 +253,7 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
           </button>
         </div>
       </div>
+      <LoginModal />
     </aside>
   );
 };

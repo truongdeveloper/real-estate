@@ -146,7 +146,7 @@ const RegisterForm = ({ setIndexLogin }: any) => {
             <p className="form_error">{errors.password?.message}</p>
           </div>
         </div>
-        <div className="col-12">
+        <div className="col-12 mt-3">
           <div className="input-group-meta position-relative mb-20">
             <label>Nhập lại mật khẩu*</label>
             <input
@@ -169,21 +169,19 @@ const RegisterForm = ({ setIndexLogin }: any) => {
             <p className="form_error">{errors.rePassword?.message}</p>
           </div>
         </div>
-        <div className="col-12">
-          <div className="agreement-checkbox d-flex justify-content-between align-items-center">
-            <div>
-              <input
-                type="checkbox"
-                id="remember2"
-                onChange={() => {
-                  setIsAgree(!isAgree);
-                }}
-              />
-              <label htmlFor="remember2">
-                Đồng ý với các <Link href="#">Điều khoản và điều kiện</Link> &{" "}
-                <Link href="#">Chính sách bảo mật</Link>
-              </label>
-            </div>
+        <div className="col-12 mt-2">
+          <div className="agreement-checkbox d-flex justify-content-between align-items-center ms-3">
+            <input
+              type="checkbox"
+              id="remember2"
+              onChange={() => {
+                setIsAgree(!isAgree);
+              }}
+            />
+            <label htmlFor="remember2">
+              Đồng ý với các <Link href="#">Điều khoản và điều kiện</Link> &{" "}
+              <Link href="#">Chính sách bảo mật</Link>
+            </label>
           </div>
         </div>
         <div className="col-12">

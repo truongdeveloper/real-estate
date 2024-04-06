@@ -17,6 +17,7 @@ const authOptions: NextAuthOptions = {
           email: string;
           password: string;
         };
+
         const res = await fetch(LOGIN.url, {
           method: "POST",
           headers: {
@@ -28,15 +29,16 @@ const authOptions: NextAuthOptions = {
           }),
         });
         const user = await res.json();
-        if (user) {
+        if (res.status == 200) {
           return user;
-        } else {
-          throw new Error("Lỗi đăng nhập");
         }
+        return null;
       },
     }),
   ],
-  pages: {},
+  pages: {
+    error: "/error",
+  },
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };

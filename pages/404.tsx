@@ -5,7 +5,7 @@ import titleShape from "@/assets/images/shape/title_shape_02.svg";
 import errorImg from "@/assets/images/assets/ils_08.svg";
 
 function NotFound(props: any) {
-  const {} = props;
+  const { content } = props;
 
   return (
     <div className="error-section position-relative z-1 bg-pink">

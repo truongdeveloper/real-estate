@@ -7,83 +7,91 @@ import loginIcon_1 from "@/assets/images/icon/google.png";
 import loginIcon_2 from "@/assets/images/icon/facebook.png";
 import LoginForm from "../../Components/forms/LoginForm/LoginForm";
 import RegisterForm from "../../Components/forms/RegisterForm/RegisterForm";
-// import RegisterForm from "@/components/forms/RegisterForm";
+import { useRecoilState } from "recoil";
+import { loginModalState } from "../../Recoil/atoms/modal";
+import { Modal, ModalBody } from "reactstrap";
 
 const tab_title: string[] = ["Đăng nhập", "Đăng ký"];
 
-const LoginModal = ({ loginModal, setLoginModal }: any) => {
+const LoginModal = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabClick = (index: any) => {
     setActiveTab(index);
   };
 
+  const [showLoginModal, setShowLoginModal] = useRecoilState(loginModalState);
+
+  const toggle = () => {
+    setShowLoginModal(!showLoginModal);
+  };
+
   return (
     <>
-      <div
-        className="modal fade"
-        id="loginModal"
-        tabIndex={-1}
-        aria-hidden="true"
+      <Modal
+        isOpen={showLoginModal}
+        toggle={toggle}
+        fullscreen
+        centered
+        contentClassName="bg-transparent container"
       >
-        <div className="modal-dialog modal-fullscreen modal-dialog-centered">
-          <div className="container">
-            <div className="user-data-form modal-content">
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-              <div className="form-wrapper m-auto">
-                <ul className="nav nav-tabs w-100">
-                  {tab_title.map((tab, index) => (
-                    <li
-                      key={index}
-                      onClick={() => handleTabClick(index)}
-                      className="nav-item"
+        <ModalBody>
+          <div className="user-data-form modal-content ">
+            <button
+              type="button"
+              className="btn-close"
+              aria-label="Close"
+              onClick={toggle}
+            ></button>
+            <div className="form-wrapper m-auto">
+              <ul className="nav nav-tabs w-100">
+                {tab_title.map((tab, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleTabClick(index)}
+                    className="nav-item"
+                  >
+                    <button
+                      className={`nav-link ${
+                        activeTab === index ? "active" : ""
+                      }`}
                     >
-                      <button
-                        className={`nav-link ${
-                          activeTab === index ? "active" : ""
-                        }`}
-                      >
-                        {tab}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-                <div className="tab-content mt-30">
-                  <div
-                    className={`tab-pane fade ${
-                      activeTab === 0 ? "show active" : ""
-                    }`}
-                  >
-                    <div className="text-center mb-20">
-                      <h2>Chào mừng trở lại!</h2>
-                      <p className="fs-20 color-dark">
-                        Bạn chưa có tài khoản? <Link href="#">Đăng ký</Link>
-                      </p>
-                    </div>
-                    <LoginForm />
+                      {tab}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <div className="tab-content mt-30">
+                <div
+                  className={`tab-pane fade ${
+                    activeTab === 0 ? "show active" : ""
+                  }`}
+                >
+                  <div className="text-center mb-20">
+                    <h2>Chào mừng trở lại!</h2>
+                    <p className="fs-20 color-dark">
+                      Bạn chưa có tài khoản? <Link href="#">Đăng ký</Link>
+                    </p>
                   </div>
-
-                  <div
-                    className={`tab-pane fade ${
-                      activeTab === 1 ? "show active" : ""
-                    }`}
-                  >
-                    <div className="text-center mb-20">
-                      <h2>Đăng ký</h2>
-                      <p className="fs-20 color-dark">
-                        Bạn đã có tài khoản? <Link href="#">Đăng nhập</Link>
-                      </p>
-                    </div>
-                    <RegisterForm setIndexLogin={setActiveTab} />
-                  </div>
+                  <LoginForm />
                 </div>
 
-                {/* <div className="d-flex align-items-center mt-30 mb-10">
+                <div
+                  className={`tab-pane fade ${
+                    activeTab === 1 ? "show active" : ""
+                  }`}
+                >
+                  <div className="text-center mb-20">
+                    <h2>Đăng ký</h2>
+                    <p className="fs-20 color-dark">
+                      Bạn đã có tài khoản? <Link href="#">Đăng nhập</Link>
+                    </p>
+                  </div>
+                  <RegisterForm setIndexLogin={setActiveTab} />
+                </div>
+              </div>
+
+              {/* <div className="d-flex align-items-center mt-30 mb-10">
                   <div className="line"></div>
                   <span className="pe-3 ps-3 fs-6">Hoặc</span>
                   <div className="line"></div>
@@ -108,11 +116,10 @@ const LoginModal = ({ loginModal, setLoginModal }: any) => {
                     </Link>
                   </div>
                 </div> */}
-              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </ModalBody>
+      </Modal>
     </>
   );
 };

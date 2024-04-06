@@ -9,15 +9,17 @@ import LoginModal from "../../modals/LoginModal";
 import { useEffect, useState } from "react";
 import Profile from "../../LayoutDashboard/Header/Profile";
 import { getSession, useSession } from "next-auth/react";
+import { useRecoilState } from "recoil";
+import { loginModalState } from "../../../Recoil/atoms/modal";
 
 const HeaderDefault = ({ style }: any) => {
   const { sticky } = UseSticky();
 
   const [isLogin, setIsLogin] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useRecoilState(loginModalState);
 
   const { data, status } = useSession();
   useEffect(() => {
-    console.log(data, status);
     if (status === "authenticated") {
       setIsLogin(true);
     } else {
@@ -76,15 +78,13 @@ const HeaderDefault = ({ style }: any) => {
                     </li>
                   ) : (
                     <li>
-                      <Link
-                        href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#loginModal"
+                      <button
                         className="btn-one"
+                        onClick={() => setShowLoginModal(!showLoginModal)}
                       >
                         <i className="fa-regular fa-lock"></i>{" "}
                         <span>Đăng nhập</span>
-                      </Link>
+                      </button>
                     </li>
                   )}
 

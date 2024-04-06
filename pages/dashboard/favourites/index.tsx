@@ -1,5 +1,6 @@
 import LayoutDashboard from "../../../Common/LayoutDashboard";
 import FavouriteBody from "../../../Components/dashboard/favourites/FavouriteBody";
+import SecureRouter from "../../../Helper/SecureRouter";
 import { NextPageWithLayout } from "../../../Models/common";
 
 export const metadata = {
@@ -7,9 +8,9 @@ export const metadata = {
 };
 const FavouriteList: NextPageWithLayout = () => {
   return (
-    <div>
+    <SecureRouter>
       <FavouriteBody />
-    </div>
+    </SecureRouter>
   );
 };
 
