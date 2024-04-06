@@ -8,11 +8,15 @@ import CommonSimilarProperty from "../detail-common/CommonSimilarProperty";
 
 import Sidebar from "../detail-common/Sidebar";
 import MediaGallery from "./MediaGallery";
+import { useRecoilState } from "recoil";
+import { loginModalState } from "../../Recoil/atoms/modal";
 
 const DetailRealEstate = () => {
-  const selectHandler = (e: any) => {};
+  const selectHandler = (e: any) => {
+    console.log(e);
+  };
 
-  const [loginModal, setLoginModal] = useState<boolean>(false);
+  const [loginModal, setLoginModal] = useRecoilState(loginModalState);
 
   return (
     <>
@@ -130,7 +134,7 @@ const DetailRealEstate = () => {
         </div>
       </div>
 
-      <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} />
+      <LoginModal />
     </>
   );
 };

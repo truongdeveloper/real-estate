@@ -96,7 +96,7 @@ const AddPropertyBody = () => {
     setValue,
     formState: { errors },
   } = useForm<PostBDS>({
-    // resolver: yupResolver<any>(schema),
+    resolver: yupResolver<any>(schema),
     defaultValues: {
       maTaiKhoan: 1,
     },
