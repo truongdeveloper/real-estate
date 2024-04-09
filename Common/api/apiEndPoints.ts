@@ -4,7 +4,7 @@ import { BASE_URL } from "./config";
 // ========= GET LIST ======== //
 export const GET_LISTING = {
   key: "/real-estate-listing",
-  url: BASE_URL + `/baidang-management/search`,
+  url: BASE_URL + `quan-ly-bai-dang/v1/tim-kiem`,
   method: GET,
 };
 
@@ -27,5 +27,11 @@ export const REGISTER = {
 export const REQUEST_LIST = {
   key: "/dashboard/request-list",
   url: BASE_URL + `/quan-ly-yeu-cau/danh-sach-yeu-cau`,
+  method: "get",
+};
+
+export const GET_POST_FOR_USER = {
+  key: "/dashboard/post-list",
+  url: BASE_URL + `/quan-ly-bai-dang/danh-sach-bai-dang`,
   method: "get",
 };

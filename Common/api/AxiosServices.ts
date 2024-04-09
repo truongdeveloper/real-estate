@@ -61,8 +61,8 @@ const axiosService = (props: IAxios) => {
       });
   }
 
-  if (method == GET || DELETE || OPTIONS) {
-    return axios[method](uri, headersConfig)
+  if (method === GET || method === DELETE || method === OPTIONS) {
+    return axios[method](uri, { headers: headersConfig })
       .then((res: any) => {
         if (isEmpty(res.data)) {
           toast.error("Server đang quá tải");
