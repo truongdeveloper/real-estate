@@ -3,7 +3,7 @@ import React, { useState, useCallback, useRef, FC, ChangeEvent } from "react";
 import { useClickAway } from "react-use";
 
 interface Option {
-  value: string;
+  value: string | number;
   text: string;
 }
 

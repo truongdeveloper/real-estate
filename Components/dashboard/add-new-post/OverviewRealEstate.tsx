@@ -37,7 +37,7 @@ const OverviewRealEstate = ({ register, setValue }: any) => {
               options={categroryData}
               defaultCurrent={0}
               onChange={selectHandler}
-              name="tenLoaiBDS"
+              name="loaiBDS"
               placeholder=""
             />
           </div>
@@ -47,7 +47,11 @@ const OverviewRealEstate = ({ register, setValue }: any) => {
             <label htmlFor="">
               Diện tích*(m <sup>2</sup>)
             </label>
-            <input type="text" placeholder="100" {...register("dienTich")} />
+            <input
+              type="number"
+              placeholder="100"
+              {...register("dienTich", { valueAsNumber: true })}
+            />
           </div>
         </div>
       </div>
@@ -71,7 +75,11 @@ const OverviewRealEstate = ({ register, setValue }: any) => {
             <label htmlFor="" className="text-danger">
               Giá thuê*(VNĐ)
             </label>
-            <input type="text" placeholder="100000" {...register("giaThue")} />
+            <input
+              type="number"
+              placeholder="100000"
+              {...register("giaThue", { valueAsNumber: true })}
+            />
           </div>
         </div>
       </div>

@@ -9,6 +9,8 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 import { useRouter } from "next/router";
+import { useSetRecoilState } from "recoil";
+import { loginModalState } from "../../../Recoil/atoms/modal";
 
 interface FormData {
   username: string;
@@ -17,6 +19,8 @@ interface FormData {
 
 const LoginForm = () => {
   const router = useRouter();
+  const setShowLoginModal = useSetRecoilState(loginModalState);
+
   const schema = yup
     .object({
       username: yup
@@ -44,7 +48,6 @@ const LoginForm = () => {
       password: data.password,
       redirect: false,
     });
-    console.log(res);
     if (!res?.ok) {
       toast("Sai tên đăng nhâp hoặc mật khẩu", {
         type: "warning",
@@ -53,6 +56,7 @@ const LoginForm = () => {
       toast("Đăng nhập thành công", {
         type: "success",
       });
+      setShowLoginModal(false);
       setTimeout(() => {
         window.location.reload();
       }, 500);

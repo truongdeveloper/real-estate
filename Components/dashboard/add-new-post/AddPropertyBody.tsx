@@ -16,8 +16,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import UpLoadProgress from "../../../Helper/LoadingUpload";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
-interface PostBDS {
+export interface PostBDS {
   maTaiKhoan: number;
   tieuDe: string;
   noiDung: string;
@@ -34,7 +35,7 @@ interface PostBDS {
   moTa: string;
   kinhDo: number;
   viDo: number;
-  tenLoaiBDS: string;
+  loaiBDS: string;
   tinhTp: string;
   quanHuyen: string;
   xaPhuong: string;
@@ -53,41 +54,40 @@ interface PostBDS {
 
 const AddPropertyBody = () => {
   const schema = yup.object().shape({
-    maTaiKhoan: yup.number().required(),
-    tieuDe: yup.string().required(),
-    noiDung: yup.string().required(),
-    sdt: yup.string().required(),
-    tenBDS: yup.string().required(),
-    dienTich: yup.number().required(),
-    giaThue: yup.number().required(),
-    diaChi: yup.string().required(),
-    phongNgu: yup.number().required(),
-    phongTam: yup.number().required(),
-    phongBep: yup.number().required(),
-    soTang: yup.number().required(),
-    namXayDung: yup.number().required(),
-    moTa: yup.string().required(),
-    kinhDo: yup.number().required(),
-    viDo: yup.number().required(),
-    tenLoaiBDS: yup.string().required(),
-    tinhTp: yup.string().required(),
-    quanHuyen: yup.string().required(),
-    xaPhuong: yup.string().required(),
-    urls: yup.boolean().required(),
-    tienNghi: yup
-      .object()
-      .shape({
-        dieuHoa: yup.boolean().required(),
-        mayGiat: yup.boolean().required(),
-        hoBoi: yup.boolean().required(),
-        wifi: yup.boolean().required(),
-        baiDoXe: yup.boolean().required(),
-        thangMay: yup.boolean().required(),
-        vuon: yup.boolean().required(),
-        gara: yup.boolean().required(),
-      })
-      .required(),
+    maTaiKhoan: yup.number(),
+    tieuDe: yup.string(),
+    noiDung: yup.string(),
+    sdt: yup.string(),
+    tenBDS: yup.string(),
+    dienTich: yup.number(),
+    giaThue: yup.number(),
+    diaChi: yup.string(),
+    phongNgu: yup.number(),
+    phongTam: yup.number(),
+    phongBep: yup.number(),
+    soTang: yup.number(),
+    namXayDung: yup.number(),
+    moTa: yup.string(),
+    kinhDo: yup.number(),
+    viDo: yup.number(),
+    oaiBDS: yup.string(),
+    tinhTp: yup.string(),
+    quanHuyen: yup.string(),
+    xaPhuong: yup.string(),
+    urls: yup.array(),
+    tienNghi: yup.object().shape({
+      dieuHoa: yup.boolean(),
+      mayGiat: yup.boolean(),
+      hoBoi: yup.boolean(),
+      wifi: yup.boolean(),
+      baiDoXe: yup.boolean(),
+      thangMay: yup.boolean(),
+      vuon: yup.boolean(),
+      gara: yup.boolean(),
+    }),
   });
+
+  const { data } = useSession();
   const {
     register,
     handleSubmit,
@@ -98,15 +98,12 @@ const AddPropertyBody = () => {
   } = useForm<PostBDS>({
     resolver: yupResolver<any>(schema),
     defaultValues: {
-      maTaiKhoan: 1,
+      maTaiKhoan: data?.user.id,
     },
   });
-
   const onSubmit: SubmitHandler<PostBDS> = async () => {
-    console.log("hihi");
     try {
       const uploadImageUrls = watch("urls");
-      debugger;
       const imageFiles = await Promise.all(
         uploadImageUrls.map(async (imageUrl: string) => {
           const response = await fetch(imageUrl);
@@ -122,6 +119,20 @@ const AddPropertyBody = () => {
         return res;
       });
       setValue("urls", uploadedImagePaths);
+
+      //Chuyển dữ liệu tienIch sang dang number 0 hoặc 1
+      const tienIch = watch("tienNghi");
+      const newTienIch = {
+        dieuHoa: tienIch.dieuHoa ? 1 : 0,
+        mayGiat: tienIch.mayGiat ? 1 : 0,
+        hoBoi: tienIch.hoBoi ? 1 : 0,
+        wifi: tienIch.wifi ? 1 : 0,
+        baiDoXe: tienIch.baiDoXe ? 1 : 0,
+        thangMay: tienIch.thangMay ? 1 : 0,
+        vuon: tienIch.vuon ? 1 : 0,
+        gara: tienIch.gara ? 1 : 0,
+      };
+      setValue("tienNghi", newTienIch as any);
     } catch (error) {
       toast("Lỗi không tải được ảnh");
     }
@@ -131,6 +142,7 @@ const AddPropertyBody = () => {
         url: POST_ADD_NEW_POST.url,
         method: "post",
         body: watch(),
+        token: data?.user.token,
       });
 
       console.log("Response from server:", response);

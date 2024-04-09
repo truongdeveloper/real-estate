@@ -21,7 +21,7 @@ const ListingDetails = ({ register }: any) => {
               min={0}
               className="form-control"
               placeholder="Số phòng ngủ"
-              {...register("phongNgu")}
+              {...register("phongNgu", { valueAsNumber: true })}
             />
           </div>
         </div>
@@ -33,7 +33,7 @@ const ListingDetails = ({ register }: any) => {
               min={0}
               className="form-control"
               placeholder="Số nhà vệ sinh"
-              {...register("phongTam")}
+              {...register("phongTam", { valueAsNumber: true })}
             />
           </div>
         </div>
@@ -45,7 +45,7 @@ const ListingDetails = ({ register }: any) => {
               min={0}
               className="form-control"
               placeholder="Số phòng ăn"
-              {...register("phongBep")}
+              {...register("phongBep", { valueAsNumber: true })}
             />
           </div>
         </div>
@@ -64,10 +64,10 @@ const ListingDetails = ({ register }: any) => {
           <div className="dash-input-wrapper mb-30 form-group">
             <label htmlFor="">Năm xây dựng*</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="2024"
-              {...register("namXayDung")}
+              {...register("namXayDung", { valueAsNumber: true })}
             />
           </div>
         </div>
@@ -79,7 +79,7 @@ const ListingDetails = ({ register }: any) => {
               min={0}
               className="form-control"
               placeholder="Số tầng"
-              {...register("soTang")}
+              {...register("soTang", { valueAsNumber: true })}
             />
           </div>
         </div>

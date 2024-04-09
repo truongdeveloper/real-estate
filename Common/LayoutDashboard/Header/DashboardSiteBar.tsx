@@ -199,7 +199,7 @@ const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
                   }
                   alt=""
                 />
-                <span>Tài khoản</span>
+                <span>Người dùng</span>
               </Link>
             </li>
             <li className="plr">

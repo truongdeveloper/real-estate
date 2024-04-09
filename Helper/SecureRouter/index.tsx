@@ -9,12 +9,12 @@ const SecureRouter = ({ children }: any) => {
 
   useEffect(() => {
     if (status === "loading" || status === "unauthenticated") {
-      setShowLoginModal(true);
+      // setShowLoginModal(true);
     }
   }, [status, setShowLoginModal]);
 
   if (status === "loading" || status === "unauthenticated") {
-    return null;
+    return <div>{children}</div>;
   }
   return <div>{children}</div>;
 };

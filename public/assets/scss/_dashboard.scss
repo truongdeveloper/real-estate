@@ -165,6 +165,7 @@
 
   .card-box {
     padding: 45px 60px 50px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
 
   .main-title {
@@ -713,6 +714,7 @@
       width: 68px;
       height: 68px;
       border-radius: 50%;
+      object-fit: cover;
     }
 
     .upload-btn {

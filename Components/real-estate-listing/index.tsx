@@ -4,6 +4,7 @@ import ListingArea from "./ListingArea";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { GET_LISTING } from "../../Common/api/apiEndPoints";
 
 const ListingRealEstate = () => {
   const router = useRouter();
@@ -13,16 +14,13 @@ const ListingRealEstate = () => {
     const fetchData = async () => {
       try {
         const { category, province, keyword } = router.query;
-        const response = await axios.get(
-          "http://localhost:8082/baidang-management/search",
-          {
-            params: {
-              tenLoaiBDS: category || "",
-              tinhTp: province || "",
-              keyword: keyword || "",
-            },
-          }
-        );
+        const response = await axios.get(GET_LISTING.url, {
+          params: {
+            tenLoaiBDS: category || "",
+            tinhTp: province || "",
+            keyword: keyword || "",
+          },
+        });
         setData(response.data);
       } catch (error) {
         toast(
@@ -72,7 +70,7 @@ const ListingRealEstate = () => {
   return (
     <>
       <ListingArea style={false} ListingData={data} />
-      {/* <FancyBanner /> */}
+      <FancyBanner />
     </>
   );
 };

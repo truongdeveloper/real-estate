@@ -9,7 +9,7 @@ import { getListXaPhuong } from "../../../Constants/getListXaPhuong";
 import GoogleMapComponent from "../../../Helper/GoogleMapComponent";
 // import GoogleMapComponent from "../../../Helper/GoogleMapComponent";
 
-const AddressAndLocation = ({ register, setValue }: any) => {
+const AddressAndLocation = ({ register, setValue, disableMap }: any) => {
   const selectHandler = (e: any) => {
     setValue(e.target.name, e.target.value);
     switch (e.target.name) {
@@ -108,37 +108,39 @@ const AddressAndLocation = ({ register, setValue }: any) => {
               options={communeList}
               defaultCurrent={0}
               onChange={selectHandler}
-              name="XaPhuong"
+              name="xaPhuong"
               placeholder="Kim Mã, ..."
             />
           </div>
         </div>
       </div>
-      <div className="col-12">
-        <div className="dash-input-wrapper mb-25">
-          <label htmlFor="">Map Location*</label>
-          <div className="position-relative">
-            <input
-              type="text"
-              placeholder="XC23+6XC, Moiran, N105"
-              value={`${location.lat.toString()}, ${location.lng.toString()}`}
-              readOnly
-            />
-            <button className="location-pin tran3s">
-              <Image src={locationImage} alt="" className="lazy-img m-auto" />
-            </button>
-          </div>
-
-          <div className="map-frame mt-30">
-            <div className="gmap_canvas h-100 w-100">
-              <GoogleMapComponent
-                drawable={false}
-                handleTakeLatLng={handleTakeLatLng}
+      {!disableMap && (
+        <div className="col-12">
+          <div className="dash-input-wrapper mb-25">
+            <label htmlFor="">Map Location*</label>
+            <div className="position-relative">
+              <input
+                type="text"
+                placeholder="XC23+6XC, Moiran, N105"
+                value={`${location.lat.toString()}, ${location.lng.toString()}`}
+                readOnly
               />
+              <button className="location-pin tran3s">
+                <Image src={locationImage} alt="" className="lazy-img m-auto" />
+              </button>
+            </div>
+
+            <div className="map-frame mt-30">
+              <div className="gmap_canvas h-100 w-100">
+                <GoogleMapComponent
+                  drawable={false}
+                  handleTakeLatLng={handleTakeLatLng}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

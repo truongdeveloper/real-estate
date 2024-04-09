@@ -43,7 +43,7 @@ const SelectAmenities = ({ register }: any) => {
             <input
               type="checkbox"
               name="Amenities"
-              {...register(`tiennghi.${amenity.name}`)}
+              {...register(`tienNghi.${amenity.name}`)}
             />
             <label>{amenity.text}</label>
           </li>
