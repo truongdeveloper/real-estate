@@ -30,6 +30,7 @@ const PasswordChangeBody = () => {
         mkCu: data.currentPassword,
         mkMoi: data.newPassword,
       },
+      token: data?.user.token,
     })?.then((res) => {
       if (res?.data) {
         toast("Thay đổi mật khẩu thành công", {

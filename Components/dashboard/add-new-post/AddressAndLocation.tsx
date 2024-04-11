@@ -62,7 +62,7 @@ const AddressAndLocation = ({ register, setValue, disableMap }: any) => {
 
   return (
     <div className="bg-white card-box border-20 mt-40">
-      <h4 className="dash-title-three">Address & Location</h4>
+      <h4 className="dash-title-three">Địa chỉ & Vị trí</h4>
       <div className="row">
         <div className="col-12">
           <div className="dash-input-wrapper mb-25">

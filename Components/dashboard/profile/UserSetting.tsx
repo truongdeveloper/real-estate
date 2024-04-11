@@ -1,4 +1,4 @@
-import SelectCustom from "../../../Helper/ui/SelectCustom";
+"use client";
 
 const UserSetting = ({ register, setValue }: any) => {
   const selectHandler = (e: any) => {};
@@ -7,65 +7,88 @@ const UserSetting = ({ register, setValue }: any) => {
     <div className="row">
       <div className="col-12">
         <div className="dash-input-wrapper mb-30">
-          <label htmlFor="">Username*</label>
-          <input type="text" placeholder="JonyRio" />
+          <label htmlFor="">Họ và tên*</label>
+          <input type="text" placeholder="Đoàn Thảo" {...register("hoTen")} />
         </div>
       </div>
-      <div className="col-sm-6">
+      <div className="col-12">
         <div className="dash-input-wrapper mb-30">
-          <label htmlFor="">First Name*</label>
-          <input type="text" placeholder="Mr Johny" />
-        </div>
-      </div>
-      <div className="col-sm-6">
-        <div className="dash-input-wrapper mb-30">
-          <label htmlFor="">Last Name*</label>
-          <input type="text" placeholder="Riolek" />
-        </div>
-      </div>
-      <div className="col-sm-6">
-        <div className="dash-input-wrapper mb-30">
-          <label htmlFor="">Email*</label>
-          <input type="email" placeholder="companyinc@mail.com" />
-        </div>
-      </div>
-      <div className="col-sm-6">
-        <div className="dash-input-wrapper mb-30">
-          <label htmlFor="">Position*</label>
-          <SelectCustom
-            className="nice-select"
-            options={[
-              { value: "1", text: "Agent" },
-              { value: "2", text: "Agency" },
-            ]}
-            defaultCurrent={0}
-            onChange={selectHandler}
-            name=""
-            placeholder=""
+          <label htmlFor="">Địa chỉ*</label>
+          <input
+            type="text"
+            placeholder="96 Định Công, Hoàng Mai, Hà Nội"
+            {...register("diaChi")}
           />
         </div>
       </div>
       <div className="col-sm-6">
         <div className="dash-input-wrapper mb-30">
-          <label htmlFor="">Phone Number*</label>
-          <input type="tel" placeholder="+880 01723801729" />
+          <label htmlFor="">Số điên thoại*</label>
+          <input type="text" placeholder="03176238787" {...register("sdt")} />
         </div>
       </div>
       <div className="col-sm-6">
         <div className="dash-input-wrapper mb-30">
-          <label htmlFor="">Website*</label>
-          <input type="text" placeholder="http://somename.com" />
+          <label htmlFor="">CMND/CCCD*</label>
+          <input type="text" placeholder="026201004378" {...register("cmnd")} />
+        </div>
+      </div>
+      <div className="col-sm-6">
+        <div className="dash-input-wrapper mb-30">
+          <label htmlFor="">Email*</label>
+          <input
+            type="email"
+            placeholder="companyinc@mail.com"
+            {...register("email")}
+          />
+        </div>
+      </div>
+      <div className="col-sm-6">
+        <div className="dash-input-wrapper mb-30">
+          <label htmlFor="">Vai Trò*</label>
+          <input
+            type="text"
+            placeholder="Người dùng"
+            disabled
+            {...register("vaiTro")}
+          />
+        </div>
+      </div>
+      <div className="col-sm-6">
+        <div className="dash-input-wrapper mb-30">
+          <label htmlFor="">Ngày sinh*</label>
+          <input
+            type="date"
+            placeholder="07/11/2001"
+            {...register("ngaySinh")}
+          />
+        </div>
+      </div>
+      <div className="col-sm-6">
+        <div className="dash-input-wrapper mb-30">
+          <label htmlFor="">Giới tính*</label>
+          <select
+            className="form-select"
+            style={{ height: "55px" }}
+            aria-label="Default select example"
+            {...register("gioiTinh")}
+          >
+            <option value={0}>Nữ</option>
+            <option value={1}>Nam</option>
+          </select>
         </div>
       </div>
       <div className="col-12">
         <div className="dash-input-wrapper">
-          <label htmlFor="">About*</label>
+          <label htmlFor="">Giới thiệu*</label>
           <textarea
             className="size-lg"
+            {...register("gioiThieu")}
             placeholder="Tôi là nhà môi giới Bất động sản đã làm việc được 4 năm trong ngành, chữ tin luôn được đặt lên hàng đầu, ...."
           ></textarea>
           <div className="alert-text">
-            Brief description for your profile. URLs are hyperlinked.
+            Hãy viết nhưng gì tốt nhất của bạn người dùng có thể thấy nó trên
+            trang web
           </div>
         </div>
       </div>

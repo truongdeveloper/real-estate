@@ -65,3 +65,15 @@ export const CHANGE_PASSWORD = {
   url: BASE_URL + `/quan-ly-tai-khoan/doi-mat-khau`,
   method: "post",
 };
+
+export const GET_USER_INFO = {
+  key: "/dashboard/profile",
+  url: BASE_URL + `/quan-ly-nguoi-dung/nguoi-dung`,
+  method: "get",
+};
+
+export const UPDATE_USER_INFO = {
+  key: "/dashboard/profile",
+  url: BASE_URL + `/quan-ly-nguoi-dung/nguoi-dung`,
+  method: "put",
+};

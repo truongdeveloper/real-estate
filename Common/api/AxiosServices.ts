@@ -2,7 +2,7 @@ import { isEmpty } from "lodash";
 import queryString from "query-string";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { DELETE, GET, OPTIONS, POST } from "../../Constants";
+import { DELETE, GET, OPTIONS, POST, PUT } from "../../Constants";
 
 export type Methods =
   | "head"
@@ -58,6 +58,22 @@ const axiosService = (props: IAxios) => {
       .catch((err: any) => {
         toast.error(`Lôi
         ${err.message}`);
+        return err;
+      });
+  }
+
+  // Xử lý yêu cầu PUT
+  if (method === PUT) {
+    return axios
+      .put(uri, body, { headers: headersConfig })
+      .then((res: any) => {
+        if (isEmpty(res.data)) {
+          toast.error("Lỗi: Danh sách rỗng");
+        }
+        return res.data;
+      })
+      .catch((err: any) => {
+        toast.error(`Lôi: ${err.message}`);
         return err;
       });
   }

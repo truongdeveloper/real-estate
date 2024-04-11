@@ -54,7 +54,7 @@ const SliderImage = ({ listImages, width, height }: any) => {
         onExited={() => setAnimating(false)}
         key={item.url}
       >
-        <div style={{ height: "320px", width: "100%" }}>
+        <div style={{ height: height, width: "100%" }}>
           <Image
             fill={true}
             src={item.url}
