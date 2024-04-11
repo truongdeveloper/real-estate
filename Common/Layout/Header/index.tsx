@@ -54,26 +54,23 @@ const HeaderDefault = ({ style }: any) => {
                   <Image src={logo_1} alt="" />
                 </Link>
               </div>
-              <div className="right-widget ms-auto ms-lg-0 me-3 me-lg-0 order-lg-3">
+              <div className="right-widget ms-auto ms-lg-0 me-3 me-lg-0 order-lg-3 dashboard-header">
                 <ul className="d-flex align-items-center style-none">
                   {isLogin ? (
-                    <li className="user-data position-relative">
-                      <button
-                        className="user-avatar online position-relative rounded-circle"
-                        type="button"
-                        id="profile-dropdown"
-                        data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside"
-                        aria-expanded="false"
-                      >
-                        <Image
-                          src={"/assets/images/dashboard/avatar_01.jpg"}
-                          alt=""
-                          width={40}
-                          height={40}
-                          className="lazy-img"
-                        />
-                      </button>
+                    <li className="dashboard-header">
+                      <div className="user-data position-relative">
+                        <button
+                          className="  dropdown-toggle"
+                          type="button"
+                          id="profile-dropdown"
+                          data-bs-toggle="dropdown"
+                          data-bs-auto-close="outside"
+                          aria-expanded="false"
+                        >
+                          {data?.user?.tenTK}
+                        </button>
+                        <Profile />
+                      </div>
                       <Profile />
                     </li>
                   ) : (

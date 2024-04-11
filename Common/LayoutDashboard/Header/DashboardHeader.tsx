@@ -9,9 +9,11 @@ import dashboardIcon_1 from "@/assets/images/dashboard/icon/icon_43.svg";
 import dashboardIcon_2 from "@/assets/images/dashboard/icon/icon_11.svg";
 import dashboardAvatar from "@/assets/images/dashboard/avatar_01.jpg";
 import DashboardSiteBar from "./DashboardSiteBar";
+import { useSession } from "next-auth/react";
 
 const DashboardHeader = ({ title }: any) => {
   const [isActive, setIsActive] = useState<boolean>(false);
+  const { data } = useSession();
 
   return (
     <>
@@ -27,6 +29,7 @@ const DashboardHeader = ({ title }: any) => {
           <form
             onSubmit={(e) => e.preventDefault()}
             className="search-form ms-auto"
+            style={{ visibility: "hidden" }}
           >
             <input type="text" placeholder="Search here.." />
             <button>
@@ -49,21 +52,21 @@ const DashboardHeader = ({ title }: any) => {
           </div>
           <div className="d-none d-md-block me-3">
             <Link href="/dashboard/add-new-post" className="btn-two">
-              <span>Add Listing</span>{" "}
+              <span>Đăng bài</span>{" "}
               <i className="fa-thin fa-arrow-up-right"></i>
             </Link>
           </div>
 
           <div className="user-data position-relative">
             <button
-              className="user-avatar online position-relative rounded-circle dropdown-toggle"
+              className="  dropdown-toggle"
               type="button"
               id="profile-dropdown"
               data-bs-toggle="dropdown"
               data-bs-auto-close="outside"
               aria-expanded="false"
             >
-              <Image src={dashboardAvatar} alt="" className="lazy-img" />
+              {data?.user?.tenTK}
             </button>
             <Profile />
           </div>

@@ -7,41 +7,79 @@ import icon_4 from "@/assets/images/dashboard/icon/icon_21.svg";
 import React, { useState } from "react";
 import DeleteModal from "../../../Common/modals/DeleteModal";
 import { toast } from "react-toastify";
+import { typeRequest } from "../../../Models/common";
+import conversionDate from "../../../Constants/conversionDate";
+import timeAgo from "../../../Constants/conversionTime";
+import { Button, Offcanvas, OffcanvasBody, OffcanvasHeader } from "reactstrap";
+import OpenRequest from "../../../Components/dashboard/request-list/OpenRequest";
 
-const RequestListTableRow = ({ item }: any) => {
+type IRequestTabelRow = {
+  item: typeRequest;
+};
+const RequestListTableRow = ({ item }: IRequestTabelRow) => {
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
 
   function handleDeletePost() {
-    toast(`Xóa thành công ${item.title}`);
+    toast(`Xóa thành công ${item.tieuDe}`);
   }
+
+  function handleToggleDetail() {
+    setShowDetail(!showDetail);
+  }
+
+  const handleAccept = () => {
+    toast("Đồng ý");
+  };
+  const handleReject = () => {
+    toast("Huy bán");
+  };
 
   return (
     <React.Fragment>
-      <tr key={item.id}>
+      <tr key={item.maYC}>
         <td>
           <div className="d-lg-flex align-items-center position-relative">
-            <Image src={item.img} alt="" className="p-img" />
+            <Image
+              src={icon_1}
+              alt=""
+              className=" p-img"
+              style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+            />
             <div className="ps-lg-4 md-pt-10">
               <Link
-                href="#"
-                className="property-name tran3s color-dark fw-500 fs-20 stretched-link"
+                href={`/user-profile?id=${item.maTK}`}
+                className="property-name tran3s color-dark fw-500 fs-16 stretched-link"
               >
-                {item.title}
+                {item.taiKhoan.hoVaTen}
               </Link>
-              <div className="address">{item.address}</div>
-              <strong className="price color-dark">${item.price}</strong>
+              <div className="address">{item.taiKhoan.tenTaiKhoan}</div>
+              {/* <strong className="price color-dark">${item.price}</strong> */}
             </div>
           </div>
         </td>
-        <td>{item.date}</td>
-        <td>{item.view}</td>
+
         <td>
-          <div className={`property-status ${item.status_bg}`}>
-            {item.status}
-          </div>
+          <strong style={{ color: "black" }} className="title-request-slice">
+            {item.tieuDe}
+          </strong>
         </td>
         <td>
-          <div className="action-dots float-end">
+          <div className={`content-request-slice`}>{item.noiDung}</div>
+        </td>
+        <td>
+          <strong style={{ color: "black", fontSize: "16px", fontWeight: 500 }}>
+            {timeAgo(item.thoiGian)}
+          </strong>
+          <p>{conversionDate(item.thoiGian).formattedDate}</p>
+        </td>
+        <td>
+          <div className="action-dots d-flex align-items-center gap-3">
+            <div>
+              <button color="primary" onClick={() => setShowDetail(true)}>
+                <i className="fa-solid fa-expand fs-5"></i>
+              </button>
+            </div>
             <button
               className="action-btn dropdown-toggle"
               type="button"
@@ -51,16 +89,6 @@ const RequestListTableRow = ({ item }: any) => {
               <span></span>
             </button>
             <ul className="dropdown-menu dropdown-menu-end">
-              <li>
-                <Link className="dropdown-item" href="#">
-                  <Image src={icon_1} alt="" className="lazy-img" /> View
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item" href="#">
-                  <Image src={icon_3} alt="" className="lazy-img" /> Edit
-                </Link>
-              </li>
               <li>
                 <button
                   onClick={() => {
@@ -81,6 +109,24 @@ const RequestListTableRow = ({ item }: any) => {
         handleAcceptEvent={handleDeletePost}
         args={{ centered: true }}
       />
+      <Offcanvas
+        isOpen={showDetail}
+        toggle={handleToggleDetail}
+        // scrollable
+        direction="end"
+        className="offcanvas-detail"
+      >
+        <OffcanvasHeader toggle={handleToggleDetail}>
+          Yêu cầu thuê
+        </OffcanvasHeader>
+        <OffcanvasBody>
+          <OpenRequest
+            item={item}
+            handleAccept={handleAccept}
+            handleReject={handleReject}
+          />
+        </OffcanvasBody>
+      </Offcanvas>
     </React.Fragment>
   );
 };

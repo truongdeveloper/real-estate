@@ -17,7 +17,7 @@ import {
   getNameOfProvince,
 } from "../../../Constants/conversionAdress";
 import ConfirmModal from "../../../Common/modals/ConfirmModal";
-import { Card, CardBody, CardTitle, UncontrolledCollapse } from "reactstrap";
+import { UncontrolledCollapse } from "reactstrap";
 
 type IPostListTableRow = {
   item: typeListRealEstate;

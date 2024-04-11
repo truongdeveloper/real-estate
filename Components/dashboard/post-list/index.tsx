@@ -1,18 +1,13 @@
 "use client";
 
-import { list_data } from "./PropertyTableBody";
-import Link from "next/link";
 import Image from "next/image";
 import icon from "@/assets/images/icon/icon_46.svg";
 
-import icon_1 from "@/assets/images/icon/icon_46.svg";
 import DashboardHeader from "../../../Common/LayoutDashboard/Header/DashboardHeader";
-import SelectCustom from "../../../Helper/ui/SelectCustom";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 import PostListTableRow from "../../../Helper/TableRow/PostListTableRow";
-import { method, uniqueId } from "lodash";
-import { useRouter } from "next/router";
+import { uniqueId } from "lodash";
 import { useEffect, useState } from "react";
 import axiosService from "../../../Common/api/AxiosServices";
 import { GET_POST_FOR_USER } from "../../../Common/api/apiEndPoints";
@@ -30,7 +25,7 @@ const PostListBody = () => {
 
   // const [page, setPage] = useState(0);
   const [listData, setListData] = useState<typeListRealEstate[]>([]);
-  const [tabStatus, setTabStatus] = useState(2);
+  const [tabStatus, setTabStatus] = useState(1);
 
   useEffect(() => {
     axiosService({
@@ -68,24 +63,24 @@ const PostListBody = () => {
       <div className="position-relative">
         <DashboardHeader title="Bài đăng" />
         <h2 className="main-title d-block d-lg-none">Bài đăng</h2>
-        <ButtonGroup className="d-flex align-items-center mb-25 w-50">
+        <ButtonGroup className=" mb-25">
           <Button
             outline
-            className={`${tabStatus === 0 ? "btn-two" : "btn-one"} `}
+            className={`${tabStatus === 0 ? "btn-ten" : "btn-ten"} `}
             onClick={() => handleTabsChange(0)}
           >
             Ẩn
           </Button>
           <Button
             outline
-            className={`${tabStatus === 1 ? "btn-two" : "btn-one"} `}
+            className={`${tabStatus === 1 ? "btn-six" : "btn-ten"} `}
             onClick={() => handleTabsChange(1)}
           >
             Đã duyệt
           </Button>
           <Button
             outline
-            className={`${tabStatus === 2 ? "btn-two" : "btn-one"} `}
+            className={`${tabStatus === 2 ? "btn-six" : "btn-ten"} `}
             onClick={() => handleTabsChange(2)}
           >
             Chờ duyệt
@@ -131,9 +126,11 @@ const PostListBody = () => {
               </thead>
               <tbody className="border-0">
                 {!isEmpty(listData) ? (
-                  listData.map((item) => (
-                    <PostListTableRow key={uniqueId()} item={item} />
-                  ))
+                  listData
+                    .toReversed()
+                    .map((item) => (
+                      <PostListTableRow key={uniqueId()} item={item} />
+                    ))
                 ) : (
                   <tr>
                     <td colSpan={5} className="text-center fs-4 black">

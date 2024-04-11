@@ -51,12 +51,13 @@ const axiosService = (props: IAxios) => {
       .post(uri, body, { headers: headersConfig })
       .then((res: any) => {
         if (isEmpty(res.data)) {
-          toast.error("Server đang quá tải");
+          toast.error("Lỗi: Danh sách rỗng");
         }
         return res.data;
       })
       .catch((err: any) => {
-        toast.error("Server đang quá tải");
+        toast.error(`Lôi
+        ${err.message}`);
         return err;
       });
   }
@@ -65,12 +66,13 @@ const axiosService = (props: IAxios) => {
     return axios[method](uri, { headers: headersConfig })
       .then((res: any) => {
         if (isEmpty(res.data)) {
-          toast.error("Server đang quá tải");
+          toast.error("Lỗi: Dang sách rỗng");
         }
         return res.data;
       })
       .catch((err: any) => {
-        toast.error("Server đang quá tải");
+        toast.error(`Lôi 
+        ${err.message}`);
         return err;
       });
   }

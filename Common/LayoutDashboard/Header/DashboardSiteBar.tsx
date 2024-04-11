@@ -26,11 +26,12 @@ import dashboardIcon_11 from "@/assets/images/dashboard/icon/icon_41.svg";
 
 import { toast } from "react-toastify";
 import LoginModal from "../../modals/LoginModal";
+import { signOut } from "next-auth/react";
 
 const DashboardSiteBar = ({ isActive, setIsActive }: any) => {
   const pathname = usePathname();
   function handleLogout() {
-    toast("Đăng xuất");
+    signOut({ callbackUrl: "/" });
   }
 
   return (

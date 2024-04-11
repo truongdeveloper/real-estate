@@ -12,20 +12,29 @@ interface IConfirmModal {
   icon?: any;
   handleAcceptEvent?: any;
   args?: any;
+  center?: boolean;
 }
 
 const ConfirmModal = (props: IConfirmModal) => {
-  const { setIsOpen, isOpen, handleAcceptEvent, title, icon, content, args } =
-    props;
+  const {
+    setIsOpen,
+    isOpen,
+    handleAcceptEvent,
+    title,
+    icon,
+    content,
+    args,
+    center,
+  } = props;
   const toggle = () => setIsOpen(!isOpen);
   return (
     <>
-      <Modal isOpen={isOpen} toggle={toggle} {...args}>
+      <Modal isOpen={isOpen} toggle={toggle} {...args} centered={center}>
         <ModalHeader toggle={toggle}>{title}</ModalHeader>
         <ModalBody>
           <div className=" d-flex align-items-center gap-4">
             {icon ? (
-              <Image src={icon} alt="" className="lazy-img m-auto" />
+              <div style={{ fontSize: "60px", padding: "10px" }}>{icon}</div>
             ) : (
               <Image src={deleteIcon} alt="" className="lazy-img m-auto" />
             )}

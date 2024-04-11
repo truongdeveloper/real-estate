@@ -90,3 +90,21 @@ export interface Account {
   trangThai: number;
   soDu: number;
 }
+
+export interface typeRequest {
+  maYC: number;
+  maBD: number;
+  maTK: number;
+  tieuDe: string;
+  thoiGian: string;
+  noiDung: string;
+  trangThai: number;
+  taiKhoan: {
+    tenTaiKhoan: string;
+    hoVaTen: string;
+    anhDaiDien: string;
+  };
+  baiDang: {
+    tieuDe: string;
+  };
+}

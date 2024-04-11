@@ -94,7 +94,7 @@ const UploadImage = ({ register, setValue }: IUpLoadImage) => {
       ))
     ) : (
       <CarouselItem>
-        <div>No images selected</div>
+        <div>Không có hình ảnh</div>
       </CarouselItem>
     );
 
@@ -164,7 +164,7 @@ const UploadImage = ({ register, setValue }: IUpLoadImage) => {
           placeholder=""
           accept="image/png, image/gif, image/jpeg"
           onChange={handleFileChange}
-          multiple
+          // multiple
         />
       </div>
       <small>Định dạng file .jpg, .png</small>
