@@ -66,6 +66,7 @@ const ProfileBody = () => {
     handleSubmit,
     watch,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<User>({
     // resolver: yupResolver<any>(schema),
@@ -205,7 +206,14 @@ const ProfileBody = () => {
           <button type="submit" className="dash-btn-two tran3s me-3">
             Lưu
           </button>
-          <button className="dash-cancel-btn tran3s">Cancel</button>
+          <button
+            className="dash-cancel-btn tran3s"
+            onClick={() => {
+              reset();
+            }}
+          >
+            Hủy
+          </button>
         </div>
       </form>
     </div>

@@ -16,15 +16,15 @@ const AccountSettingBody = () => {
     reset,
   } = useForm({
     defaultValues: {
-      tenTk: data?.user.name,
+      tenTk: data?.user.tenTK,
       quyen: "admin",
       trangThai: 1,
       soDu: 0,
     },
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (dataForm: any) => {
+    console.log(dataForm);
   };
   return (
     <div className="dashboard-body">

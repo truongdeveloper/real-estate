@@ -15,30 +15,30 @@ const PasswordChangeBody = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { register, handleSubmit, watch } = useForm({
     defaultValues: {
-      username: data?.user.name,
+      username: data?.user.tenTK,
       currentPassword: "",
       newPassword: "",
       confirmPassword: "",
     },
   });
 
-  const onSubmit = useCallback((data: any) => {
+  const onSubmit = (dataForm: any) => {
     axiosService({
       url: CHANGE_PASSWORD.url,
       body: {
-        tenTk: data.username,
-        mkCu: data.currentPassword,
-        mkMoi: data.newPassword,
+        tenTk: dataForm.username,
+        mkCu: dataForm.currentPassword,
+        mkMoi: dataForm.newPassword,
       },
       token: data?.user.token,
     })?.then((res) => {
-      if (res?.data) {
+      if (res) {
         toast("Thay đổi mật khẩu thành công", {
           type: "success",
         });
       }
     });
-  }, []);
+  };
 
   return (
     <div className="dashboard-body">
@@ -53,7 +53,7 @@ const PasswordChangeBody = () => {
                   <input
                     type="text"
                     disabled
-                    placeholder="Ten tai khoan"
+                    placeholder="Tên tài khoản"
                     {...register("username")}
                   />
                 </div>
