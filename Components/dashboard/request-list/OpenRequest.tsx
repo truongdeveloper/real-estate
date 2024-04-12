@@ -54,19 +54,21 @@ const OpenRequest = ({ item, handleReject, handleAccept }: IOpenRequest) => {
         >
           <div className="email-header divider d-flex justify-content-between ps-4 pe-4 ps-xxl-5 pe-xxl-5">
             <div className="sender-info d-flex align-items-center">
-              {/* <Image
-              src={item?.taiKhoan.anhDaiDien}
-              alt=""
-              className="lazy-img logo"
-            /> */}
               <Image
+                src={item?.taiKhoan?.anhDaiDien || icon_1}
+                alt=""
+                width={100}
+                height={100}
+                className="lazy-img logo"
+              />
+              {/* <Image
                 src={icon_1}
                 alt=""
                 className=" p-img"
                 style={{ width: "50px", height: "50px", borderRadius: "50%" }}
-              />
+              /> */}
               <Link href={`/user-profile?id=${item.maTK}`} className="ps-3">
-                <div className="sender-name">{item.taiKhoan.hoVaTen}</div>
+                <div className="sender-name">{item.taiKhoan.hoTen}</div>
                 <div className="sender-email">{item.taiKhoan.tenTaiKhoan}</div>
               </Link>
             </div>
@@ -165,7 +167,7 @@ const OpenRequest = ({ item, handleReject, handleAccept }: IOpenRequest) => {
         handleAcceptEvent={handleAccept}
         title="Đồng ý cho thuê"
         center
-        content={`Bạn đồng ý cho ${item.taiKhoan.hoVaTen} thuê BĐS
+        content={`Bạn đồng ý cho ${item.taiKhoan.hoTen} thuê BĐS
         Bất động sản của bạn sẽ chuyển sang trạng thái đã cho thuê`}
         icon={<i className="fa-solid fa-check-to-slot text-success"></i>}
       />
@@ -176,7 +178,7 @@ const OpenRequest = ({ item, handleReject, handleAccept }: IOpenRequest) => {
         handleAcceptEvent={handleReject}
         center
         title="Từ chối cho thuê"
-        content={`Bạn không đồng ý cho ${item.taiKhoan.hoVaTen} thuê BĐS
+        content={`Bạn không đồng ý cho ${item.taiKhoan.hoTen} thuê BĐS
         Yêu cầu thuê nàyu sẽ chuyển sang trạng thái bị từ chôi`}
         icon={<i className="fa-solid fa-ban text-warning"></i>}
       />

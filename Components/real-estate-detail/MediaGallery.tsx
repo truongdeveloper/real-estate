@@ -97,7 +97,7 @@ const MediaGallery = ({ data, style }: any) => {
           </div>
         </div>
 
-        {/* <div className="col-lg-2">
+        <div className="col-lg-2">
           <div
             className={`carousel-indicators position-relative p-15 w-100 h-100 ${
               style ? "" : "border-15 bg-white shadow4"
@@ -117,7 +117,7 @@ const MediaGallery = ({ data, style }: any) => {
               </button>
             ))}
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

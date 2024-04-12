@@ -51,7 +51,7 @@ const RequestListTableRow = ({ item }: IRequestTabelRow) => {
                 href={`/user-profile?id=${item.maTK}`}
                 className="property-name tran3s color-dark fw-500 fs-16 stretched-link"
               >
-                {item.taiKhoan.hoVaTen}
+                {item.taiKhoan.hoTen}
               </Link>
               <div className="address">{item.taiKhoan.tenTaiKhoan}</div>
               {/* <strong className="price color-dark">${item.price}</strong> */}

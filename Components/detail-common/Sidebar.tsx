@@ -9,6 +9,7 @@ import axiosService from "../../Common/api/AxiosServices";
 import { GET_USER_INFO } from "../../Common/api/apiEndPoints";
 import { Account, typeListRealEstate } from "../../Models/common";
 import { User } from "../dashboard/profile";
+import SecureRouter from "../../Helper/SecureRouter";
 
 const Sidebar = ({ item }: { item: typeListRealEstate }) => {
   const [modal, setModal] = useState(false);
@@ -100,10 +101,12 @@ const Sidebar = ({ item }: { item: typeListRealEstate }) => {
         </div> */}
       </div>
       <Modal isOpen={modal} toggle={toggle} centered size="lg">
-        <ModalHeader toggle={toggle}>Yêu cầu thuê</ModalHeader>
-        <ModalBody>
-          <ScheduleForm idPost={item.id} />
-        </ModalBody>
+        <SecureRouter>
+          <ModalHeader toggle={toggle}>Yêu cầu thuê</ModalHeader>
+          <ModalBody>
+            <ScheduleForm idPost={item.id} />
+          </ModalBody>
+        </SecureRouter>
       </Modal>
     </div>
   );

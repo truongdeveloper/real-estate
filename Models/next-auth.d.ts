@@ -1,4 +1,6 @@
 import NextAuth from "next-auth";
+import { PostBDS } from "../Components/dashboard/add-new-post/AddPropertyBody";
+import { typeListRealEstate } from "./common";
 
 declare module "next-auth" {
   interface Session {
@@ -8,7 +10,9 @@ declare module "next-auth" {
       type: string;
       tenTK: string;
       name: string;
-      quyen: string;
+      quyen: any;
+      soDu: string;
+      baidangUaThich: typeListRealEstate[];
     };
   }
 }

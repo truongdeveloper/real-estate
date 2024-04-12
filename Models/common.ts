@@ -101,7 +101,7 @@ export interface typeRequest {
   trangThai: number;
   taiKhoan: {
     tenTaiKhoan: string;
-    hoVaTen: string;
+    hoTen: string;
     anhDaiDien: string;
   };
   baiDang: {

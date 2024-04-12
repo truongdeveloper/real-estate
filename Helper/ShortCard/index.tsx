@@ -3,9 +3,13 @@ import Image from "next/image";
 import transformPriceToString from "../../Constants/conversionNumberToPrice";
 import timeAgo from "../../Constants/conversionTime";
 import { typeListRealEstate } from "../../Models/common";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import conversionRealEstateStatus from "../../Constants/conversionRealEstateStatus";
+import {
+  getNameOfDistrict,
+  getNameOfProvince,
+} from "../../Constants/conversionAdress";
+import { useEffect, useState } from "react";
 
 interface ShortCardI {
   itemPost: typeListRealEstate;
@@ -25,6 +29,18 @@ const ShortCard = (props: ShortCardI) => {
       });
     }
   }
+
+  const [districtName, setDistrictName] = useState("");
+  useEffect(() => {
+    getNameOfDistrict(
+      itemPost.batDongSan.viTri.quanHuyen,
+      itemPost.batDongSan.viTri.tinhTp
+    ).then((data) => {
+      if (data) {
+        setDistrictName(data);
+      }
+    });
+  }, [itemPost, districtName, setDistrictName]);
   return (
     <div
       key={itemPost.id}
@@ -33,8 +49,11 @@ const ShortCard = (props: ShortCardI) => {
       }`}
     >
       <div className="listing-card-one style-two h-100 w-100 ">
-        <div className="img-gallery">
-          <div className="position-relative overflow-hidden">
+        <div
+          className="img-gallery position-relative d-flex align-items-center justify-content-center"
+          style={{ minHeight: "40%" }}
+        >
+          <div className=" overflow-hidden">
             <div className="tag fw-500">
               {conversionRealEstateStatus(itemPost.batDongSan.trangThai)}
             </div>
@@ -45,6 +64,10 @@ const ShortCard = (props: ShortCardI) => {
               //   "https://res.cloudinary.com/dfkh87pvy/image/upload/v1712177798/dev/gmnqn2bzdl1pprw2rd23.png"
               // }
               className="w-100"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/assets/images/listing/img_01.jpg";
+              }}
               width={500}
               height={500}
               alt="Ảnh BĐS"
@@ -60,8 +83,8 @@ const ShortCard = (props: ShortCardI) => {
           </Link>
           <div className="address text-body">
             <i className="fa-solid fa-location-dot pe-2 text-muted"></i>{" "}
-            {itemPost.batDongSan.diaChi}, {itemPost.batDongSan.viTri.quanHuyen},{" "}
-            {itemPost.batDongSan.viTri.tinhTp}
+            {itemPost.batDongSan.diaChi}, {districtName},{" "}
+            {getNameOfProvince(itemPost.batDongSan.viTri.tinhTp)}
           </div>
           <ul className="style-none feature d-flex flex-wrap align-items-center justify-content-between pb-5">
             <li className="d-flex align-items-center">

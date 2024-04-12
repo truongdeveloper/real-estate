@@ -23,6 +23,7 @@ import UseSticky from "../../libs/hooks/UseSticky";
 const ListingArea = (props: any) => {
   const {
     ListingData,
+    totalPage,
     handleSearchChange,
     handlePriceChange,
     maxPrice,
@@ -41,7 +42,7 @@ const ListingArea = (props: any) => {
   const router = useRouter();
   const selectHandler = (e: any) => {};
   const [page, setPage] = useState(0);
-  const [isGrid, setIsGrid] = useState(false);
+  const [isGrid, setIsGrid] = useState(true);
 
   const [useMap, setUseMap] = useState(true);
 
@@ -111,11 +112,11 @@ const ListingArea = (props: any) => {
                 className={`listing-header-filter d-sm-flex justify-content-between align-items-center lg-mb-30 ${"mb-40"}`}
               >
                 <div>
-                  Showing <span className="color-dark fw-500"></span> of{" "}
-                  <span className="color-dark fw-500"></span> results
+                  Hiện <span className="color-dark fw-500"></span> của{" "}
+                  <span className="color-dark fw-500"></span> Kết quả
                 </div>
                 <div className="d-flex align-items-center xs-mt-20">
-                  <div className="short-filter d-flex align-items-center">
+                  {/* <div className="short-filter d-flex align-items-center">
                     <div className="fs-16 me-2">Short by:</div>
                     <SelectCustom
                       className={`nice-select rounded-0 `}
@@ -131,7 +132,7 @@ const ListingArea = (props: any) => {
                       name=""
                       placeholder=""
                     />
-                  </div>
+                  </div> */}
                   <button
                     // href={`/${style ? "listing_10" : "listing_08"}`}
                     className="tran3s layout-change rounded-circle ms-auto ms-sm-3"
@@ -148,29 +149,31 @@ const ListingArea = (props: any) => {
                     onClick={handleSwitchUseMap}
                     title="Switch To List View"
                   >
-                    <i className="fa-regular fa-bars"></i>
+                    <i className="fa-regular fa-map"></i>
                   </button>
                 </div>
               </div>
 
               <div className="row m-0 justify-content-center">
-                {listingData.map((item: typeListRealEstate) => {
-                  return isGrid || !useMap ? (
-                    <ShortCard
-                      key={uniqueId()}
-                      itemPost={item}
-                      mediumCol={!useMap}
-                    />
-                  ) : (
-                    <LongCard key={uniqueId()} itemPost={item} />
-                  );
-                })}
+                {ListingData &&
+                  ListingData.map((item: typeListRealEstate) => {
+                    return isGrid || !useMap ? (
+                      <ShortCard
+                        key={uniqueId()}
+                        itemPost={item}
+                        mediumCol={!useMap}
+                      />
+                    ) : (
+                      <LongCard key={uniqueId()} itemPost={item} />
+                    );
+                  })}
               </div>
               <ReactPaginate
                 breakLabel="..."
                 nextLabel={<Image src={icon} alt="" className="ms-2" />}
                 onPageChange={handlePageClick}
-                pageCount={5}
+                pageCount={totalPage}
+                forcePage={page - 1}
                 previousLabel={<Image src={icon} alt="" className="ms-2" />}
                 renderOnZeroPageCount={null}
                 className="pagination-one m-0 square d-flex align-items-center justify-content-center style-none pt-30"

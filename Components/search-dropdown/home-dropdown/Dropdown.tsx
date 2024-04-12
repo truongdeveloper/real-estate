@@ -14,15 +14,13 @@ import {
 } from "../../../libs/map/MapSearch";
 import { ReactNode, useState } from "react";
 import { useDebounce, useDebouncedCallback } from "use-debounce";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-} from "reactstrap";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
 const DropdownHome = (props: any) => {
   const { isListing } = props;
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
 
   const DelaySearch = 500;
   const maxPrice = 100000;
@@ -181,14 +179,12 @@ const DropdownHome = (props: any) => {
             <div className="input-box-one lg-mt-10">
               <div className="d-flex align-items-center">
                 {isListing ? (
-                  <Link
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#advanceFilterModal"
+                  <button
+                    onClick={toggle}
                     className="search-modal-btn sm tran3s text-uppercase fw-500 d-inline-flex align-items-center me-3"
                   >
                     <i className="fa-light fa-sliders-up"></i>
-                  </Link>
+                  </button>
                 ) : (
                   ""
                 )}
@@ -201,16 +197,29 @@ const DropdownHome = (props: any) => {
           </div>
         </div>
       </form>
-      <ListingDropdownModal
-        handleSearchChange={handleSearchChange}
-        handlePriceChange={handlePriceChange}
-        maxPrice={maxPrice}
-        priceValue={priceValue}
-        handleResetFilter={handleResetFilter}
-        handleAmenityChange={handleAmenityChange}
-        handleLocationChange={handleLocationChange}
-        handleStatusChange={handleStatusChange}
-      />
+      <Modal isOpen={isOpen} toggle={toggle} centered size="lg">
+        <ModalHeader toggle={toggle}>Tìm kiếm</ModalHeader>
+        <ModalBody>
+          <ListingDropdownModal
+            handleSearchChange={handleSearchChange}
+            handlePriceChange={handlePriceChange}
+            maxPrice={maxPrice}
+            priceValue={priceValue}
+            handleResetFilter={handleResetFilter}
+            handleAmenityChange={handleAmenityChange}
+            handleLocationChange={handleLocationChange}
+            handleStatusChange={handleStatusChange}
+          />
+        </ModalBody>
+        {/* <ModalFooter>
+          <Button color="primary" onClick={toggle}>
+            Do Something
+          </Button>{" "}
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+        </ModalFooter> */}
+      </Modal>
     </>
   );
 };

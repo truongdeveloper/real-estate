@@ -34,7 +34,6 @@ const PropertyTableRow = ({ item }: IPropertyTableRow) => {
   }
 
   const [districtName, setDistrictName] = useState("");
-
   useEffect(() => {
     getNameOfDistrict(item.viTri.quanHuyen, item.viTri.tinhTp).then((data) => {
       if (data) {

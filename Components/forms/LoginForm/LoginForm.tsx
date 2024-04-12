@@ -78,7 +78,7 @@ const LoginForm = () => {
             <input
               type="text"
               {...register("username")}
-              placeholder="email@gmail.com"
+              placeholder="Tên tài khoản"
             />
             <small className="form_error">{errors.username?.message}</small>
           </div>

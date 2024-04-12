@@ -4,37 +4,36 @@ import ListingArea from "./ListingArea";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { GET_LISTING } from "../../Common/api/apiEndPoints";
+import { GET_LISTING_SEARCH } from "../../Common/api/apiEndPoints";
+import axiosService from "../../Common/api/AxiosServices";
+import { list_data } from "../dashboard/post-list/PropertyTableBody";
 
 const ListingRealEstate = () => {
   const router = useRouter();
-  const [data, setData] = useState([]);
+  const LIMIT_PAGE = 20;
+  const [data, setData] = useState<any>();
+  const [totalPage, setTotalPage] = useState(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { category, province, keyword } = router.query;
-        const response = await axios.get(GET_LISTING.url, {
-          params: {
-            tenLoaiBDS: category || "",
-            tinhTp: province || "",
-            keyword: keyword || "",
-          },
-        });
-        setData(response.data);
-      } catch (error) {
-        toast(
-          `Lỗi không gọi được
-        ${error}`,
-          {
-            type: "error",
-            delay: 1000,
-          }
-        );
+    const { page, keyword, category, province } = router.query;
+    axiosService({
+      url: GET_LISTING_SEARCH.url,
+      method: "get",
+      params: {
+        trang: page ? Number(page) - 1 : 0,
+        kichThuoc: LIMIT_PAGE,
+        loaiBDS: category ? category : "",
+        tinhTp: province ? province : "",
+      },
+      body: {
+        tieuDe: keyword ? keyword : "",
+      },
+    })?.then((res) => {
+      if (res) {
+        setTotalPage(res.tongSoTrang);
+        setData(res.danhSach);
       }
-    };
-
-    fetchData();
+    });
   }, [router.query]);
 
   // Hàm xử lý thay đổi tìm kiếm
@@ -69,7 +68,7 @@ const ListingRealEstate = () => {
 
   return (
     <>
-      <ListingArea style={false} ListingData={data} />
+      <ListingArea style={false} totalPage={totalPage} ListingData={data} />
       <FancyBanner />
     </>
   );

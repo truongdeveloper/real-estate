@@ -16,7 +16,7 @@ import { useSession } from "next-auth/react";
 import { BatDongSan } from "../../../Models/common";
 import axiosService from "../../../Common/api/AxiosServices";
 import { Button, ButtonGroup } from "reactstrap";
-import { GET_LIST_PROPERTY } from "../../../Common/api/apiEndPoints";
+import { GET_POST_FOR_USER } from "../../../Common/api/apiEndPoints";
 
 const dataProperty = [
   {
@@ -144,7 +144,7 @@ const PropertyListBody = () => {
 
   useEffect(() => {
     axiosService({
-      url: GET_LIST_PROPERTY.url,
+      url: GET_POST_FOR_USER.url,
       method: "get",
       params: {
         maTK: data?.user.id,
@@ -157,13 +157,16 @@ const PropertyListBody = () => {
       ?.then((res) => {
         if (res) {
           setTotalPage(res.tongSoTrang);
-          setListData(res.danhSach);
+          setListData(
+            res.danhSach.map((item: any) => ({ ...item.batDongSan }))
+          );
         }
       })
       .catch((error) => {
         toast(error?.message);
       });
   }, [tabStatus, page, data?.user]);
+  console.table(listData);
 
   function handlePageClick(page: any) {
     setPage(page.selected);
@@ -241,8 +244,8 @@ const PropertyListBody = () => {
                 </tr>
               </thead>
               <tbody className="border-0">
-                {!isEmpty(dataProperty) ? (
-                  dataProperty
+                {!isEmpty(listData) ? (
+                  listData
                     // .toReversed()
                     .map((item) => (
                       <PropertyTableRow key={uniqueId()} item={item} />

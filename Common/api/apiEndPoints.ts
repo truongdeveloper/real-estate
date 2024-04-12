@@ -1,3 +1,4 @@
+import { Method } from "axios";
 import { GET, POST } from "../../Constants";
 import { BASE_URL } from "./config";
 
@@ -13,9 +14,9 @@ export const REGISTER = {
 };
 
 // ========== Real-estate ==========
-export const GET_LISTING = {
+export const GET_LISTING_SEARCH = {
   key: "/real-estate-listing",
-  url: BASE_URL + `quan-ly-bai-dang/v1/tim-kiem`,
+  url: BASE_URL + `/quan-ly-bai-dang/v1/tim-kiem`,
   method: GET,
 };
 
@@ -48,11 +49,11 @@ export const GET_SIMPLE_POST = {
   method: "get",
 };
 
-export const GET_LIST_PROPERTY = {
-  key: "/dashboard/properties-list",
-  url: BASE_URL + `/quan-ly-bat-dong-san/danh-sach-bat-dong-san`,
-  method: "get",
-};
+// export const GET_LIST_PROPERTY = {
+//   key: "/dashboard/properties-list",
+//   url: BASE_URL + `/quan-ly-bat-dong-san/danh-sach-bat-dong-san`,
+//   method: "get",
+// };
 
 export const GET_DETAIL_PROPERTY = {
   key: "/dashboard/properties-detail",
