@@ -67,7 +67,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 4,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Khu đô thị mới",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
@@ -142,7 +142,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 5,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Hải Âu Đông Nam Vinhomes Ocean Park 2",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
@@ -217,7 +217,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 6,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Hải Âu Đông Nam Vinhomes Ocean Park 2",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
@@ -293,7 +293,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 7,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Hải Âu Đông Nam Vinhomes Ocean Park 2",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
@@ -368,7 +368,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 8,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Hải Âu Đông Nam Vinhomes Ocean Park 2",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
@@ -443,7 +443,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 9,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Hải Âu Đông Nam Vinhomes Ocean Park 2",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
@@ -518,7 +518,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 10,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Hải Âu Đông Nam Vinhomes Ocean Park 2",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
@@ -593,7 +593,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 11,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Hải Âu Đông Nam Vinhomes Ocean Park 2",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
@@ -668,7 +668,7 @@ const listingData: typeListRealEstate[] = [
   {
     id: 12,
     maBDS: 3,
-    maNguoiDung: 1,
+    maTaiKhoan: 1,
     tieuDe: "Hải Âu Đông Nam Vinhomes Ocean Park 2",
     noiDung: `
     - Thanh toán sớm chiết khấu 19,3%.
