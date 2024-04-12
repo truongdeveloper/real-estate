@@ -77,3 +77,8 @@ export const UPDATE_USER_INFO = {
   url: BASE_URL + `/quan-ly-nguoi-dung/nguoi-dung`,
   method: "put",
 };
+
+export const POST_SEND_REQUEST = {
+  url: BASE_URL + `/quan-ly-yeu-cau/yeu-cau`,
+  method: "post",
+};

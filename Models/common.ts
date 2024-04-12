@@ -17,7 +17,7 @@ export type AppPropsWithLayout = AppProps & {
 export interface typeListRealEstate {
   id: number;
   maBDS: number;
-  maNguoiDung: number;
+  maTaiKhoan: number;
   tieuDe: string;
   noiDung: string;
   ngayDangBai: string;
