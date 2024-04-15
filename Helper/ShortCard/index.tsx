@@ -12,6 +12,9 @@ import {
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { compareDataState } from "../../Recoil/atoms/compare";
+import isAuthen from "../../libs/hooks/isAuthen";
+import axiosService from "../../Common/api/AxiosServices";
+import { POST_FAVOURITE } from "../../Common/api/apiEndPoints";
 
 interface ShortCardI {
   itemPost: typeListRealEstate;
@@ -25,13 +28,46 @@ const ShortCard = (props: ShortCardI) => {
   const [isCompare, setIsCompare] = useState(false);
   const [compareData, setCompareData] = useRecoilState(compareDataState);
 
-  function handleAddFavorite(id: number) {
-    setIsFavorite(!isFavorite);
-    if (!isFavorite) {
-      toast("Đã thêm vào yêu thích", {
-        type: "success",
+  const storedArrayJSON = localStorage.getItem("favourites") as string;
+  const favouritesList = JSON.parse(storedArrayJSON);
+
+  useEffect(() => {
+    if (favouritesList) {
+      favouritesList.map((item: any) => {
+        if (item?.id === itemPost?.id) {
+          setIsFavorite(true);
+        }
       });
     }
+  }, [favouritesList, itemPost?.id]);
+
+  function handleAddFavorite(id: number) {
+    isAuthen().then((res) => {
+      if (res) {
+        axiosService({
+          url: `${POST_FAVOURITE.url}?maBD=${id}&maTK=${res.user?.id}`,
+          method: "post",
+        })?.then((res) => {
+          if (res) {
+            toast("Đã thêm bài đă vào danh sách yêu thích", {
+              type: "success",
+            });
+            setIsFavorite(true);
+          } else {
+            toast("Đã xóa bài đăng khỏi danh sách yêu thích thành công");
+            const newList = favouritesList?.filter(
+              (item: any) => item?.id !== id
+            );
+            localStorage.setItem("favourites", JSON.stringify(newList));
+            setIsFavorite(false);
+          }
+        });
+      } else {
+        toast("Vui lý đăng nhập để  yêu thích bài viết", {
+          type: "warning",
+        });
+      }
+    });
   }
 
   const handleToCompare = (id: number) => {

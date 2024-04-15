@@ -50,9 +50,9 @@ const axiosService = (props: IAxios) => {
     return axios
       .post(uri, body, { headers: headersConfig })
       .then((res: any) => {
-        if (isEmpty(res.data)) {
-          toast.error("Lỗi: Danh sách rỗng");
-        }
+        // if (isEmpty(res.data)) {
+        //   toast.error("Lỗi: Danh sách rỗng");
+        // }
         return res.data;
       })
       .catch((err: any) => {

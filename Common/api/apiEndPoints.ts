@@ -94,3 +94,8 @@ export const GET_URL_PAYMENT = {
   url: BASE_URL + `/quan-ly-yeu-cau/chi-tiet-yeu-cau`,
   method: "get",
 };
+
+export const POST_FAVOURITE = {
+  url: BASE_URL + `/quan-ly-ua-thich/ua-thich`,
+  method: "post",
+};

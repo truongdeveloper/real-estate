@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
@@ -56,10 +56,17 @@ const LoginForm = () => {
       toast("Đăng nhập thành công", {
         type: "success",
       });
+      const session = await getSession();
+      if (session) {
+        localStorage.setItem(
+          "favourites",
+          JSON.stringify(session.user.baiDangUaThich)
+        );
+      }
       setShowLoginModal(false);
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 500);
     }
   };
 

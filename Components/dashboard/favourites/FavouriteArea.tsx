@@ -21,7 +21,8 @@ const FavouriteArea = () => {
   const { data } = useSession();
   const [favouriteList, setFavoriteList] = useState<any>([]);
   useEffect(() => {
-    setFavoriteList(data?.user?.baidangUaThich);
+    console.log(data);
+    setFavoriteList(data?.user?.baiDangUaThich);
   }, [data]);
 
   return (

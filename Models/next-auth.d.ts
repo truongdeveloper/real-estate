@@ -12,7 +12,7 @@ declare module "next-auth" {
       name: string;
       quyen: any;
       soDu: string;
-      baidangUaThich: typeListRealEstate[];
+      baiDangUaThich: typeListRealEstate[];
     };
   }
 }
