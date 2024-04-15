@@ -97,6 +97,7 @@ const AddPropertyBody = () => {
     formState: { errors },
   } = useForm<PostBDS>({
     resolver: yupResolver<any>(schema),
+    mode: "onSubmit",
     defaultValues: {
       maTaiKhoan: data?.user.id,
     },
@@ -145,7 +146,14 @@ const AddPropertyBody = () => {
         token: data?.user.token,
       });
 
-      console.log("Response from server:", response);
+      if (response.id) {
+        toast.success("Đăng tin thành công");
+        ClearData();
+      } else {
+        toast(response, {
+          type: "warning",
+        });
+      }
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu POST:", error);
       toast.error("Đã xảy ra lỗi khi gửi yêu cầu POST");

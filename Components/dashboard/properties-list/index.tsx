@@ -246,7 +246,7 @@ const PropertyListBody = () => {
               <tbody className="border-0">
                 {!isEmpty(listData) ? (
                   listData
-                    // .toReversed()
+                    .toReversed()
                     .map((item) => (
                       <PropertyTableRow key={uniqueId()} item={item} />
                     ))

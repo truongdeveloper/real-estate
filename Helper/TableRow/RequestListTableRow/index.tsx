@@ -12,6 +12,8 @@ import conversionDate from "../../../Constants/conversionDate";
 import timeAgo from "../../../Constants/conversionTime";
 import { Button, Offcanvas, OffcanvasBody, OffcanvasHeader } from "reactstrap";
 import OpenRequest from "../../../Components/dashboard/request-list/OpenRequest";
+import { ACCEPT_REQUEST } from "../../../Common/api/apiEndPoints";
+import axiosService from "../../../Common/api/AxiosServices";
 
 type IRequestTabelRow = {
   item: typeRequest;
@@ -29,7 +31,16 @@ const RequestListTableRow = ({ item }: IRequestTabelRow) => {
   }
 
   const handleAccept = () => {
-    toast("Đồng ý");
+    axiosService({
+      url: ACCEPT_REQUEST.url,
+      method: "put",
+      body: {
+        maBDS: item.maBD,
+        maTKThue: item.maTK,
+      },
+    })?.then((res) => {
+      toast(res);
+    });
   };
   const handleReject = () => {
     toast("Huy bán");

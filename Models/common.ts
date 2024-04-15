@@ -21,6 +21,7 @@ export interface typeListRealEstate {
   tieuDe: string;
   noiDung: string;
   ngayDangBai: string;
+  nguoiKiemDuyet: number | null;
   ngayHetHan: string;
   sdt: string;
   trangThai: number;
@@ -30,9 +31,10 @@ export interface typeListRealEstate {
 export interface BatDongSan {
   id: number;
   maLoaiBDS: number;
-  maNguoiThue?: any;
+  maTKThue?: any;
   maViTri: number;
   tenBDS: string;
+  maTienNghi: any;
   dienTich: number;
   moTa: string;
   giaThue: number;

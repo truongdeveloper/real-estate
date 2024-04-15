@@ -10,6 +10,8 @@ import {
   getNameOfProvince,
 } from "../../Constants/conversionAdress";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { compareDataState } from "../../Recoil/atoms/compare";
 
 interface ShortCardI {
   itemPost: typeListRealEstate;
@@ -20,6 +22,8 @@ const ShortCard = (props: ShortCardI) => {
   const { itemPost, mediumCol } = props;
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isCompare, setIsCompare] = useState(false);
+  const [compareData, setCompareData] = useRecoilState(compareDataState);
 
   function handleAddFavorite(id: number) {
     setIsFavorite(!isFavorite);
@@ -30,17 +34,30 @@ const ShortCard = (props: ShortCardI) => {
     }
   }
 
-  const [districtName, setDistrictName] = useState("");
-  useEffect(() => {
-    getNameOfDistrict(
-      itemPost.batDongSan.viTri.quanHuyen,
-      itemPost.batDongSan.viTri.tinhTp
-    ).then((data) => {
-      if (data) {
-        setDistrictName(data);
+  const handleToCompare = (id: number) => {
+    if (compareData.includes(itemPost)) {
+      toast("Đã có trong bảng so sánh");
+    } else {
+      if (compareData.length < 3) {
+        setCompareData([...compareData, itemPost as any]);
+        setIsCompare(true);
+      } else {
+        toast("Đã đạt đủ 3 BDS");
       }
-    });
-  }, [itemPost, districtName, setDistrictName]);
+    }
+  };
+
+  const [districtName, setDistrictName] = useState("");
+  // useEffect(() => {
+  //   getNameOfDistrict(
+  //     itemPost.batDongSan.viTri.quanHuyen,
+  //     itemPost.batDongSan.viTri.tinhTp
+  //   ).then((data) => {
+  //     if (data) {
+  //       setDistrictName(data);
+  //     }
+  //   });
+  // }, [itemPost, districtName, setDistrictName]);
   return (
     <div
       key={itemPost.id}
@@ -124,13 +141,25 @@ const ShortCard = (props: ShortCardI) => {
             <strong className="price fw-500 text-danger fs-5">
               {transformPriceToString(itemPost.batDongSan.giaThue)} /tháng
             </strong>
-            <button className="" onClick={() => handleAddFavorite(itemPost.id)}>
-              {isFavorite ? (
-                <i className="fa-solid fa-heart fs-3 text-danger"></i>
-              ) : (
-                <i className="fa-regular fa-heart fs-3"></i>
-              )}
-            </button>
+            <div className={"d-flex gap-4"}>
+              <button className="" onClick={() => handleToCompare(itemPost.id)}>
+                {isCompare ? (
+                  <i className="fa-solid fa-code-compare fs-4 text-success"></i>
+                ) : (
+                  <i className="fa-solid fa-code-compare fs-4"></i>
+                )}
+              </button>
+              <button
+                className=""
+                onClick={() => handleAddFavorite(itemPost.id)}
+              >
+                {isFavorite ? (
+                  <i className="fa-solid fa-heart fs-3 text-danger"></i>
+                ) : (
+                  <i className="fa-regular fa-heart fs-3"></i>
+                )}
+              </button>
+            </div>
           </div>
           <p className="text-black-50 pl-footer top-border p-0 m-0 d-flex justify-content-end">
             {timeAgo(itemPost.ngayDangBai)}

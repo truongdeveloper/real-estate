@@ -74,6 +74,12 @@ input::-webkit-inner-spin-button {
   width: 50vw !important;
 }
 
+.one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media screen and (max-width: 991px) {
   .offcanvas-detail {
     width: 100vw !important;

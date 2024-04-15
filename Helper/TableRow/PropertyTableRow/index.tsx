@@ -18,6 +18,8 @@ import conversionRealEstateStatus from "../../../Constants/conversionRealEstateS
 import ConfirmModal from "../../../Common/modals/ConfirmModal";
 import { Offcanvas, OffcanvasBody, OffcanvasHeader } from "reactstrap";
 import OpenProperty from "./OpenProperty";
+import axiosService from "../../../Common/api/AxiosServices";
+import { ACCEPT_REQUEST } from "../../../Common/api/apiEndPoints";
 
 type IPropertyTableRow = {
   item: BatDongSan;
@@ -43,7 +45,7 @@ const PropertyTableRow = ({ item }: IPropertyTableRow) => {
   }, [item]);
 
   function handleChangeStatusTrue() {
-    toast(`Xóa thành công ${item.tenBDS}`);
+    toast("Chuyển sang trạn tg thái đã cho thế");
   }
 
   function handleChangeStatusFalse() {
@@ -82,7 +84,7 @@ const PropertyTableRow = ({ item }: IPropertyTableRow) => {
             )}
             <div className="ps-lg-4 md-pt-10">
               <Link
-                href="#"
+                href={`/real-estate-detail?id=${item.id}`}
                 className="property-name tran3s color-dark fw-500 fs-20 stretched-link"
               >
                 {item.tenBDS}

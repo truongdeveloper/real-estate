@@ -6,38 +6,17 @@ import compareLogo from "@/assets/images/logo/logo_08.svg";
 import compareThumb_1 from "@/assets/images/listing/img_66.jpg";
 import compareThumb_2 from "@/assets/images/listing/img_67.jpg";
 import compareThumb_3 from "@/assets/images/listing/img_68.jpg";
-
-interface Datatype {
-  id: number;
-  tag: string;
-  thumb: StaticImageData;
-  title: string;
-  desc: string;
-}
-
-const compare_data: Datatype[] = [
-  {
-    id: 1,
-    tag: "For Sell",
-    thumb: compareThumb_1,
-    title: "Blueberry villa",
-    desc: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
-  },
-  {
-    id: 2,
-    tag: "For Sell",
-    thumb: compareThumb_2,
-    title: "Orkit Flat",
-    desc: "2118 Thornridge Cir. Syracuse, Connecticut 35624",
-  },
-  {
-    id: 3,
-    tag: "For Sell",
-    thumb: compareThumb_3,
-    title: "Modu Apartment",
-    desc: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-  },
-];
+import { typeListRealEstate } from "../../Models/common";
+import { getNameOfProvince } from "../../Constants/conversionAdress";
+import transformPriceToString from "../../Constants/conversionNumberToPrice";
+import conversionRealEstateStatus from "../../Constants/conversionRealEstateStatus";
+import { useEffect, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  compareDataState,
+  compareModalState,
+} from "../../Recoil/atoms/compare";
+import { uniqueId } from "lodash";
 
 interface TableData {
   table_head: string;
@@ -45,50 +24,77 @@ interface TableData {
 }
 [];
 
-const table_row_data: TableData[] = [
-  {
-    table_head: "Bedrooms",
-    table_data: ["3", "2", "3"],
-  },
-  {
-    table_head: "Bath",
-    table_data: ["2", "1", "1"],
-  },
-  {
-    table_head: "Price",
-    table_data: ["$1,75,320", "$1,42,720", "$1,82,000"],
-  },
-  {
-    table_head: "Property Type",
-    table_data: ["Villa", "Flat", "Apartment"],
-  },
-  {
-    table_head: "Property ID",
-    table_data: ["h2180", "h3218", "h4322"],
-  },
-  {
-    table_head: "Parking",
-    table_data: ["1", "2", "0"],
-  },
-  {
-    table_head: "Lot Size",
-    table_data: ["2,710 sq.ft", "1,810 sq.ft", "3,470 sq.ft"],
-  },
-  {
-    table_head: "Features",
-    table_data: [
-      "Ac/Heating, Laundry, Garden, Elevator, Pet Friendly, Wifi, Refrigerator",
-      "Ac/Heating, Garden, Wifi, Pet Friendly, Refrigerator",
-      "Ac/Heating, Laundry, Garden, Elevator, Pet Friendly, Wifi, Refrigerator, Fireplace, Swimming Pool",
-    ],
-  },
-  {
-    table_head: "Zoning",
-    table_data: ["Residential", "Residential", "Residential"],
-  },
-];
-
 const CompareArea = () => {
+  const [compareDataGlobal, setCompareDataGlobal] =
+    useRecoilState(compareDataState);
+  const [showCompareModal, setShowCompareModal] =
+    useRecoilState(compareModalState);
+
+  const compare_data = compareDataGlobal;
+  console.log(showCompareModal);
+  setShowCompareModal(false);
+  useEffect(() => () => setShowCompareModal(true), [setShowCompareModal]);
+
+  const table_row_data: TableData[] = [
+    {
+      table_head: "Mã Bất Động Sản",
+      table_data: compare_data.map((item: any) => item.id),
+    },
+    {
+      table_head: "Loại Bất Động Sản",
+      table_data: compare_data.map(
+        (item: any) => item.batDongSan?.loaiBDS?.tenLoaiBDS
+      ),
+    },
+    {
+      table_head: "Diện Tích",
+      table_data: compare_data.map(
+        (item: any) => item.batDongSan?.dienTich + " m²"
+      ),
+    },
+    {
+      table_head: "Giá",
+      table_data: compare_data.map((item: any) =>
+        transformPriceToString(item.batDongSan?.giaThue)
+      ),
+    },
+    {
+      table_head: "Phòng Ngủ",
+      table_data: compare_data.map((item: any) => item.batDongSan?.phongNgu),
+    },
+    {
+      table_head: "Phòng Tắm",
+      table_data: compare_data.map((item: any) => item.batDongSan?.phongTam),
+    },
+    {
+      table_head: "Bãi Đỗ Xe",
+      table_data: compare_data.map((item: any) => item.batDongSan?.baiDoXe),
+    },
+    {
+      table_head: "Tiện Ích",
+      table_data: compare_data.map((item: any) => {
+        const features = [];
+        if (item.batDongSan?.tienNghi?.tuLanh) features.push("Điều hòa");
+        if (item.batDongSan?.tienNghi?.mayGiat) features.push("Máy giặt");
+        if (item.batDongSan?.tienNghi?.hoBoi) features.push("Hồ bơi");
+        if (item.batDongSan?.tienNghi?.wifi) features.push("Wifi");
+        if (item.batDongSan?.tienNghi.baiDoXe) features.push("Bãi đỗ xe");
+        if (item.batDongSan?.tienNghi.thangMay) features.push("Thang máy");
+        if (item.batDongSan?.tienNghi.vuon) features.push("Vườn");
+        if (item.batDongSan?.tienNghi.gara) features.push("Garage");
+        return features.join(", ");
+      }),
+    },
+    {
+      table_head: "Địa Điểm",
+      table_data: compare_data.map(
+        (item: any) =>
+          `${item.batDongSan?.diaChi},${getNameOfProvince(
+            item.batDongSan?.viTri.tinhTp
+          )}`
+      ),
+    },
+  ];
   return (
     <div className="compare-section mt-150 xl-mt-100 mb-150 xl-mb-100">
       <div className="container">
@@ -112,29 +118,33 @@ const CompareArea = () => {
                       className="lazy-img mt-50"
                     />
                   </td>
-                  {compare_data.map((item) => (
-                    <td key={item.id}>
+                  {compare_data.map((item: any) => (
+                    <td key={uniqueId()}>
                       <div className="listing-card-one style-two shadow-none">
                         <div className="img-gallery">
                           <div className="position-relative overflow-hidden">
-                            <div className="tag fw-500">{item.tag}</div>
-                            <Link href="#" className="fav-btn tran3s">
-                              <i className="fa-light fa-heart"></i>
-                            </Link>
+                            <div className="tag fw-500">
+                              {conversionRealEstateStatus(
+                                item.batDongSan?.trangThai
+                              )}
+                            </div>
+
                             <Link href="#" className="d-block">
                               <Image
-                                src={item.thumb}
+                                src={item.batDongSan?.hinhAnhList[0].url}
                                 className="w-100"
                                 alt="..."
+                                width={200}
+                                height={200}
                               />
                             </Link>
                           </div>
                         </div>
                         <div className="property-info pt-10">
                           <Link href="#" className="title tran3s">
-                            {item.title}
+                            {item.batDongSan?.tenBDS}
                           </Link>
-                          <div className="address">{item.desc}</div>
+                          {/* <div className="address">{item.desc}</div> */}
                         </div>
                       </div>
                     </td>

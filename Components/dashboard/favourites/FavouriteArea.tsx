@@ -10,44 +10,37 @@ import featureIcon_2 from "@/assets/images/icon/icon_05.svg";
 import featureIcon_3 from "@/assets/images/icon/icon_06.svg";
 import ShortCard from "../../../Helper/ShortCard";
 import { listingData } from "../../../data/inner-data/ListingData";
-import { uniqueId } from "lodash";
+import { isEmpty, uniqueId } from "lodash";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const FavouriteArea = () => {
   const itemsPerPage = 9;
   const page = "listing_4";
 
-  // const {
-  //   itemOffset,
-  //   sortedProperties,
-  //   currentItems,
-  //   pageCount,
-  //   handlePageClick,
-  //   handleBathroomChange,
-  //   handleBedroomChange,
-  //   handleSearchChange,
-  //   handlePriceChange,
-  //   maxPrice,
-  //   priceValue,
-  //   resetFilters,
-  //   selectedAmenities,
-  //   handleAmenityChange,
-  //   handleLocationChange,
-  //   handleStatusChange,
-  //   handleTypeChange,
-  //   handlePriceDropChange,
-  // } = UseShortedProperty({ itemsPerPage, page });
-
-  // const handleResetFilter = () => {
-  //   resetFilters();
-  // };
+  const { data } = useSession();
+  const [favouriteList, setFavoriteList] = useState<any>([]);
+  useEffect(() => {
+    setFavoriteList(data?.user?.baidangUaThich);
+  }, [data]);
 
   return (
     <>
-      <div className="row gx-xxl-5">
-        {listingData.slice(0, 9).map((item) => (
-          <ShortCard key={uniqueId()} itemPost={item}></ShortCard>
-        ))}
-      </div>
+      {!isEmpty(favouriteList) ? (
+        <div className="row gx-xxl-5">
+          {favouriteList.map((item: any) => (
+            <ShortCard key={uniqueId()} itemPost={item}></ShortCard>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center mt-20">
+          <h4>Chưa có bài đăng yêu thích nào</h4>
+
+          <h3>
+            <i className="fa-regular fa-face-sad-tear"></i>
+          </h3>
+        </div>
+      )}
 
       {/* <ReactPaginate
             breakLabel="..."

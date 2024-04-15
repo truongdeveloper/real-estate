@@ -83,3 +83,14 @@ export const POST_SEND_REQUEST = {
   url: BASE_URL + `/quan-ly-yeu-cau/yeu-cau`,
   method: "post",
 };
+
+export const ACCEPT_REQUEST = {
+  key: "dashboard/request-list",
+  url: BASE_URL + `/quan-ly-bat-dong-san/thue-bat-dong-san`,
+  method: "put",
+};
+
+export const GET_URL_PAYMENT = {
+  url: BASE_URL + `/quan-ly-yeu-cau/chi-tiet-yeu-cau`,
+  method: "get",
+};
