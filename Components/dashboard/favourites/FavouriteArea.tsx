@@ -9,7 +9,7 @@ import featureIcon_1 from "@/assets/images/icon/icon_04.svg";
 import featureIcon_2 from "@/assets/images/icon/icon_05.svg";
 import featureIcon_3 from "@/assets/images/icon/icon_06.svg";
 import ShortCard from "../../../Helper/ShortCard";
-import { listingData } from "../../../data/inner-data/ListingData";
+
 import { isEmpty, uniqueId } from "lodash";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";

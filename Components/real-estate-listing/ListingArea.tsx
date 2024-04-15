@@ -7,7 +7,6 @@ import ReactPaginate from "react-paginate";
 import icon from "@/assets/images/icon/icon_46.svg";
 import SelectCustom from "../../Helper/ui/SelectCustom";
 import DropdownHome from "../search-dropdown/home-dropdown/Dropdown";
-import { listingData } from "../../data/inner-data/ListingData";
 
 import { typeListRealEstate } from "../../Models/common";
 import LongCard from "../../Helper/LongCard";
