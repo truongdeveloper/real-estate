@@ -51,7 +51,7 @@ const feature_data: DataType[] = [
     page: "home_1_feature_1",
     icon: featureIcon_1,
     title: "QUẢNG BÁ BĐS",
-    btn: "Find Home",
+    btn: "Tìm BDS",
     desc: "Khám phá toàn bộ bất động sản của homy và khám phá không gian lý tưởng của bạn.",
   },
   {
@@ -59,7 +59,7 @@ const feature_data: DataType[] = [
     page: "home_1_feature_1",
     icon: featureIcon_2,
     title: "THUÊ BĐS",
-    btn: "Rent Home",
+    btn: "Thuê BDS",
     desc: "Khám phá dịch vụ cho thuê mà bạn yêu thích trên Homy, nhờ các bộ lọc và từ khóa phù hợp.",
   },
   {
@@ -67,7 +67,7 @@ const feature_data: DataType[] = [
     page: "home_1_feature_1",
     icon: featureIcon_3,
     title: "CHO THUÊ BĐS",
-    btn: "Sell Property",
+    btn: "Cho thuê",
     desc: "Niêm yết, bán, phát triển mạnh mẽ – với đại lý bất động sản hàng đầu của chúng tôi. Thật dễ dàng và thú vị.",
   },
 
@@ -350,22 +350,22 @@ const feature_data: DataType[] = [
     id: 1,
     page: "home_6_feature_1",
     icon: feature7Icon_1,
-    title: "Property Insurance",
-    desc: "Elit esse cillum dol fug nulla tur nos ullamo.",
+    title: "An toàn",
+    desc: "An toàn của bất động sản là ưu tiên hàng đầu của chúng tôi. Chúng tôi không ngừng nỗ lực để tạo ra một môi trường sống an toàn và yên bình cho bạn và gia đình.",
   },
   {
     id: 2,
     page: "home_6_feature_1",
     icon: feature7Icon_2,
-    title: "Easy Payments",
-    desc: "quis nostrud exerct ulla security finibus ne derived.",
+    title: "Thanh toán dễ dàng",
+    desc: "Thanh toán một cách tiện lợi và linh hoạt. Nhiều phương thức thanh toán, bao gồm cả thanh toán trực tuyến, thanh toán qua thẻ tín dụng, chuyển khoản ngân hàng và nhiều hơn nữa.",
   },
   {
     id: 3,
     page: "home_6_feature_1",
     icon: feature7Icon_3,
-    title: "Quick Process",
-    desc: "Duis aute irure do reprehe de Cicero's voluptat velit.",
+    title: "Quy trình nhanh chóng",
+    desc: "Quy trình đơn giản và nhanh chóng, có thể mua, bán hoặc cho thuê bất động sản một cách dễ dàng và hiệu quả. Cam kết cung cấp dịch vụ chuyên nghiệp và tận tâm để giúp bạn hoàn thành các giao dịch một cách nhanh chóng và thuận lợi."
   },
 ];
 

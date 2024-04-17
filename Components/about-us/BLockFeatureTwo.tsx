@@ -17,10 +17,10 @@ const BLockFeatureTwo = () => {
               <span className="star-shape">
                 <Image src={titleShape} alt="" className="lazy-img" />
               </span>{" "}
-              Buy, Rend & Sell
+              Mua, Thuê & Bán
             </h2>
             <p className="fs-22 mt-xs color-dark">
-              Over 745K listings of apartments, lots, plots - available today.
+            Rất nhiều sách căn hộ, lô đất, và khu đất - có sẵn ngay hôm nay.
             </p>
           </div>
 
@@ -68,7 +68,7 @@ const BLockFeatureTwo = () => {
             <div className="col-lg-6">
               <div className="title-one md-mb-30 pe-xxl-4 wow fadeInLeft">
                 <h2 className="font-garamond text-white star-shape">
-                  Easily Purchase, Sell, or Lease listings.{" "}
+                  Dễ dàng mua, bán, hoặc cho thuê bất động sản.{" "}
                   <span className="star-shape">
                     <Image src={featureShape_3} alt="" className="lazy-img" />
                   </span>
@@ -77,8 +77,7 @@ const BLockFeatureTwo = () => {
             </div>
             <div className="col-xxl-5 col-lg-6 ms-auto">
               <p className="text-white fs-24 m0 lh-lg  wow fadeInRight">
-                Your leading real estate advocate, transforming houses into
-                dreams. Trust us to expertly guide you home
+                Chúng tôi sẵn sàng hỗ trợ bạn trong mọi vấn đề bất động sản, từ việc tìm kiếm cho đến thực hiện mua bán hoặc cho thuê. Hãy để chúng tôi đồng hành cùng bạn trong hành trình tìm kiếm ngôi nhà lý tưởng của bạn.
               </p>
             </div>
           </div>

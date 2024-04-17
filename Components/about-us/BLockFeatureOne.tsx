@@ -12,7 +12,7 @@ const BLockFeatureOne = () => {
             <div className="ms-xxl-5 ps-xl-4 ps-lg-5 md-mb-50">
               <div className="title-one mb-45 lg-mb-20">
                 <h2 className="font-garamond star-shape">
-                  Find Your Preferable Match Easily.{" "}
+                  Tìm kiếm một cách nhanh chóng.{" "}
                   <span className="star-shape">
                     <Image src={titleShape} alt="" className="lazy-img" />
                   </span>
@@ -24,7 +24,7 @@ const BLockFeatureOne = () => {
                         </div>
                      </div> */}
               <Link href="contact" className="btn-five mt-75 lg-mt-50">
-                Contact us
+                Liên hệ
               </Link>
             </div>
           </div>

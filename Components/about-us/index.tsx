@@ -7,7 +7,7 @@ import FancyBanner from "./FancyBanner";
 const AboutUsBody = () => {
   return (
     <>
-      <BreadcrumbTwo title="About Us" sub_title="About us" />
+      <BreadcrumbTwo title="Về chúng tôi" sub_title="Về chúng tôi" />
       <BLockFeatureOne />
       <BLockFeatureTwo />
       <FancyBanner />

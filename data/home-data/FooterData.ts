@@ -18,7 +18,7 @@ const footer_data: DataType[] = [
     widget_title: "Đường dẫn",
     footer_link: [
       { link: "/", link_title: "Trang chủ" },
-      { link: "/membership", link_title: "bảng giá" },
+      { link: "/membership", link_title: "Bảng giá" },
       { link: "/about-us", link_title: "Về chúng tôi" },
       { link: "/dashboard", link_title: "Dashboard" },
     ],
@@ -29,10 +29,10 @@ const footer_data: DataType[] = [
     page: "home_1",
     widget_title: "Giấy phép",
     footer_link: [
-      { link: "/faq", link_title: "Terms & conditions" },
+      { link: "/faq", link_title: "Điều khoản và điều kiện" },
       { link: "/faq", link_title: "Cookie" },
-      { link: "/faq", link_title: "Privacy policy" },
-      { link: "/faq", link_title: "Faq’s" },
+      { link: "/faq", link_title: "Chính sách bảo mật" },
+      { link: "/faq", link_title: "Câu hỏi thường gặp" },
     ],
   },
   {
