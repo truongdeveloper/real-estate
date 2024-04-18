@@ -13,43 +13,42 @@ const TermsAndPolicyArea = () => {
                 <ul className="style-none">
                   <li>
                     <Link href="#Selling">
-                      1. <span>Selling</span>
+                      1. <span>Bán</span>
                     </Link>
                   </li>
                   <li>
                     <Link href="#Renting">
-                      2. <span>Renting</span>
+                      2. <span>Cho thuê</span>
                     </Link>
                   </li>
                   <li>
                     <Link href="#Buying">
-                      3. <span>Buying</span>
+                      3. <span>Mua</span>
                     </Link>
                   </li>
                   <li>
                     <Link href="#Payments">
-                      4. <span>Payments</span>
+                      4. <span>Thanh toán</span>
                     </Link>
                   </li>
                   <li>
                     <Link href="#Terms">
-                      5. <span>Terms & Conditions</span>
+                      5. <span>Điều khoản và điều kiện</span>
                     </Link>
                   </li>
                   <li>
                     <Link href="#Account">
-                      6. <span>Account</span>
+                      6. <span>Tài khoản</span>
                     </Link>
                   </li>
                 </ul>
               </div>
               <div className="bg-wrapper text-center mt-35">
                 <h4 className="mb-35">
-                  Don’t Find Your <br />
-                  Answer?
+                  Liên hệ với chúng tôi nếu bạn có bất kì thắc mắc nào
                 </h4>
                 <Link href="/contact" className="btn-five">
-                  Contact us
+                  Liên hệ
                 </Link>
               </div>
             </div>
@@ -69,6 +68,7 @@ const TermsAndPolicyArea = () => {
                 >
                   {item.title}
                 </div>
+
                 <div className="accordion p0" id={`accordion${item.id}`}>
                   {item.faq.map((faq: any, index: any) => (
                     <div
