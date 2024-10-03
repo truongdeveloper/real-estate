@@ -43,7 +43,13 @@ const LoginForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>({ resolver: yupResolver(schema) });
+  } = useForm<FormData>({
+    defaultValues: {
+      username: "VanMinhTruong",
+      password: "12345678",
+    },
+    resolver: yupResolver(schema),
+  });
   const onSubmit = async (data: FormData) => {
     const res = await signIn("credentials", {
       email: data.username,

@@ -18,7 +18,7 @@ const SecureRouter = ({ children }: any) => {
   }
 
   if (status === "loading" || status === "unauthenticated") {
-    return <div></div>;
+    return <div>{children}</div>;
   }
   return <div>{children}</div>;
 };

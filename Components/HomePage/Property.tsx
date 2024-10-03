@@ -6,6 +6,7 @@ import { uniqueId } from "lodash";
 import { useEffect, useState } from "react";
 import axiosService from "../../Common/api/AxiosServices";
 import { GET_LISTING_SEARCH } from "../../Common/api/apiEndPoints";
+import ListData from "../../data/list-real-estates/ListData";
 
 const Property = () => {
   const [data, setData] = useState<any>([]);
@@ -18,8 +19,9 @@ const Property = () => {
         kichThuoc: 20,
       },
     })?.then((res) => {
-      if (res.danhSach) {
-        setData(res.danhSach.filter((item: any) => item.trangThai == 2));
+      let data = ListData;
+      if (data.danhSach) {
+        setData(data.danhSach.filter((item: any) => item.trangThai == 2));
       }
     });
   }, []);

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { GET_LISTING_SEARCH } from "../../Common/api/apiEndPoints";
 import axiosService from "../../Common/api/AxiosServices";
 import { list_data } from "../dashboard/post-list/PropertyTableBody";
+import ListData from "../../data/list-real-estates/ListData";
 
 const ListingRealEstate = () => {
   const router = useRouter();
@@ -47,6 +48,7 @@ const ListingRealEstate = () => {
       },
     })?.then((res) => {
       if (res) {
+        res = ListData;
         setTotalPage(res.tongSoTrang);
         setData(res.danhSach.filter((item: any) => item.trangThai == 2));
       }

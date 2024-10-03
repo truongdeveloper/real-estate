@@ -34,15 +34,15 @@ const ShortCard = (props: ShortCardI) => {
   const storedArrayJSON = localStorage.getItem("favourites") as string;
   const favouritesList = JSON.parse(storedArrayJSON);
 
-  useEffect(() => {
-    if (typeof favouritesList == "object") {
-      favouritesList.map((item: any) => {
-        if (item?.id === itemPost?.id) {
-          setIsFavorite(true);
-        }
-      });
-    }
-  }, [favouritesList, itemPost?.id]);
+  // useEffect(() => {
+  //   if (typeof favouritesList == "object") {
+  //     favouritesList.map((item: any) => {
+  //       if (item?.id === itemPost?.id) {
+  //         setIsFavorite(true);
+  //       }
+  //     });
+  //   }
+  // }, [favouritesList, itemPost?.id]);
 
   function handleAddFavorite(id: number) {
     isAuthen().then((res) => {

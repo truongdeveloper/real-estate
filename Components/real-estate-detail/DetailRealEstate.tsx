@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import { isEmpty } from "lodash";
 import GoogleMapComponent from "../../Helper/GoogleMapComponent";
 import conversionDate from "../../Constants/conversionDate";
+import ListData from "../../data/list-real-estates/ListData";
 
 const DetailRealEstate = () => {
   const router = useRouter();
@@ -35,7 +36,12 @@ const DetailRealEstate = () => {
       },
     })
       ?.then((res) => {
-        setDataPost(res);
+        if (res) {
+          // setDataPost(res);
+        }
+        const data = ListData.danhSach.find((item: any) => item.id == id);
+        debugger;
+        setDataPost(data);
       })
       .catch((error) => {
         toast("Không lấy được dữ liẹu bài đăng");
